@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Direct Auto Brokerage | Simple, Smart Car Deals in Southern California</title>
+  <meta
+    name="description"
+    content="Direct Auto Brokerage helps drivers across Southern California lease, buy new or used vehicles, and trade in with a simple, transparent process and broker-level savings."
+  />
+
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --bg-alt: #ffffff;
+      --bg-dark: #111111;
+      --text-main: #111111;
+      --text-soft: #555555;
+      --border-soft: #dddddd;
+      --accent: #222222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.4rem;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(245, 245, 245, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 2px solid var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .brand-text {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.3rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--text-soft);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-call {
+      font-size: 0.85rem;
+      white-space: nowrap;
+      color: var(--text-soft);
+    }
+
+    .nav-call strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* HERO */
+
+    main {
+      padding-bottom: 3rem;
+    }
+
+    section {
+      padding: 3rem 0 0;
+      scroll-margin-top: 80px;
+    }
+
+    .hero {
+      padding: 2.4rem 0 2.6rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw + 1rem, 3rem);
+      line-height: 1.08;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 30rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-sub strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .btn-primary {
+      border: none;
+      border-radius: 999px;
+      padding: 0.8rem 1.7rem;
+      font-size: 0.94rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--bg-dark);
+      color: #ffffff;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.24);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.02);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      padding: 0.72rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .hero-panel {
+      background: var(--bg-alt);
+      border-radius: 20px;
+      border: 1px solid var(--border-soft);
+      padding: 1.4rem 1.3rem;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.06);
+    }
+
+    .hero-panel-title {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-panel-sub {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-list li {
+      display: flex;
+      gap: 0.4rem;
+      align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: 0.25rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      border-top: 1px solid var(--border-soft);
+      padding-top: 0.6rem;
+      margin-top: 0.4rem;
+    }
+
+    .hero-tag {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 0.72rem;
+    }
+
+    /* SECTION GENERIC */
+
+    .section-heading {
+      font-size: 1.6rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      max-width: 34rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 1.2rem 1.1rem 1.3rem;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      font-size: 1.02rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card p {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+    }
+
+    /* SERVICES */
+
+    .service-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .service-type {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+      margin-bottom: 0.2rem;
+    }
+
+    /* HOW IT WORKS */
+
+    .step-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+      font-size: 0.84rem;
+      color: var(--text-soft);
+    }
+
+    .card ul li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* WHY A BROKER */
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .compare-heading {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .compare-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    /* CONTACT */
+
+    .contact-section {
+      padding-bottom: 3rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .contact-info-card {
+      background: #111111;
+      color: #f7f7f7;
+      border-radius: 20px;
+      padding: 1.7rem 1.4rem;
+    }
+
+    .contact-info-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info-card p {
+      font-size: 0.9rem;
+      color: #d9d9d9;
+      margin-bottom: 0.9rem;
+    }
+
+    .contact-line {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-line span {
+      color: #bcbcbc;
+    }
+
+    .contact-phone {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .social-row {
+      margin-top: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.85rem;
+    }
+
+    .social-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid #f7f7f7;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .social-icon:hover {
+      background: #f5f5f5;
+      color: #111111;
+    }
+
+    form {
+      background: var(--bg-alt);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 1.3rem 1.2rem 1.4rem;
+      font-size: 0.9rem;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+    }
+
+    form h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.16rem;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      padding: 0.56rem 0.65rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      font-family: inherit;
+      background: #fafafa;
+      color: var(--text-main);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .form-small {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-top: -0.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-full {
+      width: 100%;
+      margin-top: 0.2rem;
+    }
+
+    #confirmationBox {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.1rem 1rem 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      background: #f2f2f2;
+      font-size: 0.86rem;
+    }
+
+    #confirmationBox h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 0.98rem;
+    }
+
+    #previewText {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      padding: 0.6rem 0.7rem;
+      font-size: 0.78rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin-bottom: 0.7rem;
+    }
+
+    .sms-button {
+      display: block;
+      text-align: center;
+      margin-top: 0.3rem;
+      padding: 0.78rem 1.2rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.3);
+    }
+
+    .sms-button:hover {
+      filter: brightness(1.05);
+    }
+
+    .sms-note {
+      font-size: 0.74rem;
+      color: var(--text-soft);
+      margin-top: 0.6rem;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 1.3rem 1.4rem 1.6rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      text-align: center;
+      margin-top: 1.8rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-panel {
+        order: -1;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-2,
+      .compare-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav {
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 1.8rem;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-mark">DA</div>
+          <div class="brand-text">DIRECT AUTO BROKERAGE</div>
+        </div>
+        <nav class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#why-broker">Why a broker</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-call">
+          <span>Call / Text:</span> <strong>(949) 444-3388</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-kicker">Southern California · Auto Broker</div>
+          <h1 class="hero-title">Simple, direct car deals without the dealership grind.</h1>
+          <p class="hero-sub">
+            Direct Auto Brokerage helps you <strong>lease or buy new and used vehicles</strong> and trade in your current car
+            with a <strong>clean, transparent process</strong> and broker-level savings.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              Start my request
+            </button>
+            <a class="btn-outline" href="sms:+19494443388?&body=Hi%2C%20I%27m%20interested%20in%20a%20vehicle%20through%20Direct%20Auto%20Brokerage.">
+              Text Direct Auto Brokerage
+            </a>
+          </div>
+          <p class="hero-note">
+            Lease · Buy new · Buy used · Trade in · All major brands across Southern California.
+          </p>
+        </div>
+
+        <aside class="hero-panel">
+          <h2 class="hero-panel-title">Why work with a broker?</h2>
+          <p class="hero-panel-sub">
+            We sit between you and the dealership – so you see clearer options, less mark-up, and fewer surprises.
+          </p>
+          <ul class="hero-list">
+            <li>
+              <div class="hero-dot"></div>
+              <span>We shop multiple dealers on your behalf.</span>
+            </li>
+            <li>
+              <div class="hero-dot"></div>
+              <span>We focus on clean numbers, not add-ons and games.</span>
+            </li>
+            <li>
+              <div class="hero-dot"></div>
+              <span>You save time, stress, and often real money on the deal.</span>
+            </li>
+          </ul>
+          <div class="hero-meta">
+            <span>Mercedes · BMW · Lexus · Toyota · and more</span>
+            <span class="hero-tag">Broker-level guidance</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <p class="service-label">Services</p>
+        <h2 class="section-heading">What Direct Auto Brokerage helps you with.</h2>
+        <p class="section-sub">
+          New, used, or trading in – we design the process around you. You tell us what matters most: payment, brand, features, or timing.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="service-type">Lease · Buy New</div>
+            <h3>New vehicles, without the showroom time.</h3>
+            <p>
+              Tell us the brands and models you’re interested in (Mercedes, BMW, Lexus, Toyota, and more).
+              We compare offers across dealers and look for the cleanest structure for your payment range.
+            </p>
+          </div>
+          <div class="card">
+            <div class="service-type">Buy Used</div>
+            <h3>Used cars with clearer numbers.</h3>
+            <p>
+              We help you find pre-owned options that fit your budget and needs, and we work the numbers so you
+              don’t overpay or miss fees buried in the fine print.
+            </p>
+          </div>
+          <div class="card">
+            <div class="service-type">Trade-In</div>
+            <h3>Upgrade without guessing your trade value.</h3>
+            <p>
+              We help you understand what your current vehicle is truly worth and how it fits into the deal,
+              so you’re not leaving thousands on the table.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+      <div class="container">
+        <h2 class="section-heading">How it works.</h2>
+        <p class="section-sub">
+          A simple three-step flow designed to remove the pressure and confusion from getting a car.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="step-number">1</div>
+            <h3>Share what you’re looking for.</h3>
+            <p>
+              You tell us how you want to move: lease, buy new, buy used, or trade in – plus any details like brand, model, payment comfort, or timing.
+            </p>
+          </div>
+          <div class="card">
+            <div class="step-number">2</div>
+            <h3>We work the market for you.</h3>
+            <p>
+              We reach out to our dealer network, compare offers, and look for strong, clean options that align with what you shared –
+              without you bouncing from salesperson to salesperson.
+            </p>
+          </div>
+          <div class="card">
+            <div class="step-number">3</div>
+            <h3>You review options and decide.</h3>
+            <p>
+              You see the options, ask questions, and move forward only if it feels right. We’re here to guide, not push.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY A BROKER -->
+    <section id="why-broker">
+      <div class="container">
+        <h2 class="section-heading">Why use an auto broker instead of going in alone?</h2>
+        <p class="section-sub">
+          Dealerships are built to protect their margins. Our job is to help you see the whole picture more clearly, and avoid paying for things you don’t need.
+        </p>
+
+        <div class="compare-grid">
+          <div class="card">
+            <div class="compare-badge">Typical dealership experience</div>
+            <div class="compare-heading">You on your own.</div>
+            <ul>
+              <li>Multiple visits, multiple salespeople, 3–5 hours per trip.</li>
+              <li>Back-and-forth numbers that are hard to compare.</li>
+              <li>Add-ons and fees that appear late in the process.</li>
+              <li>Hard to tell if you’re getting a strong deal.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="compare-badge">With Direct Auto Brokerage</div>
+            <div class="compare-heading">You with a broker in your corner.</div>
+            <ul>
+              <li>We talk directly with multiple stores for you.</li>
+              <li>You see simplified options in plain language.</li>
+              <li>Focus on cleaner pricing and structure, not upsells.</li>
+              <li>Guidance at each step, without sales pressure.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FORM -->
+    <section id="contact" class="contact-section">
+      <div class="container contact-grid">
+        <div class="contact-info-card">
+          <h2>Let’s make your next car simple.</h2>
+          <p>
+            If you’re thinking about leasing, buying new or used, or trading in, share a few details and we’ll
+            respond with a clear path forward. No pressure, no obligation.
+          </p>
+          <div class="contact-line">
+            <span>Call / Text</span><br />
+            <span class="contact-phone">(949) 444-3388</span>
+          </div>
+          <div class="contact-line">
+            <span>Area</span><br />
+            All of Southern California
+          </div>
+          <div class="social-row">
+            <span>Instagram</span>
+            <a
+              href="https://instagram.com/directautobrokerage"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              IG
+            </a>
+          </div>
+        </div>
+
+        <form id="lead-form">
+          <h2>Quick form — then tap to text.</h2>
+          <p class="form-small">
+            Fill this out in under a minute. You’ll see a preview, then tap once to send it by text to Direct Auto Brokerage.
+          </p>
+
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required />
+
+          <label for="phone">Your phone number</label>
+          <input id="phone" name="phone" placeholder="Best number to reach you" required />
+
+          <label for="interest">What are you looking to do?</label>
+          <select id="interest" name="interest">
+            <option>Lease a new vehicle</option>
+            <option>Buy a new vehicle</option>
+            <option>Buy a used vehicle</option>
+            <option>Trade in / sell my current vehicle</option>
+          </select>
+
+          <label for="vehicle">Vehicle or brands you’re considering</label>
+          <input
+            id="vehicle"
+            name="vehicle"
+            placeholder="e.g., 2024 Lexus RX, Mercedes C-Class, Toyota RAV4"
+          />
+
+          <label for="details">Anything else we should know?</label>
+          <textarea
+            id="details"
+            name="details"
+            placeholder="Budget, timing, must-have features, or anything important to you."
+          ></textarea>
+
+          <button type="submit" class="btn-primary btn-full">
+            Build my text to Direct Auto
+          </button>
+
+          <div id="confirmationBox">
+            <h3>Preview of what you’ll text us</h3>
+            <pre id="previewText"></pre>
+            <a id="smsButton" class="sms-button" href="#">
+              Tap to text this to (949) 444-3388
+            </a>
+            <p class="sms-note">
+              If the button doesn’t open your messages app, you can copy the text above
+              and send it manually to <strong>(949) 444-3388</strong>.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Direct Auto Brokerage. All rights reserved.
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // SMS form logic
+    const leadForm = document.getElementById("lead-form");
+    const confirmationBox = document.getElementById("confirmationBox");
+    const previewText = document.getElementById("previewText");
+    const smsButton = document.getElementById("smsButton");
+
+    if (leadForm) {
+      leadForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const interest = document.getElementById("interest").value;
+        const vehicle = document.getElementById("vehicle").value.trim();
+        const details = document.getElementById("details").value.trim();
+
+        let preview = "";
+        preview += "Name: " + (name || "(not provided)") + "\n";
+        preview += "Their phone: " + (phone || "(not provided)") + "\n";
+        preview += "Looking to: " + interest + "\n";
+        if (vehicle) {
+          preview += "Vehicle / Brands: " + vehicle + "\n";
+        }
+        if (details) {
+          preview += "Details: " + details + "\n";
+        }
+
+        previewText.textContent = preview;
+
+        // Build SMS body (encoded)
+        let smsBody = "Hi, my name is " + (name || "") + ".";
+        smsBody += " Here is what I am looking to do with Direct Auto Brokerage:";
+        smsBody += "\nLooking to: " + interest;
+        if (vehicle) {
+          smsBody += "\nVehicle / Brands: " + vehicle;
+        }
+        if (details) {
+          smsBody += "\nDetails: " + details;
+        }
+        if (phone) {
+          smsBody += "\nYou can call or text me at: " + phone;
+        }
+
+        const encodedBody = encodeURIComponent(smsBody);
+        const smsLink = "sms:+19494443388?&body=" + encodedBody;
+        smsButton.href = smsLink;
+
+        confirmationBox.style.display = "block";
+        confirmationBox.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  </script>
+</body>
+</html>
