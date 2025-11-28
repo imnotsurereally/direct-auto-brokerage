@@ -583,6 +583,52 @@ a {
   color: #b9bfd4;
 }
 
+/* Reviews slider */
+
+.reviews-slider {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.reviews-slider__track {
+  max-width: 520px;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1.3rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-subtle);
+  overflow: hidden;
+}
+
+.reviews-slider__slide {
+  display: none;
+}
+
+.reviews-slider__slide.is-active {
+  display: block;
+}
+
+.reviews-slider__arrow {
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(8, 10, 18, 0.9);
+  color: var(--text);
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviews-slider__arrow:hover {
+  background: rgba(10, 12, 20, 1);
+}
+
 /* FAQ */
 
 .faq-grid {
@@ -624,6 +670,29 @@ a {
   color: var(--muted);
 }
 
+/* Car Finder */
+
+.car-finder__bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.car-finder__bullets li + li {
+  margin-top: 0.2rem;
+}
+
+.car-finder__summary {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.4rem 0 0.8rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
 /* Contact */
 
 .section--contact {
@@ -649,7 +718,7 @@ a {
 
 .contact-meta {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.3rem;
   font-size: 0.88rem;
 }
@@ -721,8 +790,8 @@ a {
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
 .reveal.is-visible {
