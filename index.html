@@ -6,6 +6,24 @@
   <title>Direct Auto Brokerage | Your Personal Car Buying Team</title>
   <meta name="description" content="Direct Auto Brokerage helps you find, negotiate, and deliver your next vehicle at the best price with zero dealership hassle." />
 
+  <!-- Basic SEO -->
+  <meta name="keywords" content="auto broker, car broker, car buying service, Southern California, car leasing, car purchasing, negotiate car price, car deals">
+  <meta name="author" content="Direct Auto Brokerage">
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="Direct Auto Brokerage | Your Personal Car Buying Team">
+  <meta property="og:description" content="Skip the dealership games. Get the car you want with a personal auto broker who negotiates like it's their own money.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imnotsurereally.github.io/direct-auto-brokerage/">
+  <!-- TODO: Once you add an OG image, update this URL -->
+  <meta property="og:image" content="https://imnotsurereally.github.io/direct-auto-brokerage/og-image.jpg">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Direct Auto Brokerage | Your Personal Car Buying Team">
+  <meta name="twitter:description" content="Let a personal auto broker handle the hunting and negotiating. You just sign and drive.">
+  <meta name="twitter:image" content="https://imnotsurereally.github.io/direct-auto-brokerage/og-image.jpg">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,13 +31,23 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Analytics 4 (replace G-XXXXXXX with your real GA4 ID) -->
+  <!-- TODO: Set up GA4 and replace both G-XXXXXXX below -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
 </head>
 <body>
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="container top-bar__content">
       <p>Skip the dealership. Get a better deal with a personal auto broker.</p>
-      <a href="tel:+1-555-555-5555" class="top-bar__phone">Call Now: (555) 555-5555</a>
+      <a href="tel:+19494443388" class="top-bar__phone">Call Now: (949) 444-3388</a>
     </div>
   </div>
 
@@ -27,7 +55,6 @@
   <header class="header">
     <div class="container header__inner">
       <a href="#" class="logo">
-        <!-- You can replace this with an actual logo image -->
         <span class="logo__icon">●</span>
         <span class="logo__text">
           <span class="logo__title">Direct Auto Brokerage</span>
@@ -93,36 +120,43 @@
             <h2>Get a custom quote in 60 seconds</h2>
             <p>No spam. No obligation. Just straight numbers.</p>
           </div>
-          <form class="lead-form">
+          <!-- TODO: After you build a Zoho Form, replace the action URL below and insert any hidden Zoho fields inside -->
+          <form
+            class="lead-form"
+            id="hero-lead-form"
+            action="https://forms.zohopublic.com/YOUR_ZOHO_FORM_ENDPOINT"
+            method="POST"
+          >
             <label class="field">
               <span>Name</span>
-              <input type="text" name="name" placeholder="Full name" required>
+              <input type="text" name="Name" placeholder="Full name" required>
             </label>
             <label class="field">
               <span>Phone</span>
-              <input type="tel" name="phone" placeholder="(555) 555-5555" required>
+              <input type="tel" name="Phone" placeholder="(949) 444-3388" required>
             </label>
             <label class="field">
               <span>Email</span>
-              <input type="email" name="email" placeholder="you@example.com" required>
+              <input type="email" name="Email" placeholder="you@example.com" required>
             </label>
             <label class="field">
               <span>What are you looking for?</span>
-              <input type="text" name="vehicle" placeholder="e.g. 2022 Mercedes C-Class, under 30k miles" required>
+              <input type="text" name="Vehicle_Preference" placeholder="e.g. 2022 Mercedes C-Class, under 30k miles" required>
             </label>
             <label class="field">
               <span>Lease or Purchase?</span>
-              <select name="deal_type">
+              <select name="Deal_Type">
                 <option value="">Select one</option>
-                <option value="purchase">Purchase</option>
-                <option value="lease">Lease</option>
-                <option value="not_sure">Not sure yet</option>
+                <option value="Lease">Lease</option>
+                <option value="Purchase">Purchase</option>
+                <option value="Not sure yet">Not sure yet</option>
               </select>
             </label>
             <label class="field">
               <span>Preferred monthly budget (optional)</span>
-              <input type="text" name="budget" placeholder="$500/month, $10k down, etc.">
+              <input type="text" name="Budget" placeholder="$500/month, $10k down, etc.">
             </label>
+
             <button type="submit" class="btn btn--primary btn--full">Get My Custom Deal</button>
             <p class="lead-form__note">By submitting, you agree to be contacted about your quote. No spam, ever.</p>
           </form>
@@ -281,6 +315,35 @@
           <p class="review-card__name">— A. Thompson</p>
         </div>
       </div>
+
+      <!-- Simple slider version of the reviews -->
+      <div class="reviews-slider reveal">
+        <button class="reviews-slider__arrow" data-dir="prev">‹</button>
+        <div class="reviews-slider__track">
+          <div class="reviews-slider__slide is-active">
+            <p class="review-card__text">
+              “I’ll never walk into a dealership alone again. Daniel handled everything and I just showed up to sign
+              paperwork on my lunch break. Easiest car purchase I’ve ever made.”
+            </p>
+            <p class="review-card__name">— J. Martinez</p>
+          </div>
+          <div class="reviews-slider__slide">
+            <p class="review-card__text">
+              “He explained the numbers in plain English and actually pushed back on the dealer when they tried to slip in
+              extra add-ons. I felt totally protected through the whole process.”
+            </p>
+            <p class="review-card__name">— S. Nguyen</p>
+          </div>
+          <div class="reviews-slider__slide">
+            <p class="review-card__text">
+              “We had a very specific SUV in mind and couldn’t find it locally. Daniel sourced it, negotiated a fair price,
+              and had everything ready. Worth every penny.”
+            </p>
+            <p class="review-card__name">— A. Thompson</p>
+          </div>
+        </div>
+        <button class="reviews-slider__arrow" data-dir="next">›</button>
+      </div>
     </div>
   </section>
 
@@ -328,6 +391,123 @@
     </div>
   </section>
 
+  <!-- Car Finder -->
+  <section id="car-finder" class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2>Car finder: tell us what you want, we’ll do the hunting</h2>
+        <p>Answer a few quick questions and we’ll come back with tailored options and numbers.</p>
+      </div>
+
+      <div class="section--contact__inner car-finder">
+        <div class="section--contact__content reveal">
+          <p>
+            Not sure where to start? This short form helps us understand whether a lease or purchase makes more sense,
+            what kind of vehicle you’re after, and what kind of payment you’re comfortable with.
+          </p>
+          <ul class="car-finder__bullets">
+            <li>We only use this info to structure real offers.</li>
+            <li>No dealership spam, ever.</li>
+            <li>We’ll reply with options, not pressure.</li>
+          </ul>
+        </div>
+
+        <div class="section--contact__form reveal">
+          <!-- TODO: Replace action URL and add hidden fields from your Zoho Form -->
+          <form
+            class="lead-form lead-form--solid"
+            id="car-finder-form"
+            action="https://forms.zohopublic.com/YOUR_ZOHO_FORM_ENDPOINT"
+            method="POST"
+          >
+            <div class="field-group">
+              <label class="field">
+                <span>Name</span>
+                <input type="text" name="Name" placeholder="Full name" required>
+              </label>
+              <label class="field">
+                <span>Phone</span>
+                <input type="tel" name="Phone" placeholder="(949) 444-3388" required>
+              </label>
+            </div>
+
+            <div class="field-group">
+              <label class="field">
+                <span>Email</span>
+                <input type="email" name="Email" placeholder="you@example.com" required>
+              </label>
+              <label class="field">
+                <span>Deal type</span>
+                <select name="Deal_Type" id="car-deal-type" required>
+                  <option value="">Select</option>
+                  <option value="Lease">Lease</option>
+                  <option value="Purchase">Purchase</option>
+                  <option value="Not sure yet">Not sure yet</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="field-group">
+              <label class="field">
+                <span>New or pre-owned?</span>
+                <select name="Condition" id="car-condition" required>
+                  <option value="">Select</option>
+                  <option value="New">New</option>
+                  <option value="Pre-owned">Pre-owned</option>
+                  <option value="Either">Either is fine</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Timeline</span>
+                <select name="Timeline">
+                  <option value="">Select</option>
+                  <option value="ASAP">ASAP (this week)</option>
+                  <option value="30 days">Within 30 days</option>
+                  <option value="90 days">Next 2–3 months</option>
+                  <option value="Just exploring">Just exploring</option>
+                </select>
+              </label>
+            </div>
+
+            <div id="lease-fields" class="conditional-group hidden">
+              <label class="field">
+                <span>Ideal monthly payment (lease)</span>
+                <input type="text" name="Lease_Budget" placeholder="$500/month, $0–$2k drive-off, etc.">
+              </label>
+            </div>
+
+            <div id="purchase-fields" class="conditional-group hidden">
+              <div class="field-group">
+                <label class="field">
+                  <span>Max purchase price</span>
+                  <input type="text" name="Purchase_Price" placeholder="$40,000, etc.">
+                </label>
+                <label class="field">
+                  <span>Down payment</span>
+                  <input type="text" name="Down_Payment" placeholder="$5,000, etc.">
+                </label>
+              </div>
+            </div>
+
+            <label class="field">
+              <span>Vehicle preferences</span>
+              <textarea name="Vehicle_Preferences" rows="3" placeholder="Year, make, model, must-have features, mileage, color, etc."></textarea>
+            </label>
+
+            <p class="car-finder__summary" id="car-finder-summary">
+              Once you select lease or purchase and new or pre-owned, we’ll summarize your request here.
+            </p>
+
+            <button type="submit" class="btn btn--primary btn--full">
+              Send My Car Finder Request
+            </button>
+            <p class="lead-form__note">We typically respond with options within one business day.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact / Lead Form -->
   <section id="contact" class="section section--contact">
     <div class="container section--contact__inner">
@@ -340,11 +520,7 @@
         <div class="contact-meta">
           <div>
             <h3>Phone</h3>
-            <a href="tel:+1-555-555-5555">(555) 555-5555</a>
-          </div>
-          <div>
-            <h3>Email</h3>
-            <a href="mailto:info@directautobrokerage.com">info@directautobrokerage.com</a>
+            <a href="tel:+19494443388">(949) 444-3388</a>
           </div>
           <div>
             <h3>Service Area</h3>
@@ -354,37 +530,43 @@
       </div>
 
       <div class="section--contact__form reveal">
-        <form class="lead-form lead-form--solid">
+        <!-- TODO: Replace action URL and add hidden fields from your Zoho Form -->
+        <form
+          class="lead-form lead-form--solid"
+          id="contact-lead-form"
+          action="https://forms.zohopublic.com/YOUR_ZOHO_FORM_ENDPOINT"
+          method="POST"
+        >
           <div class="field-group">
             <label class="field">
               <span>Name</span>
-              <input type="text" name="name" placeholder="Full name" required>
+              <input type="text" name="Name" placeholder="Full name" required>
             </label>
             <label class="field">
               <span>Phone</span>
-              <input type="tel" name="phone" placeholder="(555) 555-5555" required>
+              <input type="tel" name="Phone" placeholder="(949) 444-3388" required>
             </label>
           </div>
 
           <div class="field-group">
             <label class="field">
               <span>Email</span>
-              <input type="email" name="email" placeholder="you@example.com" required>
+              <input type="email" name="Email" placeholder="you@example.com" required>
             </label>
             <label class="field">
               <span>Best way to reach you</span>
-              <select name="contact_pref">
+              <select name="Contact_Preference">
                 <option value="">Select</option>
-                <option value="call">Call</option>
-                <option value="text">Text</option>
-                <option value="email">Email</option>
+                <option value="Call">Call</option>
+                <option value="Text">Text</option>
+                <option value="Email">Email</option>
               </select>
             </label>
           </div>
 
           <label class="field">
             <span>What are you looking for?</span>
-            <textarea name="details" rows="4" placeholder="Year, make, model, new/used, lease/purchase, budget, timeline..."></textarea>
+            <textarea name="Details" rows="4" placeholder="Year, make, model, new/used, lease/purchase, budget, timeline..."></textarea>
           </label>
 
           <button type="submit" class="btn btn--primary btn--full">
