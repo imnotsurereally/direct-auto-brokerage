@@ -3,59 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Direct Auto Brokerage | Your Personal Car Buying Team</title>
-  <meta name="description" content="Direct Auto Brokerage helps you find, negotiate, and deliver your next vehicle at the best price with zero dealership hassle." />
+  <title>Direct Auto Brokerage | Former Dealer Insider Working For You</title>
 
-  <!-- Basic SEO -->
-  <meta name="keywords" content="auto broker, car broker, car buying service, Southern California, car leasing, car purchasing, negotiate car price, car deals">
-  <meta name="author" content="Direct Auto Brokerage">
+  <meta name="description" content="Direct Auto Brokerage uses former dealership experience to help Southern California car buyers find, negotiate, and secure the best possible deals—without the dealership games." />
+  <meta name="keywords" content="auto broker, car broker, car buying service, Southern California auto broker, Mercedes lease, Ram truck finance, best car deals, car negotiator, broker in SoCal" />
+  <meta name="author" content="Direct Auto Brokerage" />
 
-  <!-- Open Graph (for social sharing) -->
-  <meta property="og:title" content="Direct Auto Brokerage | Your Personal Car Buying Team">
-  <meta property="og:description" content="Skip the dealership games. Get the car you want with a personal auto broker who negotiates like it's their own money.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://imnotsurereally.github.io/direct-auto-brokerage/">
-  <!-- TODO: Once you add an OG image, update this URL -->
-  <meta property="og:image" content="https://imnotsurereally.github.io/direct-auto-brokerage/og-image.jpg">
+  <!-- Open Graph (social preview) -->
+  <meta property="og:title" content="Direct Auto Brokerage | Former Dealer Insider Working For You" />
+  <meta property="og:description" content="Skip the dealership games. Put a former insider on your side to negotiate your next car deal." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://imnotsurereally.github.io/direct-auto-brokerage/" />
+  <meta property="og:image" content="og-image.jpg" />
 
-  <!-- Twitter / X Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Direct Auto Brokerage | Your Personal Car Buying Team">
-  <meta name="twitter:description" content="Let a personal auto broker handle the hunting and negotiating. You just sign and drive.">
-  <meta name="twitter:image" content="https://imnotsurereally.github.io/direct-auto-brokerage/og-image.jpg">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Direct Auto Brokerage | Former Dealer Insider Working For You" />
+  <meta name="twitter:description" content="A car-buying experience built around you—not the dealership." />
+  <meta name="twitter:image" content="og-image.jpg" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutomotiveBusiness",
+    "name": "Direct Auto Brokerage",
+    "description": "Independent auto broker in Southern California helping buyers find and negotiate the best deals using former dealership insider experience.",
+    "areaServed": "Southern California",
+    "url": "https://imnotsurereally.github.io/direct-auto-brokerage/",
+    "telephone": "+1-949-444-3388",
+    "sameAs": [
+      "https://www.instagram.com/directautobrokerage/"
+    ]
+  }
+  </script>
+
+  <!-- Favicon placeholders (add these files later if you want) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Google Analytics 4 (replace G-XXXXXXX with your real GA4 ID) -->
-  <!-- TODO: Set up GA4 and replace both G-XXXXXXX below -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
-  </script>
 </head>
 <body>
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="container top-bar__content">
-      <p>Skip the dealership. Get a better deal with a personal auto broker.</p>
-      <a href="tel:+19494443388" class="top-bar__phone">Call Now: (949) 444-3388</a>
+      <p>Skip the dealership games. Put a former insider on your side.</p>
     </div>
   </div>
 
-  <!-- Header / Nav -->
+  <!-- Header -->
   <header class="header">
     <div class="container header__inner">
       <a href="#" class="logo">
-        <span class="logo__icon">●</span>
+        <span class="logo__icon" aria-hidden="true"></span>
         <span class="logo__text">
           <span class="logo__title">Direct Auto Brokerage</span>
           <span class="logo__tagline">Your green light to a better deal</span>
@@ -64,10 +71,10 @@
 
       <nav class="nav">
         <a href="#how-it-works" class="nav__link">How It Works</a>
-        <a href="#benefits" class="nav__link">Why Us</a>
+        <a href="#benefits" class="nav__link">Why Use a Broker</a>
         <a href="#deals" class="nav__link">Recent Deals</a>
-        <a href="#reviews" class="nav__link">Reviews</a>
-        <a href="#contact" class="nav__link nav__link--primary">Get Started</a>
+        <a href="#broker-trust" class="nav__link">Never Used a Broker?</a>
+        <a href="#car-finder" class="nav__link nav__link--primary">Start My Search</a>
       </nav>
 
       <button class="nav__toggle" aria-label="Toggle navigation">
@@ -80,36 +87,36 @@
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content reveal">
-        <p class="eyebrow">Southern California • Remote & Hassle-Free</p>
-        <h1>Get the car you want. <span class="accent">We negotiate like it’s our own money.</span></h1>
+        <p class="eyebrow">Southern California • Independent Auto Broker</p>
+        <h1>Skip the dealership. <span class="accent">Put a former insider to work for you.</span></h1>
         <p class="hero__subtitle">
-          Stop wasting hours at dealerships. As your auto broker, we locate the exact vehicle,
-          negotiate the lowest price, and have it ready for you to sign and drive—without the pressure.
+          I used to sit on the dealership side of the desk. Now I use that same knowledge to help you find the right vehicle,
+          structure the deal, and negotiate against the dealership—so you don’t have to.
         </p>
 
         <div class="hero__highlights">
-          <div class="hero__pill">8+ years auto sales experience</div>
-          <div class="hero__pill">Luxury & everyday vehicles</div>
-          <div class="hero__pill">Off-market & dealer network access</div>
+          <div class="hero__pill">Former dealership sales & finance experience</div>
+          <div class="hero__pill">Built to protect car buyers—not store profits</div>
+          <div class="hero__pill">You handle the keys, I handle the back-and-forth</div>
         </div>
 
         <div class="hero__cta-group">
-          <a href="#contact" class="btn btn--primary">Start My Deal</a>
+          <a href="#car-finder" class="btn btn--primary">Start my car search</a>
           <a href="#how-it-works" class="btn btn--ghost">See how it works</a>
         </div>
 
         <div class="hero__confidence">
           <div class="hero__stat">
-            <span class="hero__stat-number">100%</span>
-            <span class="hero__stat-label">Buyer-focused</span>
+            <span class="hero__stat-number">Dealer insider</span>
+            <span class="hero__stat-label">experience now working for you</span>
           </div>
           <div class="hero__stat">
-            <span class="hero__stat-number">0</span>
-            <span class="hero__stat-label">Dealer pressure</span>
+            <span class="hero__stat-number">One focus</span>
+            <span class="hero__stat-label">your deal, not their quota</span>
           </div>
           <div class="hero__stat">
-            <span class="hero__stat-number">$$$</span>
-            <span class="hero__stat-label">Avg. savings vs walking in</span>
+            <span class="hero__stat-number">Less time</span>
+            <span class="hero__stat-label">in the showroom, more time driving</span>
           </div>
         </div>
       </div>
@@ -117,48 +124,47 @@
       <div class="hero__panel reveal">
         <div class="hero-card">
           <div class="hero-card__header">
-            <h2>Get a custom quote in 60 seconds</h2>
-            <p>No spam. No obligation. Just straight numbers.</p>
+            <h2>Quick intro — I’ll do the hunting</h2>
+            <p>Share a couple details and I’ll reach out personally to understand what you’re looking for.</p>
           </div>
-          <!-- TODO: After you build a Zoho Form, replace the action URL below and insert any hidden Zoho fields inside -->
+
+          <!-- HERO QUICK FORM (Zoho endpoint) -->
           <form
             class="lead-form"
             id="hero-lead-form"
-            action="https://forms.zohopublic.com/YOUR_ZOHO_FORM_ENDPOINT"
+            action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY"
             method="POST"
           >
+            <input type="hidden" name="zf_referrer_name" value="Hero form - Direct Auto Brokerage" />
+            <input type="hidden" name="zf_redirect_url" value="" />
+            <input type="hidden" name="zc_gad" value="" />
+
             <label class="field">
               <span>Name</span>
-              <input type="text" name="Name" placeholder="Full name" required>
-            </label>
-            <label class="field">
-              <span>Phone</span>
-              <input type="tel" name="Phone" placeholder="(949) 444-3388" required>
-            </label>
-            <label class="field">
-              <span>Email</span>
-              <input type="email" name="Email" placeholder="you@example.com" required>
-            </label>
-            <label class="field">
-              <span>What are you looking for?</span>
-              <input type="text" name="Vehicle_Preference" placeholder="e.g. 2022 Mercedes C-Class, under 30k miles" required>
-            </label>
-            <label class="field">
-              <span>Lease or Purchase?</span>
-              <select name="Deal_Type">
-                <option value="">Select one</option>
-                <option value="Lease">Lease</option>
-                <option value="Purchase">Purchase</option>
-                <option value="Not sure yet">Not sure yet</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Preferred monthly budget (optional)</span>
-              <input type="text" name="Budget" placeholder="$500/month, $10k down, etc.">
+              <!-- Map to Zoho's Name_First field -->
+              <input type="text" name="Name_First" placeholder="Full name" required />
             </label>
 
-            <button type="submit" class="btn btn--primary btn--full">Get My Custom Deal</button>
-            <p class="lead-form__note">By submitting, you agree to be contacted about your quote. No spam, ever.</p>
+            <label class="field">
+              <span>Phone</span>
+              <!-- Map to Zoho's phone field -->
+              <input type="tel" name="PhoneNumber_countrycode" placeholder="(949) 444-3388" required />
+            </label>
+
+            <label class="field">
+              <span>What are you looking for?</span>
+              <!-- Map to Zoho's MultiLine field -->
+              <textarea name="MultiLine" rows="3" placeholder="Year, make, model, lease/purchase, rough budget..." required></textarea>
+            </label>
+
+            <!-- Optional email, not required -->
+            <label class="field">
+              <span>Email (optional)</span>
+              <input type="email" name="Email" placeholder="you@example.com" />
+            </label>
+
+            <button type="submit" class="btn btn--primary btn--full">Send my details</button>
+            <p class="lead-form__note">I’ll review your note and follow up personally—no automated dealership blasts.</p>
           </form>
         </div>
       </div>
@@ -170,38 +176,40 @@
     <div class="container">
       <div class="section__header reveal">
         <h2>How the brokerage process works</h2>
-        <p>Simple, transparent, and built to save you time, money, and stress.</p>
+        <p>Simple, transparent, and built around your deal—not the dealership’s goals.</p>
       </div>
 
       <div class="steps">
         <div class="step-card reveal">
           <div class="step-card__badge">Step 1</div>
-          <h3>Tell us what you want</h3>
-          <p>Share your ideal vehicle, budget, and must-have features. We’ll help refine options if you’re not sure yet.</p>
+          <h3>Tell me what you want</h3>
+          <p>Share your ideal vehicle, budget, and timing. If you’re not sure yet, we’ll narrow it down together.</p>
           <ul>
             <li>New or pre-owned</li>
             <li>Lease or finance</li>
             <li>Monthly budget & down payment</li>
           </ul>
         </div>
+
         <div class="step-card reveal">
           <div class="step-card__badge">Step 2</div>
-          <h3>We hunt & negotiate</h3>
-          <p>We shop our dealer network, locate the best options, and negotiate on your behalf like an insider.</p>
+          <h3>I do the hunting & negotiating</h3>
+          <p>I shop dealer networks, locate strong options, and negotiate using the same playbook dealerships rely on.</p>
           <ul>
-            <li>Compare multiple dealers</li>
-            <li>Transparent out-the-door pricing</li>
-            <li>No sales games, ever</li>
+            <li>Compare multiple dealers behind the scenes</li>
+            <li>Transparent, out-the-door numbers</li>
+            <li>You see the deal before you ever step in</li>
           </ul>
         </div>
+
         <div class="step-card reveal">
           <div class="step-card__badge">Step 3</div>
           <h3>You sign & drive</h3>
-          <p>We coordinate the paperwork with the dealer. You show up, sign, and drive away in the car you actually want.</p>
+          <p>Paperwork and numbers are structured in advance. You show up, sign, and drive away in the car you actually want.</p>
           <ul>
-            <li>Paperwork prepped in advance</li>
-            <li>In-and-out delivery experience</li>
-            <li>Ongoing support after the deal</li>
+            <li>Streamlined delivery experience</li>
+            <li>Support if anything changes</li>
+            <li>Ongoing help when it’s time for the next car</li>
           </ul>
         </div>
       </div>
@@ -212,26 +220,26 @@
   <section id="benefits" class="section">
     <div class="container">
       <div class="section__header reveal">
-        <h2>Why car buyers love working with a broker</h2>
-        <p>Side-step the pressure, keep the savings.</p>
+        <h2>Why car buyers use a broker</h2>
+        <p>Most people buy a car every few years. Dealerships negotiate every single day.</p>
       </div>
 
       <div class="benefits-grid">
         <div class="benefit-card reveal">
-          <h3>No awkward haggling</h3>
-          <p>We handle all the negotiating directly with the dealership so you don’t have to sit through hours of back-and-forth.</p>
+          <h3>Someone on your side of the table</h3>
+          <p>The dealership’s job is to protect their profit. My role is the opposite—protecting your deal and your time.</p>
         </div>
         <div class="benefit-card reveal">
-          <h3>Insider knowledge</h3>
-          <p>With 8+ years in auto sales, we understand how deals are structured, where the margins are, and how to protect you.</p>
+          <h3>Insider knowledge of how deals are built</h3>
+          <p>Because I’ve been on the inside, I understand how payments, discounts, and add-ons really work—and where there’s room to move.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <h3>Less pressure, less guessing</h3>
+          <p>You don’t have to memorize every incentive or fee. I walk you through the options in plain language before you sign anything.</p>
         </div>
         <div class="benefit-card reveal">
           <h3>Time back in your life</h3>
-          <p>Instead of visiting multiple dealerships, we do the homework, comparisons, and calls for you.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <h3>Aligned with you, not the dealer</h3>
-          <p>Dealership sales are commission-driven. As a broker, our goal is simple: get you the right car at the right terms.</p>
+          <p>Instead of spending weekends at multiple dealerships, you let me do the outreach, comparisons, and back-and-forth.</p>
         </div>
       </div>
     </div>
@@ -241,19 +249,30 @@
   <section id="deals" class="section section--alt">
     <div class="container">
       <div class="section__header reveal">
-        <h2>Recent client wins</h2>
-        <p>Numbers below are examples of the kinds of deals we structure.</p>
+        <h2>Recent deal structures</h2>
+        <p>Examples of how deals can look when a broker handles the negotiating.</p>
       </div>
 
       <div class="deals-grid">
         <article class="deal-card reveal">
-          <div class="deal-card__label">Lease</div>
-          <h3>2024 Mercedes-Benz C-Class</h3>
-          <p class="deal-card__meta">Client wanted: luxury sedan, low miles, low payment.</p>
+          <div class="deal-card__label">Finance</div>
+          <h3>2026 Ram 3500 Dually</h3>
+          <p class="deal-card__meta">Heavy-duty truck for business use, specific color and equipment.</p>
           <ul class="deal-card__stats">
-            <li><strong>$150/mo</strong> lower payment vs dealer quote</li>
-            <li><strong>$0</strong> added dealer junk fees</li>
-            <li><strong>36-month</strong> lease with flexible miles</li>
+            <li><strong>Targeted below advertised pricing</strong> through multi-dealer comparison</li>
+            <li><strong>Structured for work use</strong> with the right term and payment balance</li>
+            <li><strong>Delivery set in advance</strong> to avoid long in-store visits</li>
+          </ul>
+        </article>
+
+        <article class="deal-card reveal">
+          <div class="deal-card__label">Lease</div>
+          <h3>2026 Mercedes-Benz (Example Lease)</h3>
+          <p class="deal-card__meta">Luxury lease arranged for a client focused on payment and equipment, not just “sticker price.”</p>
+          <ul class="deal-card__stats">
+            <li><strong>Negotiated payment</strong> based on real numbers, not just “what feels good”</li>
+            <li><strong>Transparent fees</strong> reviewed line by line</li>
+            <li><strong>Simple sign-and-drive experience</strong> with paperwork prepared in advance</li>
           </ul>
         </article>
 
@@ -262,265 +281,85 @@
           <h3>2023 Toyota RAV4</h3>
           <p class="deal-card__meta">Family SUV with specific color and package requirements.</p>
           <ul class="deal-card__stats">
-            <li><strong>$2,300</strong> below asking price</li>
-            <li><strong>Certified pre-owned</strong> with warranty</li>
-            <li><strong>1 visit</strong> to sign & drive</li>
-          </ul>
-        </article>
-
-        <article class="deal-card reveal">
-          <div class="deal-card__label">Out-of-Area</div>
-          <h3>2022 Honda Civic Sport</h3>
-          <p class="deal-card__meta">Client wanted a very specific trim; sourced from out of area.</p>
-          <ul class="deal-card__stats">
-            <li><strong>$1,500</strong> negotiated discount</li>
-            <li><strong>Transport arranged</strong> to local dealer</li>
-            <li><strong>Zero</strong> dealership shopping by client</li>
+            <li><strong>Below advertised price</strong> after comparing multiple stores</li>
+            <li><strong>Certified pre-owned</strong> for warranty peace of mind</li>
+            <li><strong>Single visit</strong> to sign and drive away</li>
           </ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Reviews -->
-  <section id="reviews" class="section">
+  <!-- Broker Trust / Education -->
+  <section id="broker-trust" class="section">
     <div class="container">
       <div class="section__header reveal">
-        <h2>What clients are saying</h2>
-        <p>Real people, real deals, less headache.</p>
+        <h2>Never worked with a broker before?</h2>
+        <p>Here’s why it exists — and how it helps you.</p>
       </div>
 
-      <div class="reviews-grid">
-        <div class="review-card reveal">
-          <p class="review-card__text">
-            “I’ll never walk into a dealership alone again. Daniel handled everything and I just showed up to sign
-            paperwork on my lunch break. Easiest car purchase I’ve ever made.”
+      <div class="trust-grid">
+        <div class="trust-block reveal">
+          <h3>From the dealership side to your side</h3>
+          <p>
+            I’ve spent time on the inside of the dealership world—on the sales side where every day is about moving units and
+            protecting profit. That experience is exactly what I now use <strong>for</strong> buyers.
           </p>
-          <p class="review-card__name">— J. Martinez</p>
+          <p>
+            When you walk in alone, you’re going up against a team that negotiates deals every day. Most buyers only do this every
+            few years. That experience gap is where a lot of money and options can be lost.
+          </p>
         </div>
 
-        <div class="review-card reveal">
-          <p class="review-card__text">
-            “He explained the numbers in plain English and actually pushed back on the dealer when they tried to slip in
-            extra add-ons. I felt totally protected through the whole process.”
+        <div class="trust-block reveal">
+          <h3>What a broker actually does</h3>
+          <p>
+            As your broker, I’m not tied to one store. I compare multiple dealerships, use the same tools and structure they do,
+            and then push for the best combination of price, payment, and terms for you.
           </p>
-          <p class="review-card__name">— S. Nguyen</p>
+          <p>
+            You still pick up your vehicle from a dealership—but by the time you arrive, the numbers and structure have already
+            been reviewed and discussed with someone who speaks the same language they do.
+          </p>
         </div>
 
-        <div class="review-card reveal">
-          <p class="review-card__text">
-            “We had a very specific SUV in mind and couldn’t find it locally. Daniel sourced it, negotiated a fair
-            price, and had everything ready. Worth every penny.”
-          </p>
-          <p class="review-card__name">— A. Thompson</p>
-        </div>
-      </div>
-
-      <!-- Simple slider version of the reviews -->
-      <div class="reviews-slider reveal">
-        <button class="reviews-slider__arrow" data-dir="prev">‹</button>
-        <div class="reviews-slider__track">
-          <div class="reviews-slider__slide is-active">
-            <p class="review-card__text">
-              “I’ll never walk into a dealership alone again. Daniel handled everything and I just showed up to sign
-              paperwork on my lunch break. Easiest car purchase I’ve ever made.”
-            </p>
-            <p class="review-card__name">— J. Martinez</p>
-          </div>
-          <div class="reviews-slider__slide">
-            <p class="review-card__text">
-              “He explained the numbers in plain English and actually pushed back on the dealer when they tried to slip in
-              extra add-ons. I felt totally protected through the whole process.”
-            </p>
-            <p class="review-card__name">— S. Nguyen</p>
-          </div>
-          <div class="reviews-slider__slide">
-            <p class="review-card__text">
-              “We had a very specific SUV in mind and couldn’t find it locally. Daniel sourced it, negotiated a fair price,
-              and had everything ready. Worth every penny.”
-            </p>
-            <p class="review-card__name">— A. Thompson</p>
-          </div>
-        </div>
-        <button class="reviews-slider__arrow" data-dir="next">›</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section__header reveal">
-        <h2>Frequently asked questions</h2>
-        <p>If you’re wondering it, someone else has too.</p>
-      </div>
-
-      <div class="faq-grid">
-        <details class="faq-item reveal">
-          <summary>What exactly does an auto broker do?</summary>
+        <div class="trust-block reveal">
+          <h3>Why this makes car buying easier</h3>
           <p>
-            An auto broker represents <strong>you</strong>, the buyer. We locate vehicles, negotiate pricing and terms,
-            and coordinate the deal with the dealership so you avoid the pressure and confusion.
+            Instead of trying to guess which offer is fair or worrying about missing something in the paperwork, you have someone
+            walking you through it. My goal is to make the process feel straightforward, calm, and clear—while getting you a
+            deal that reflects what’s actually possible in the market.
           </p>
-        </details>
-
-        <details class="faq-item reveal">
-          <summary>How do you get paid?</summary>
           <p>
-            Typically through a flat broker fee and sometimes compensation from the dealer. We’ll always outline our fee
-            structure up front so there are no surprises.
+            In short: the dealership focuses on their business. I focus on <strong>your</strong> outcome.
           </p>
-        </details>
-
-        <details class="faq-item reveal">
-          <summary>Do I still go to the dealership?</summary>
-          <p>
-            Yes, but only to sign and pick up your vehicle. All the hunting, negotiating, and structuring of your deal
-            is handled beforehand.
-          </p>
-        </details>
-
-        <details class="faq-item reveal">
-          <summary>Can you help if I’m not sure what car I want?</summary>
-          <p>
-            Absolutely. We’ll discuss your lifestyle, budget, and needs, then suggest vehicles and deal structures that
-            make sense for you.
-          </p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Car Finder -->
-  <section id="car-finder" class="section">
-    <div class="container">
-      <div class="section__header reveal">
-        <h2>Car finder: tell us what you want, we’ll do the hunting</h2>
-        <p>Answer a few quick questions and we’ll come back with tailored options and numbers.</p>
-      </div>
-
-      <div class="section--contact__inner car-finder">
-        <div class="section--contact__content reveal">
-          <p>
-            Not sure where to start? This short form helps us understand whether a lease or purchase makes more sense,
-            what kind of vehicle you’re after, and what kind of payment you’re comfortable with.
-          </p>
-          <ul class="car-finder__bullets">
-            <li>We only use this info to structure real offers.</li>
-            <li>No dealership spam, ever.</li>
-            <li>We’ll reply with options, not pressure.</li>
-          </ul>
-        </div>
-
-        <div class="section--contact__form reveal">
-          <!-- TODO: Replace action URL and add hidden fields from your Zoho Form -->
-          <form
-            class="lead-form lead-form--solid"
-            id="car-finder-form"
-            action="https://forms.zohopublic.com/YOUR_ZOHO_FORM_ENDPOINT"
-            method="POST"
-          >
-            <div class="field-group">
-              <label class="field">
-                <span>Name</span>
-                <input type="text" name="Name" placeholder="Full name" required>
-              </label>
-              <label class="field">
-                <span>Phone</span>
-                <input type="tel" name="Phone" placeholder="(949) 444-3388" required>
-              </label>
-            </div>
-
-            <div class="field-group">
-              <label class="field">
-                <span>Email</span>
-                <input type="email" name="Email" placeholder="you@example.com" required>
-              </label>
-              <label class="field">
-                <span>Deal type</span>
-                <select name="Deal_Type" id="car-deal-type" required>
-                  <option value="">Select</option>
-                  <option value="Lease">Lease</option>
-                  <option value="Purchase">Purchase</option>
-                  <option value="Not sure yet">Not sure yet</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="field-group">
-              <label class="field">
-                <span>New or pre-owned?</span>
-                <select name="Condition" id="car-condition" required>
-                  <option value="">Select</option>
-                  <option value="New">New</option>
-                  <option value="Pre-owned">Pre-owned</option>
-                  <option value="Either">Either is fine</option>
-                </select>
-              </label>
-              <label class="field">
-                <span>Timeline</span>
-                <select name="Timeline">
-                  <option value="">Select</option>
-                  <option value="ASAP">ASAP (this week)</option>
-                  <option value="30 days">Within 30 days</option>
-                  <option value="90 days">Next 2–3 months</option>
-                  <option value="Just exploring">Just exploring</option>
-                </select>
-              </label>
-            </div>
-
-            <div id="lease-fields" class="conditional-group hidden">
-              <label class="field">
-                <span>Ideal monthly payment (lease)</span>
-                <input type="text" name="Lease_Budget" placeholder="$500/month, $0–$2k drive-off, etc.">
-              </label>
-            </div>
-
-            <div id="purchase-fields" class="conditional-group hidden">
-              <div class="field-group">
-                <label class="field">
-                  <span>Max purchase price</span>
-                  <input type="text" name="Purchase_Price" placeholder="$40,000, etc.">
-                </label>
-                <label class="field">
-                  <span>Down payment</span>
-                  <input type="text" name="Down_Payment" placeholder="$5,000, etc.">
-                </label>
-              </div>
-            </div>
-
-            <label class="field">
-              <span>Vehicle preferences</span>
-              <textarea name="Vehicle_Preferences" rows="3" placeholder="Year, make, model, must-have features, mileage, color, etc."></textarea>
-            </label>
-
-            <p class="car-finder__summary" id="car-finder-summary">
-              Once you select lease or purchase and new or pre-owned, we’ll summarize your request here.
-            </p>
-
-            <button type="submit" class="btn btn--primary btn--full">
-              Send My Car Finder Request
-            </button>
-            <p class="lead-form__note">We typically respond with options within one business day.</p>
-          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact / Lead Form -->
-  <section id="contact" class="section section--contact">
+  <!-- Car Finder Form -->
+  <section id="car-finder" class="section section--contact">
     <div class="container section--contact__inner">
       <div class="section--contact__content reveal">
-        <h2>Ready to see your numbers?</h2>
+        <h2>Tell me what you’re looking for</h2>
         <p>
-          Share a bit about what you’re looking for and we’ll respond with real options, not generic dealership emails.
+          This is the same form I use to start every search. The more you share, the more precise I can be with options and
+          negotiating.
         </p>
 
         <div class="contact-meta">
           <div>
             <h3>Phone</h3>
             <a href="tel:+19494443388">(949) 444-3388</a>
+          </div>
+          <div>
+            <h3>WhatsApp</h3>
+            <a href="https://wa.me/19494443388" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          </div>
+          <div>
+            <h3>Instagram</h3>
+            <a href="https://www.instagram.com/directautobrokerage/" target="_blank" rel="noopener">@directautobrokerage</a>
           </div>
           <div>
             <h3>Service Area</h3>
@@ -530,49 +369,65 @@
       </div>
 
       <div class="section--contact__form reveal">
-        <!-- TODO: Replace action URL and add hidden fields from your Zoho Form -->
+        <!-- MAIN CAR FINDER FORM posting to Zoho -->
         <form
           class="lead-form lead-form--solid"
-          id="contact-lead-form"
-          action="https://forms.zohopublic.com/YOUR_ZOHO_FORM_ENDPOINT"
+          id="car-finder-form"
+          action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY"
           method="POST"
         >
+          <input type="hidden" name="zf_referrer_name" value="Car Finder form - Direct Auto Brokerage" />
+          <input type="hidden" name="zf_redirect_url" value="" />
+          <input type="hidden" name="zc_gad" value="" />
+
           <div class="field-group">
             <label class="field">
-              <span>Name</span>
-              <input type="text" name="Name" placeholder="Full name" required>
+              <span>First name</span>
+              <input type="text" name="Name_First" placeholder="First name" required />
             </label>
             <label class="field">
-              <span>Phone</span>
-              <input type="tel" name="Phone" placeholder="(949) 444-3388" required>
+              <span>Last name</span>
+              <input type="text" name="Name_Last" placeholder="Last name" />
             </label>
           </div>
 
           <div class="field-group">
             <label class="field">
-              <span>Email</span>
-              <input type="email" name="Email" placeholder="you@example.com" required>
+              <span>Phone</span>
+              <input type="tel" name="PhoneNumber_countrycode" placeholder="(949) 444-3388" required />
             </label>
             <label class="field">
-              <span>Best way to reach you</span>
-              <select name="Contact_Preference">
-                <option value="">Select</option>
-                <option value="Call">Call</option>
-                <option value="Text">Text</option>
-                <option value="Email">Email</option>
-              </select>
+              <span>Email</span>
+              <input type="email" name="Email" placeholder="you@example.com" />
             </label>
           </div>
 
           <label class="field">
+            <span>Are you looking to lease or purchase?</span>
+            <!-- Map to Zoho's Dropdown field -->
+            <select name="Dropdown">
+              <option value="">Select one</option>
+              <option value="Purchase">Purchase</option>
+              <option value="Lease">Lease</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </label>
+
+          <label class="field">
             <span>What are you looking for?</span>
-            <textarea name="Details" rows="4" placeholder="Year, make, model, new/used, lease/purchase, budget, timeline..."></textarea>
+            <!-- Map to Zoho's MultiLine field -->
+            <textarea
+              name="MultiLine"
+              rows="4"
+              placeholder="Year, make, model, new/used, lease/purchase, budget, timeline, must-haves..."
+              required
+            ></textarea>
           </label>
 
           <button type="submit" class="btn btn--primary btn--full">
-            Send My Request
+            Send my car search
           </button>
-          <p class="lead-form__note">We typically respond within one business day.</p>
+          <p class="lead-form__note">I typically respond within one business day with next steps.</p>
         </form>
       </div>
     </div>
@@ -582,7 +437,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <span class="logo__icon">●</span>
+        <span class="logo__icon" aria-hidden="true"></span>
         <span class="logo__title">Direct Auto Brokerage</span>
       </div>
       <p class="footer__copy">
@@ -590,8 +445,14 @@
       </p>
       <div class="footer__links">
         <a href="#how-it-works">Process</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
+        <a href="#deals">Recent Deals</a>
+        <a href="#car-finder">Start My Search</a>
+      </div>
+      <div class="footer__social">
+        <a href="https://wa.me/19494443388" target="_blank" rel="noopener" class="social-icon social-icon--whatsapp">WhatsApp</a>
+        <a href="https://www.instagram.com/directautobrokerage/" target="_blank" rel="noopener" class="social-icon social-icon--instagram">Instagram</a>
+        <!-- When you create your Facebook page, replace the URL below and remove the comment -->
+        <!-- <a href="YOUR_FACEBOOK_LINK_HERE" target="_blank" rel="noopener" class="social-icon social-icon--facebook">Facebook</a> -->
       </div>
     </div>
   </footer>
