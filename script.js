@@ -63,8 +63,8 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     }
   });
 
-  // Handle submit: log data + show confirmation step
-  form.addEventListener('submit', e => {
+  // Handle submit: send data to Netlify function + show confirmation
+  form.addEventListener('submit', async e => {
     e.preventDefault();
 
     const formData = new FormData(form);
@@ -73,10 +73,38 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       payload[key] = value;
     });
 
-    console.log('Wizard submission:', payload);
+    console.log('Wizard submission payload:', payload);
 
-    // TODO: later send to Google Sheets / backend here
+    // Call Netlify function (backend)
+    try {
+      const res = await fetch('/.netlify/functions/saveLead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
 
+      let data = {};
+      try {
+        data = await res.json();
+      } catch (err) {
+        // ignore JSON parse errors, not critical
+      }
+
+      console.log('Netlify saveLead response:', data);
+
+      if (!res.ok) {
+        console.error('saveLead returned non-OK status:', res.status);
+      }
+    } catch (err) {
+      console.error('Error calling saveLead function:', err);
+      alert(
+        "Your info was captured in the browser, but there was an issue talking to the server.\n\nIf this keeps happening, please text me directly at 949-444-3388."
+      );
+    }
+
+    // Show confirmation step regardless so user flow stays smooth
     showStep(5);
   });
 
