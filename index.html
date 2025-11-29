@@ -2,381 +2,1007 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Direct Auto Brokerage | Former Dealer Insider Working For You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Direct Auto Brokerage – Southern California independent auto broker. Put a former dealership insider on your side and skip the games."
+  />
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-elevated: #101218;
+      --accent: #2dd36f;
+      --accent-soft: rgba(45, 211, 111, 0.12);
+      --text-main: #f5f5f5;
+      --text-muted: #a0a4b3;
+      --border-subtle: #232633;
+      --danger: #ff4d4f;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --radius-full: 999px;
+      --max-width: 980px;
+    }
 
-  <meta name="description" content="Direct Auto Brokerage uses former dealership experience to help Southern California car buyers find, negotiate, and secure the best possible deals—without the dealership games." />
-  <meta name="keywords" content="auto broker, car broker, car buying service, Southern California auto broker, Mercedes lease, Ram truck finance, best car deals, car negotiator, broker in SoCal" />
-  <meta name="author" content="Direct Auto Brokerage" />
+    * {
+      box-sizing: border-box;
+    }
 
-  <!-- Open Graph (social preview) -->
-  <meta property="og:title" content="Direct Auto Brokerage | Former Dealer Insider Working For You" />
-  <meta property="og:description" content="Skip the dealership games. Put a former insider on your side to negotiate your next car deal." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://imnotsurereally.github.io/direct-auto-brokerage/" />
-  <meta property="og:image" content="og-image.jpg" />
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #151927 0%, #050608 55%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Direct Auto Brokerage | Former Dealer Insider Working For You" />
-  <meta name="twitter:description" content="A car-buying experience built around you—not the dealership." />
-  <meta name="twitter:image" content="og-image.jpg" />
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  <!-- LocalBusiness structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AutomotiveBusiness",
-    "name": "Direct Auto Brokerage",
-    "description": "Independent auto broker in Southern California helping buyers find and negotiate the best deals using former dealership insider experience.",
-    "areaServed": "Southern California",
-    "url": "https://imnotsurereally.github.io/direct-auto-brokerage/",
-    "telephone": "+1-949-444-3388",
-    "sameAs": [
-      "https://www.instagram.com/directautobrokerage/"
-    ]
-  }
-  </script>
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-  <!-- Favicon placeholders -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 6, 8, 0.96),
+        rgba(5, 6, 8, 0.88),
+        rgba(5, 6, 8, 0.0)
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .brand-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 11px;
+      background: radial-gradient(circle at 30% 20%, #54f39a, #138f4a 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .brand span:last-child {
+      opacity: 0.7;
+      font-weight: 500;
+      text-transform: none;
+      font-size: 11px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2dd36f, #54f39a);
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(45, 211, 111, 0.5);
+      background: radial-gradient(
+        circle at 0 0,
+        rgba(84, 243, 154, 0.16),
+        rgba(5, 6, 8, 0.9)
+      );
+      font-size: 12px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-main);
+      box-shadow: 0 0 0 1px rgba(9, 231, 112, 0.08);
+    }
+
+    .nav-cta span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 99px;
+      background: #13e470;
+      box-shadow: 0 0 12px rgba(19, 228, 112, 0.9);
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 16px 56px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      border-radius: var(--radius-full);
+      padding: 4px 10px 4px 4px;
+      background: rgba(10, 190, 90, 0.08);
+      border: 1px solid rgba(45, 211, 111, 0.35);
+      color: #c9ffe3;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .pill-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #5dfcaf, #179a52);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 26px;
+      align-items: flex-start;
+    }
+
+    .hero h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(26px, 4vw, 34px);
+      line-height: 1.1;
+    }
+
+    .hero h1 span.accent {
+      background: linear-gradient(120deg, #54f39a, #2dd36f);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .hero-bullets {
+      margin: 16px 0 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .hero-bullets span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-bullets span::before {
+      content: "•";
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border-radius: var(--radius-full);
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2dd36f, #54f39a);
+      border-color: rgba(0, 0, 0, 0.8);
+      color: #021007;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-secondary {
+      background: rgba(9, 11, 18, 0.9);
+      border-color: var(--border-subtle);
+      color: var(--text-main);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .meta-pill {
+      padding: 6px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, #151b26, #07080c);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: var(--shadow-soft);
+      padding: 16px 16px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-highlight {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight strong {
+      color: #e4fdf0;
+    }
+
+    .hero-divider {
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.04),
+        rgba(255, 255, 255, 0.0)
+      );
+      margin: 8px 0 10px;
+    }
+
+    .hero-checks {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-checks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .hero-checks li::before {
+      content: "✓";
+      color: var(--accent);
+      margin-top: 1px;
+      font-size: 13px;
+    }
+
+    .hero-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-footer span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    .hero-footer strong {
+      color: #e6ffe7;
+    }
+
+    .hero-ribbon {
+      position: absolute;
+      inset: auto -26px -26px auto;
+      width: 190px;
+      height: 190px;
+      background: radial-gradient(circle at 0 0, #54f39a, transparent 58%);
+      opacity: 0.09;
+      pointer-events: none;
+    }
+
+    section {
+      margin-top: 40px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    section h2 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    section p {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 680px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .step-card {
+      border-radius: var(--radius-lg);
+      background: rgba(7, 9, 16, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 14px 14px 12px;
+    }
+
+    .step-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .step-card h3 {
+      font-size: 15px;
+      margin: 2px 0 6px;
+    }
+
+    .step-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .step-card ul li {
+      margin-bottom: 4px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .step-card ul li::before {
+      content: "•";
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .reason-card {
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgba(7, 8, 12, 0.9);
+    }
+
+    .reason-card h3 {
+      font-size: 15px;
+      margin: 0 0 4px;
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .deal-card {
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: radial-gradient(
+          circle at top,
+          rgba(84, 243, 154, 0.06),
+          rgba(7, 9, 15, 0.96)
+        );
+    }
+
+    .deal-type {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .deal-card h3 {
+      font-size: 15px;
+      margin: 0 0 4px;
+    }
+
+    .deal-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .deal-card ul li {
+      margin-bottom: 4px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .deal-card ul li::before {
+      content: "•";
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.7fr);
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .faq-block h3 {
+      font-size: 15px;
+      margin: 0 0 6px;
+    }
+
+    .faq-block p {
+      font-size: 13px;
+      margin: 0 0 8px;
+    }
+
+    .contact-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 2.1fr);
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      background: rgba(7, 9, 15, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .contact-card h3 {
+      font-size: 15px;
+      margin: 0 0 6px;
+    }
+
+    .contact-item {
+      margin: 8px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-item strong {
+      color: var(--text-main);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .social-pill {
+      padding: 6px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(10, 12, 20, 0.95);
+    }
+
+    .service-area {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .zoho-shell {
+      border-radius: var(--radius-xl);
+      background: rgba(7, 9, 15, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 14px;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zoho-shell-placeholder {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .zoho-shell-placeholder code {
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 2px 6px;
+      border-radius: 8px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 18px 16px 26px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 32px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .faq-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="container top-bar__content">
-      <p>Skip the dealership games. Put a former insider on your side.</p>
+<header>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-badge">D</div>
+      <div>
+        <div>Direct Auto Brokerage</div>
+        <span>Independent auto broker • SoCal</span>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#how-it-works">Process</a>
+      <a href="#why-broker">Why use a broker</a>
+      <a href="#recent-deals">Recent deals</a>
+      <a href="#faq">Never used a broker?</a>
+      <a href="#start-search" class="nav-cta">
+        <span class="dot"></span>
+        Start my search
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section aria-label="Hero">
+    <div class="pill">
+      <span class="pill-dot">⚡</span>
+      Former dealer insider on your side
+    </div>
+
+    <div class="hero">
+      <div>
+        <h1>
+          Skip the dealership games.<br />
+          <span class="accent">Put a former insider</span> to work for you.
+        </h1>
+        <p class="hero-sub">
+          I used to sit on the dealership side of the desk. Now I use that same knowledge to help you
+          find the right vehicle, structure the deal, and negotiate against the dealership—so you don’t have to.
+        </p>
+
+        <div class="hero-bullets">
+          <span>Former dealership sales &amp; finance experience</span>
+          <span>Built to protect car buyers—not store profits</span>
+          <span>You handle the keys, I handle the back-and-forth</span>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="#start-search" class="btn-primary">
+            Start my car search
+          </a>
+          <a href="#how-it-works" class="btn-secondary">
+            See how it works
+          </a>
+        </div>
+
+        <div class="meta-row">
+          <div class="meta-pill">Southern California • Independent Auto Broker</div>
+          <div class="meta-pill">No pressure. Straight answers. Real numbers.</div>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Direct Auto Brokerage snapshot">
+        <div class="hero-tagline">Direct Auto Brokerage</div>
+        <div class="hero-highlight">
+          <strong>Your “green light” to a better deal</strong> without spending weekends in showrooms.
+        </div>
+        <div class="hero-divider"></div>
+        <ul class="hero-checks">
+          <li>Define the right car and budget with a straightforward conversation.</li>
+          <li>I shop multiple dealerships quietly in the background.</li>
+          <li>You see the numbers before you ever step into a store.</li>
+        </ul>
+        <div class="hero-footer">
+          <div>
+            <span class="label">Service area</span><br />
+            Southern California &amp; surrounding regions
+          </div>
+          <div>
+            <span class="label">Contact</span><br />
+            <strong>(949) 444-3388</strong>
+          </div>
+        </div>
+        <div class="hero-ribbon" aria-hidden="true"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="how-it-works" aria-labelledby="how-heading">
+    <h2 id="how-heading">How the brokerage process works</h2>
+    <p>
+      Simple, transparent, and built around your deal—not the dealership’s goals. Share what you’re
+      looking for once; I handle the hunting, comparing, and negotiating.
+    </p>
+
+    <div class="steps-grid">
+      <article class="step-card">
+        <div class="step-label">Step 1</div>
+        <h3>Tell me what you want</h3>
+        <p>
+          Share your ideal vehicle, budget, and timing. If you’re not sure yet, we’ll narrow it down together.
+        </p>
+        <ul>
+          <li>New or pre-owned</li>
+          <li>Lease or finance</li>
+          <li>Monthly budget &amp; down payment</li>
+        </ul>
+      </article>
+
+      <article class="step-card">
+        <div class="step-label">Step 2</div>
+        <h3>I do the hunting &amp; negotiating</h3>
+        <p>
+          I shop dealer networks, locate strong options, and negotiate using the same playbook dealerships rely on.
+        </p>
+        <ul>
+          <li>Compare multiple dealers behind the scenes</li>
+          <li>Transparent, out-the-door numbers</li>
+          <li>You see the deal before you ever step in</li>
+        </ul>
+      </article>
+
+      <article class="step-card">
+        <div class="step-label">Step 3</div>
+        <h3>You sign &amp; drive</h3>
+        <p>
+          Paperwork and numbers are structured in advance. You show up, sign, and drive away in the car you actually want.
+        </p>
+        <ul>
+          <li>Streamlined delivery experience</li>
+          <li>Support if anything changes</li>
+          <li>Ongoing help when it’s time for the next car</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="why-broker" aria-labelledby="why-heading">
+    <h2 id="why-heading">Why car buyers use a broker</h2>
+    <p>
+      Most people buy a car every few years. Dealerships negotiate every single day. My job is to close that experience
+      gap and make sure the numbers make sense for you—not for the store.
+    </p>
+
+    <div class="why-grid">
+      <article class="reason-card">
+        <h3>Someone on your side of the table</h3>
+        <p class="tagline">
+          The dealership’s job is to protect their profit. My role is the opposite—protecting your deal and your time.
+        </p>
+      </article>
+
+      <article class="reason-card">
+        <h3>Insider knowledge of how deals are built</h3>
+        <p class="tagline">
+          Because I’ve been on the inside, I understand how payments, discounts, and add-ons really work—and where
+          there’s room to move.
+        </p>
+      </article>
+
+      <article class="reason-card">
+        <h3>Less pressure, less guessing</h3>
+        <p class="tagline">
+          You don’t have to memorize every incentive or fee. I walk you through the options in plain language before you sign.
+        </p>
+      </article>
+
+      <article class="reason-card">
+        <h3>Time back in your life</h3>
+        <p class="tagline">
+          Instead of spending weekends at multiple dealerships, you let me do the outreach, comparisons, and back-and-forth.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="recent-deals" aria-labelledby="deals-heading">
+    <h2 id="deals-heading">Recent deal structures</h2>
+    <p>
+      Examples of how deals can look when a broker handles the negotiating. Every deal is different—these are just a few patterns.
+    </p>
+
+    <div class="deals-grid">
+      <article class="deal-card">
+        <div class="deal-type">Finance</div>
+        <h3>2026 Ram 3500 Dually</h3>
+        <p class="tagline">
+          Heavy-duty truck for business use, with specific color and equipment requirements.
+        </p>
+        <ul>
+          <li>Targeted below advertised pricing through multi-dealer comparison</li>
+          <li>Structured for work use with the right term and payment balance</li>
+          <li>Delivery set in advance to avoid long in-store visits</li>
+        </ul>
+      </article>
+
+      <article class="deal-card">
+        <div class="deal-type">Lease</div>
+        <h3>2026 GLC 300</h3>
+        <p class="tagline">
+          Luxury lease arranged for a client focused on payment and equipment, not just sticker price.
+        </p>
+        <ul>
+          <li>Negotiated payment based on real numbers</li>
+          <li>Transparent fees reviewed line by line</li>
+          <li>Simple sign-and-drive experience with paperwork prepared in advance</li>
+        </ul>
+      </article>
+
+      <article class="deal-card">
+        <div class="deal-type">Purchase</div>
+        <h3>2023 Toyota RAV4</h3>
+        <p class="tagline">
+          Family SUV with specific color and package requirements.
+        </p>
+        <ul>
+          <li>Below advertised price after comparing multiple stores</li>
+          <li>Certified pre-owned for warranty peace of mind</li>
+          <li>Single visit to sign and drive away</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Never worked with a broker before?</h2>
+    <p>
+      Here’s what that actually means—and how it helps you.
+    </p>
+
+    <div class="faq-grid">
+      <div class="faq-block">
+        <h3>From the dealership side to your side</h3>
+        <p>
+          I’ve spent time on the inside of the dealership world—on the sales side where every day is about moving units and
+          protecting profit. That experience is exactly what I now use for buyers.
+        </p>
+        <p>
+          When you walk in alone, you’re going up against a team that negotiates deals every day. Most buyers only do
+          this every few years. That experience gap is where a lot of money and options can be lost.
+        </p>
+      </div>
+      <div class="faq-block">
+        <h3>What a broker actually does</h3>
+        <p>
+          As your broker, I’m not tied to one store. I compare multiple dealerships, use the same tools and structure
+          they do, and then look for the best combination of price, payment, and terms for you.
+        </p>
+        <p>
+          You still pick up your vehicle from a dealership—but by the time you arrive, the numbers and structure have
+          already been reviewed and discussed with someone who understands how those deals are put together.
+        </p>
+        <p>
+          In short: the dealership focuses on their business. I focus on your outcome.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="start-search" aria-labelledby="start-heading">
+    <h2 id="start-heading">Tell me what you’re looking for</h2>
+    <p>
+      This is the same form I use to start every search. The more you share, the more precise I can be with options and negotiating.
+    </p>
+
+    <div class="contact-grid">
+      <aside class="contact-card">
+        <h3>Direct contact</h3>
+
+        <div class="contact-item">
+          <strong>Phone</strong>
+          (949) 444-3388
+        </div>
+
+        <div class="contact-item">
+          <strong>WhatsApp</strong>
+          <a href="https://wa.me" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+
+        <div class="contact-item">
+          <strong>Instagram</strong>
+          <a href="https://www.instagram.com/directautobrokerage" target="_blank" rel="noopener">
+            @directautobrokerage
+          </a>
+        </div>
+
+        <div class="service-area">
+          <strong>Service area</strong><br />
+          Southern California &amp; surrounding regions
+        </div>
+
+        <div class="social-links">
+          <span class="social-pill">Text or call works best.</span>
+          <span class="social-pill">No pressure—just straight answers.</span>
+        </div>
+      </aside>
+
+      <div class="zoho-shell">
+        <!-- 
+          ZOHO FORM EMBED GOES HERE
+
+          IMPORTANT:
+          - If you're currently using the iframe version from Zoho, paste the <iframe> embed code here.
+          - When you're ready to upgrade to a true HTML <form> integration, paste the full <form>...</form> 
+            block from Zoho "Embed → HTML" in this same spot and we can wire it up more deeply.
+
+          Example structure (THIS IS JUST AN EXAMPLE, DO NOT USE AS-IS):
+          
+          <form action="https://forms.zohopublic.com/..." method="POST">
+            ...all Zoho fields & hidden inputs...
+          </form>
+        -->
+        <div id="zoho-form-container" class="zoho-shell-placeholder">
+          Loading form…<br /><br />
+          Paste your Zoho embed code inside
+          <code>.zoho-shell</code> in this section in your GitHub file.
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      © <span id="year"></span> Direct Auto Brokerage. All rights reserved.
+    </div>
+    <div class="footer-links">
+      <a href="#how-it-works">Process</a>
+      <a href="#recent-deals">Recent deals</a>
+      <a href="#start-search">Start my search</a>
     </div>
   </div>
+</footer>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container header__inner">
-      <a href="#" class="logo">
-        <span class="logo__icon" aria-hidden="true"></span>
-        <span class="logo__text">
-          <span class="logo__title">Direct Auto Brokerage</span>
-          <span class="logo__tagline">Your green light to a better deal</span>
-        </span>
-      </a>
+<script>
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var targetId = this.getAttribute('href').slice(1);
+      var target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 
-      <nav class="nav">
-        <a href="#how-it-works" class="nav__link">How It Works</a>
-        <a href="#benefits" class="nav__link">Why Use a Broker</a>
-        <a href="#deals" class="nav__link">Recent Deals</a>
-        <a href="#broker-trust" class="nav__link">Never Used a Broker?</a>
-        <a href="#car-finder" class="nav__link nav__link--primary">Start My Search</a>
-      </nav>
-
-      <button class="nav__toggle" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero__inner">
-      <div class="hero__content reveal">
-        <p class="eyebrow">Southern California • Independent Auto Broker</p>
-        <h1>Skip the dealership. <span class="accent">Put a former insider to work for you.</span></h1>
-        <p class="hero__subtitle">
-          I used to sit on the dealership side of the desk. Now I use that same knowledge to help you find the right vehicle,
-          structure the deal, and negotiate against the dealership—so you don’t have to.
-        </p>
-
-        <div class="hero__highlights">
-          <div class="hero__pill">Former dealership sales & finance experience</div>
-          <div class="hero__pill">Built to protect car buyers—not store profits</div>
-          <div class="hero__pill">You handle the keys, I handle the back-and-forth</div>
-        </div>
-
-        <div class="hero__cta-group">
-          <a href="#car-finder" class="btn btn--primary">Start my car search</a>
-          <a href="#how-it-works" class="btn btn--ghost">See how it works</a>
-        </div>
-
-        <div class="hero__confidence">
-          <div class="hero__stat">
-            <span class="hero__stat-number">Dealer insider</span>
-            <span class="hero__stat-label">experience now working for you</span>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat-number">One focus</span>
-            <span class="hero__stat-label">your deal, not their quota</span>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat-number">Less time</span>
-            <span class="hero__stat-label">in the showroom, more time driving</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero__panel reveal">
-        <div class="hero-card">
-          <div class="hero-card__header">
-            <h2>How I help</h2>
-            <p>Share what you’re looking for once — I handle the hunting, comparing, and negotiating.</p>
-          </div>
-          <ul class="hero-card__list">
-            <li>We define the right car and budget for you.</li>
-            <li>I shop multiple dealerships using insider knowledge.</li>
-            <li>You show up once to sign and drive away.</li>
-          </ul>
-          <a href="#car-finder" class="btn btn--primary btn--full">Start my search below</a>
-          <p class="lead-form__note">No pressure, no dealership games. Just straight answers and real numbers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section id="how-it-works" class="section section--alt">
-    <div class="container">
-      <div class="section__header reveal">
-        <h2>How the brokerage process works</h2>
-        <p>Simple, transparent, and built around your deal—not the dealership’s goals.</p>
-      </div>
-
-      <div class="steps">
-        <div class="step-card reveal">
-          <div class="step-card__badge">Step 1</div>
-          <h3>Tell me what you want</h3>
-          <p>Share your ideal vehicle, budget, and timing. If you’re not sure yet, we’ll narrow it down together.</p>
-          <ul>
-            <li>New or pre-owned</li>
-            <li>Lease or finance</li>
-            <li>Monthly budget &amp; down payment</li>
-          </ul>
-        </div>
-
-        <div class="step-card reveal">
-          <div class="step-card__badge">Step 2</div>
-          <h3>I do the hunting &amp; negotiating</h3>
-          <p>I shop dealer networks, locate strong options, and negotiate using the same playbook dealerships rely on.</p>
-          <ul>
-            <li>Compare multiple dealers behind the scenes</li>
-            <li>Transparent, out-the-door numbers</li>
-            <li>You see the deal before you ever step in</li>
-          </ul>
-        </div>
-
-        <div class="step-card reveal">
-          <div class="step-card__badge">Step 3</div>
-          <h3>You sign &amp; drive</h3>
-          <p>Paperwork and numbers are structured in advance. You show up, sign, and drive away in the car you actually want.</p>
-          <ul>
-            <li>Streamlined delivery experience</li>
-            <li>Support if anything changes</li>
-            <li>Ongoing help when it’s time for the next car</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Benefits -->
-  <section id="benefits" class="section">
-    <div class="container">
-      <div class="section__header reveal">
-        <h2>Why car buyers use a broker</h2>
-        <p>Most people buy a car every few years. Dealerships negotiate every single day.</p>
-      </div>
-
-      <div class="benefits-grid">
-        <div class="benefit-card reveal">
-          <h3>Someone on your side of the table</h3>
-          <p>The dealership’s job is to protect their profit. My role is the opposite—protecting your deal and your time.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <h3>Insider knowledge of how deals are built</h3>
-          <p>Because I’ve been on the inside, I understand how payments, discounts, and add-ons really work—and where there’s room to move.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <h3>Less pressure, less guessing</h3>
-          <p>You don’t have to memorize every incentive or fee. I walk you through the options in plain language before you sign anything.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <h3>Time back in your life</h3>
-          <p>Instead of spending weekends at multiple dealerships, you let me do the outreach, comparisons, and back-and-forth.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Deals -->
-  <section id="deals" class="section section--alt">
-    <div class="container">
-      <div class="section__header reveal">
-        <h2>Recent deal structures</h2>
-        <p>Examples of how deals can look when a broker handles the negotiating.</p>
-      </div>
-
-      <div class="deals-grid">
-        <article class="deal-card reveal">
-          <div class="deal-card__label">Finance</div>
-          <h3>2026 Ram 3500 Dually</h3>
-          <p class="deal-card__meta">Heavy-duty truck for business use, specific color and equipment.</p>
-          <ul class="deal-card__stats">
-            <li><strong>Targeted below advertised pricing</strong> through multi-dealer comparison</li>
-            <li><strong>Structured for work use</strong> with the right term and payment balance</li>
-            <li><strong>Delivery set in advance</strong> to avoid long in-store visits</li>
-          </ul>
-        </article>
-
-        <article class="deal-card reveal">
-          <div class="deal-card__label">Lease</div>
-          <h3>2026 GLC300</h3>
-          <p class="deal-card__meta">Luxury lease arranged for a client focused on payment and equipment, not just “sticker price.”</p>
-          <ul class="deal-card__stats">
-            <li><strong>Negotiated payment</strong> based on real numbers</li>
-            <li><strong>Transparent fees</strong> reviewed line by line</li>
-            <li><strong>Simple sign-and-drive experience</strong> with paperwork prepared in advance</li>
-          </ul>
-        </article>
-
-        <article class="deal-card reveal">
-          <div class="deal-card__label">Purchase</div>
-          <h3>2023 Toyota RAV4</h3>
-          <p class="deal-card__meta">Family SUV with specific color and package requirements.</p>
-          <ul class="deal-card__stats">
-            <li><strong>Below advertised price</strong> after comparing multiple stores</li>
-            <li><strong>Certified pre-owned</strong> for warranty peace of mind</li>
-            <li><strong>Single visit</strong> to sign and drive away</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Broker Trust / Education -->
-  <section id="broker-trust" class="section">
-    <div class="container">
-      <div class="section__header reveal">
-        <h2>Never worked with a broker before?</h2>
-        <p>Here’s what that actually means — and how it helps you.</p>
-      </div>
-
-      <div class="trust-grid">
-        <div class="trust-block reveal">
-          <h3>From the dealership side to your side</h3>
-          <p>
-            I’ve spent time on the inside of the dealership world—on the sales side where every day is about moving units and
-            protecting profit. That experience is exactly what I now use <strong>for</strong> buyers.
-          </p>
-          <p>
-            When you walk in alone, you’re going up against a team that negotiates deals every day. Most buyers only do this every
-            few years. That experience gap is where a lot of money and options can be lost.
-          </p>
-        </div>
-
-        <div class="trust-block reveal">
-          <h3>What a broker actually does</h3>
-          <p>
-            As your broker, I’m not tied to one store. I compare multiple dealerships, use the same tools and structure they do,
-            and then look for the best combination of price, payment, and terms for you.
-          </p>
-          <p>
-            You still pick up your vehicle from a dealership—but by the time you arrive, the numbers and structure have already
-            been reviewed and discussed with someone who understands how those deals are put together.
-          </p>
-        </div>
-
-        <div class="trust-block reveal">
-          <h3>Why this makes car buying easier</h3>
-          <p>
-            Instead of trying to guess which offer is fair or worrying about missing something in the paperwork, you have someone
-            walking you through it. My goal is to make the process feel straightforward, calm, and clear—while getting you a
-            deal that reflects what’s actually possible in the market.
-          </p>
-          <p>
-            In short: the dealership focuses on their business. I focus on <strong>your</strong> outcome.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Car Finder / Zoho Form -->
-  <section id="car-finder" class="section section--contact">
-    <div class="container section--contact__inner">
-      <div class="section--contact__content reveal">
-        <h2>Tell me what you’re looking for</h2>
-        <p>
-          This is the same form I use to start every search. The more you share, the more precise I can be with options and
-          negotiating.
-        </p>
-
-        <div class="contact-meta">
-          <div>
-            <h3>Phone</h3>
-            <a href="tel:+19494443388">(949) 444-3388</a>
-          </div>
-          <div>
-            <h3>WhatsApp</h3>
-            <a href="https://wa.me/19494443388" target="_blank" rel="noopener">Chat on WhatsApp</a>
-          </div>
-          <div>
-            <h3>Instagram</h3>
-            <a href="https://www.instagram.com/directautobrokerage/" target="_blank" rel="noopener">@directautobrokerage</a>
-          </div>
-          <div>
-            <h3>Service Area</h3>
-            <p>Southern California &amp; surrounding regions</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="section--contact__form reveal">
-        <!-- EMBEDDED ZOHO FORM -->
-        <div class="zoho-form-wrapper">
-          <iframe
-            src="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY"
-            frameborder="0"
-            style="width:100%; min-height:700px; border-radius:16px; overflow:hidden; background:#050b11;"
-            marginheight="0"
-            marginwidth="0"
-            title="Auto Broker Lead Form"
-          >
-            Loading…
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <span class="logo__icon" aria-hidden="true"></span>
-        <span class="logo__title">Direct Auto Brokerage</span>
-      </div>
-      <p class="footer__copy">
-        © <span id="year"></span> Direct Auto Brokerage. All rights reserved.
-      </p>
-      <div class="footer__links">
-        <a href="#how-it-works">Process</a>
-        <a href="#deals">Recent Deals</a>
-        <a href="#car-finder">Start My Search</a>
-      </div>
-      <div class="footer__social">
-        <a href="https://wa.me/19494443388" target="_blank" rel="noopener" class="social-icon social-icon--whatsapp">WhatsApp</a>
-        <a href="https://www.instagram.com/directautobrokerage/" target="_blank" rel="noopener" class="social-icon social-icon--instagram">Instagram</a>
-        <!-- <a href="YOUR_FACEBOOK_LINK_HERE" target="_blank" rel="noopener" class="social-icon social-icon--facebook">Facebook</a> -->
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  // Current year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
