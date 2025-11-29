@@ -128,13 +128,13 @@
             <p>Share a couple details and I’ll reach out personally to understand what you’re looking for.</p>
           </div>
 
-          <!-- HERO QUICK FORM (Zoho endpoint, opens Zoho in new tab) -->
+          <!-- HERO QUICK FORM posting to hidden iframe -->
           <form
             class="lead-form"
             id="hero-lead-form"
             action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY/htmlRecords/submit"
             method="POST"
-            target="_blank"
+            target="zoho-hidden-frame"
           >
             <input type="hidden" name="zf_referrer_name" value="Hero form - Direct Auto Brokerage" />
             <input type="hidden" name="zf_redirect_url" value="" />
@@ -366,13 +366,13 @@
       </div>
 
       <div class="section--contact__form reveal">
-        <!-- MAIN CAR FINDER FORM posting to Zoho, opens Zoho in new tab -->
+        <!-- MAIN CAR FINDER FORM posting to hidden iframe -->
         <form
           class="lead-form lead-form--solid"
           id="car-finder-form"
           action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY/htmlRecords/submit"
           method="POST"
-          target="_blank"
+          target="zoho-hidden-frame"
         >
           <input type="hidden" name="zf_referrer_name" value="Car Finder form - Direct Auto Brokerage" />
           <input type="hidden" name="zf_redirect_url" value="" />
@@ -447,11 +447,17 @@
       <div class="footer__social">
         <a href="https://wa.me/19494443388" target="_blank" rel="noopener" class="social-icon social-icon--whatsapp">WhatsApp</a>
         <a href="https://www.instagram.com/directautobrokerage/" target="_blank" rel="noopener" class="social-icon social-icon--instagram">Instagram</a>
-        <!-- When you create your Facebook page, replace the URL below and remove the comment -->
         <!-- <a href="YOUR_FACEBOOK_LINK_HERE" target="_blank" rel="noopener" class="social-icon social-icon--facebook">Facebook</a> -->
       </div>
     </div>
   </footer>
+
+  <!-- Hidden iframe for Zoho submissions -->
+  <iframe
+    name="zoho-hidden-frame"
+    style="display:none; width:0; height:0; border:0;"
+    title="Zoho submission frame"
+  ></iframe>
 
   <script src="script.js"></script>
 
