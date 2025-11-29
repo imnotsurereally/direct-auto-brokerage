@@ -2,1358 +2,572 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Direct Auto Brokerage | Former Dealer Insider Working For You</title>
+  <title>Direct Auto Brokerage | Former Dealer Insider On Your Side</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Direct Auto Brokerage – Southern California independent auto broker. Put a former dealership insider on your side and skip the games."
+    content="Direct Auto Brokerage – former Mercedes & dealership insider helping you get the right 2025–2026 car at the right numbers across Southern California."
   />
-  <style>
-    :root {
-      --bg: #050608;
-      --bg-elevated: #101218;
-      --accent: #2dd36f;
-      --accent-soft: rgba(45, 211, 111, 0.12);
-      --text-main: #f5f5f5;
-      --text-muted: #a0a4b3;
-      --border-subtle: #232633;
-      --danger: #ff4d4f;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
-      --radius-lg: 18px;
-      --radius-xl: 26px;
-      --radius-full: 999px;
-      --max-width: 980px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #151927 0%, #050608 55%);
-      color: var(--text-main);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(
-        to bottom,
-        rgba(5, 6, 8, 0.96),
-        rgba(5, 6, 8, 0.88),
-        rgba(5, 6, 8, 0)
-      );
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    }
-
-    .nav-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-
-    .brand-badge {
-      width: 26px;
-      height: 26px;
-      border-radius: 11px;
-      background: radial-gradient(circle at 30% 20%, #54f39a, #138f4a 70%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
-    }
-
-    .brand span:last-child {
-      opacity: 0.7;
-      font-weight: 500;
-      text-transform: none;
-      font-size: 11px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .nav-links a {
-      position: relative;
-      padding-bottom: 3px;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #2dd36f, #54f39a);
-      transition: width 0.18s ease-out;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      padding: 7px 14px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(45, 211, 111, 0.5);
-      background: radial-gradient(
-        circle at 0 0,
-        rgba(84, 243, 154, 0.16),
-        rgba(5, 6, 8, 0.9)
-      );
-      font-size: 12px;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-main);
-      box-shadow: 0 0 0 1px rgba(9, 231, 112, 0.08);
-    }
-
-    .nav-cta span.dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 99px;
-      background: #13e470;
-      box-shadow: 0 0 12px rgba(19, 228, 112, 0.9);
-    }
-
-    main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 18px 16px 56px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      border-radius: var(--radius-full);
-      padding: 4px 10px 4px 4px;
-      background: rgba(10, 190, 90, 0.08);
-      border: 1px solid rgba(45, 211, 111, 0.35);
-      color: #c9ffe3;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .pill-dot {
-      width: 20px;
-      height: 20px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #5dfcaf, #179a52);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.7);
-    }
-
-    .hero {
-      margin-top: 8px;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 26px;
-      align-items: flex-start;
-    }
-
-    .hero h1 {
-      margin: 14px 0 10px;
-      font-size: clamp(26px, 4vw, 34px);
-      line-height: 1.1;
-    }
-
-    .hero h1 span.accent {
-      background: linear-gradient(120deg, #54f39a, #2dd36f);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      color: var(--text-muted);
-      max-width: 520px;
-    }
-
-    .hero-bullets {
-      margin: 16px 0 18px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 8px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .hero-bullets span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-bullets span::before {
-      content: "•";
-      color: var(--accent);
-      font-size: 18px;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-      border-radius: var(--radius-full);
-      padding: 10px 18px;
-      font-size: 13px;
-      font-weight: 500;
-      border: 1px solid transparent;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #2dd36f, #54f39a);
-      border-color: rgba(0, 0, 0, 0.8);
-      color: #021007;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .btn-secondary {
-      background: rgba(9, 11, 18, 0.9);
-      border-color: var(--border-subtle);
-      color: var(--text-main);
-    }
-
-    .meta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    .meta-pill {
-      padding: 6px 10px;
-      border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-    }
-
-    .hero-card {
-      border-radius: var(--radius-xl);
-      background: radial-gradient(circle at top left, #151b26, #07080c);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: var(--shadow-soft);
-      padding: 16px 16px 14px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-tagline {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .hero-highlight {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    .hero-highlight strong {
-      color: #e4fdf0;
-    }
-
-    .hero-divider {
-      height: 1px;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.04),
-        rgba(255, 255, 255, 0)
-      );
-      margin: 8px 0 10px;
-    }
-
-    .hero-checks {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 8px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .hero-checks li {
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .hero-checks li::before {
-      content: "✓";
-      color: var(--accent);
-      margin-top: 1px;
-      font-size: 13px;
-    }
-
-    .hero-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .hero-footer span.label {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 10px;
-      opacity: 0.8;
-    }
-
-    .hero-footer strong {
-      color: #e6ffe7;
-    }
-
-    .hero-ribbon {
-      position: absolute;
-      inset: auto -26px -26px auto;
-      width: 190px;
-      height: 190px;
-      background: radial-gradient(circle at 0 0, #54f39a, transparent 58%);
-      opacity: 0.09;
-      pointer-events: none;
-    }
-
-    section {
-      margin-top: 40px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.02);
-    }
-
-    section h2 {
-      font-size: 20px;
-      margin-bottom: 6px;
-    }
-
-    section p {
-      font-size: 14px;
-      color: var(--text-muted);
-      max-width: 680px;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .step-card {
-      border-radius: var(--radius-lg);
-      background: rgba(7, 9, 16, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 14px 14px 12px;
-    }
-
-    .step-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .step-card h3 {
-      font-size: 15px;
-      margin: 2px 0 6px;
-    }
-
-    .step-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 6px 0 0;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .step-card ul li {
-      margin-bottom: 4px;
-      display: flex;
-      gap: 6px;
-    }
-
-    .step-card ul li::before {
-      content: "•";
-      color: var(--accent);
-      margin-top: 1px;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .reason-card {
-      border-radius: var(--radius-lg);
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      background: rgba(7, 8, 12, 0.9);
-    }
-
-    .reason-card h3 {
-      font-size: 15px;
-      margin: 0 0 4px;
-    }
-
-    .tagline {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .deals-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .deal-card {
-      border-radius: var(--radius-lg);
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      background: radial-gradient(
-          circle at top,
-          rgba(84, 243, 154, 0.06),
-          rgba(7, 9, 15, 0.96)
-        );
-    }
-
-    .deal-type {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-    }
-
-    .deal-card h3 {
-      font-size: 15px;
-      margin: 0 0 4px;
-    }
-
-    .deal-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 8px 0 0;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .deal-card ul li {
-      margin-bottom: 4px;
-      display: flex;
-      gap: 6px;
-    }
-
-    .deal-card ul li::before {
-      content: "•";
-      color: var(--accent);
-      margin-top: 1px;
-    }
-
-    .faq-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.7fr);
-      gap: 20px;
-      margin-top: 18px;
-    }
-
-    .faq-block h3 {
-      font-size: 15px;
-      margin: 0 0 6px;
-    }
-
-    .faq-block p {
-      font-size: 13px;
-      margin: 0 0 8px;
-    }
-
-    .contact-grid {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 2.1fr);
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    .contact-card {
-      border-radius: var(--radius-lg);
-      padding: 14px;
-      background: rgba(7, 9, 15, 0.96);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .contact-card h3 {
-      font-size: 15px;
-      margin: 0 0 6px;
-    }
-
-    .contact-item {
-      margin: 8px 0;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .contact-item strong {
-      color: var(--text-main);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      display: block;
-      margin-bottom: 3px;
-    }
-
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 13px;
-    }
-
-    .social-pill {
-      padding: 6px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(10, 12, 20, 0.95);
-    }
-
-    .service-area {
-      margin-top: 10px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .zoho-shell {
-      border-radius: var(--radius-xl);
-      background: rgba(7, 9, 15, 0.98);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .zoho-title {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .zoho-caption {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .zoho-form-inner {
-      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
-    }
-
-    .zoho-shell form {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px;
-      font-size: 13px;
-    }
-
-    .zoho-shell label {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-      display: block;
-    }
-
-    .zoho-shell input[type="text"],
-    .zoho-shell select,
-    .zoho-shell textarea {
-      width: 100%;
-      padding: 7px 8px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      background: rgba(2, 3, 6, 0.96);
-      color: var(--text-main);
-      font-size: 13px;
-    }
-
-    .zoho-shell textarea {
-      min-height: 80px;
-      resize: vertical;
-      grid-column: 1 / -1;
-    }
-
-    .zoho-shell button[type="submit"] {
-      margin-top: 4px;
-      padding: 9px 16px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(45, 211, 111, 0.9);
-      background: linear-gradient(135deg, #2dd36f, #54f39a);
-      color: #021007;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      box-shadow: var(--shadow-soft);
-      grid-column: 1 / -1;
-      justify-self: flex-start;
-    }
-
-    .zoho-shell button[disabled] {
-      opacity: 0.7;
-      cursor: default;
-    }
-
-    .zoho-thankyou {
-      display: none;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 6px;
-      min-height: 150px;
-      animation: fadeInUp 0.18s ease-out;
-    }
-
-    .zoho-thankyou-title {
-      font-size: 15px;
-      font-weight: 500;
-    }
-
-    .zoho-thankyou-text {
-      font-size: 13px;
-      color: var(--text-muted);
-      max-width: 380px;
-    }
-
-    .ai-helper-card {
-      margin-top: 14px;
-      padding: 10px 12px;
-      border-radius: var(--radius-lg);
-      border: 1px dashed rgba(84, 243, 154, 0.4);
-      background: rgba(3, 12, 9, 0.9);
-      font-size: 12px;
-    }
-
-    .ai-helper-title {
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .ai-chip {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(84, 243, 154, 0.6);
-      color: #caffde;
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .ai-helper-description {
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .ai-helper-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .ai-helper-actions button {
-      padding: 5px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(4, 9, 7, 0.95);
-      color: var(--text-main);
-      font-size: 11px;
-      cursor: pointer;
-    }
-
-    .ai-output {
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      padding: 8px 9px;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      white-space: pre-wrap;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      max-height: 130px;
-      overflow: auto;
-    }
-
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 18px 16px 26px;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 32px;
-    }
-
-    .footer-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 12px;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(4px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 720px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: -1;
-      }
-
-      .faq-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .zoho-shell form {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <div class="nav-inner">
-    <div class="brand">
-      <div class="brand-badge">D</div>
-      <div>
-        <div>Direct Auto Brokerage</div>
-        <span>Independent auto broker • SoCal</span>
-      </div>
-    </div>
-    <nav class="nav-links">
-      <a href="#how-it-works">Process</a>
-      <a href="#why-broker">Why use a broker</a>
-      <a href="#recent-deals">Recent deals</a>
-      <a href="#faq">Never used a broker?</a>
-      <a href="#start-search" class="nav-cta">
-        <span class="dot"></span>
-        Start my search
-      </a>
-    </nav>
+  <!-- MOBILE STICKY BAR -->
+  <div id="mobile-sticky-bar">
+    <a href="sms:+1-949-444-3388">Text Dan</a>
+    <a href="tel:+1-949-444-3388">Call now</a>
+    <a href="#start-search">Start search</a>
   </div>
-</header>
 
-<main>
-  <section aria-label="Hero">
-    <div class="pill">
-      <span class="pill-dot">⚡</span>
-      Former dealer insider on your side
-    </div>
-
+  <!-- HERO -->
+  <header id="top">
     <div class="hero">
-      <div>
-        <h1>
-          Skip the dealership games.<br />
-          <span class="accent">Put a former insider</span> to work for you.
-        </h1>
-        <p class="hero-sub">
-          I used to sit on the dealership side of the desk. Now I use that same knowledge to help you
-          find the right vehicle, structure the deal, and negotiate against the dealership—so you don’t have to.
+      <div class="hero-content container">
+        <h1>Get the right car at the right numbers — without wasting your time at dealerships.</h1>
+        <p class="hero-subtitle">
+          Former Mercedes &amp; dealership insider working as your personal auto broker across Southern California.
         </p>
 
-        <div class="hero-bullets">
-          <span>Former dealership sales &amp; finance experience</span>
-          <span>Built to protect car buyers—not store profits</span>
-          <span>You handle the keys, I handle the back-and-forth</span>
+        <div class="hero-cta">
+          <a href="#start-search" class="btn-primary">Start my car search</a>
+          <a href="tel:+1-949-444-3388" class="btn-secondary">Talk to me first</a>
         </div>
 
-        <div class="hero-ctas">
-          <a href="#start-search" class="btn-primary">
-            Start my car search
-          </a>
-          <a href="#how-it-works" class="btn-secondary">
-            See how it works
-          </a>
-        </div>
+        <p class="hero-microcopy">Simple. Transparent. No dealership games.</p>
+      </div>
+    </div>
+  </header>
 
-        <div class="meta-row">
-          <div class="meta-pill">Southern California • Independent Auto Broker</div>
-          <div class="meta-pill">No pressure. Straight answers. Real numbers.</div>
+  <main>
+    <!-- WHY USE A BROKER -->
+    <section id="why-broker">
+      <div class="container">
+        <h2>Why car buyers use a broker instead of walking into a dealership alone</h2>
+        <div class="benefits-grid">
+          <article class="benefit">
+            <h3>Better numbers, less back-and-forth</h3>
+            <p>
+              I’ve worked inside dealerships. I know where the room actually is and what’s just a sales line.
+            </p>
+          </article>
+          <article class="benefit">
+            <h3>Your time actually matters here</h3>
+            <p>
+              No whole-day test-drive games. I do the legwork, send you real options, and you only show up when it makes sense.
+            </p>
+          </article>
+          <article class="benefit">
+            <h3>You’re not stuck to one store</h3>
+            <p>
+              I check multiple dealerships and inventory sources for you — not just whatever’s on one lot that day.
+            </p>
+          </article>
+        </div>
+        <div class="section-cta">
+          <a href="#start-search" class="link-cta">Start your search →</a>
         </div>
       </div>
+    </section>
 
-      <aside class="hero-card" aria-label="Direct Auto Brokerage snapshot">
-        <div class="hero-tagline">Direct Auto Brokerage</div>
-        <div class="hero-highlight">
-          <strong>Your “green light” to a better deal</strong> without spending weekends in showrooms.
+    <!-- PROCESS -->
+    <section id="process">
+      <div class="container">
+        <h2>Here’s how I make this easy for you</h2>
+        <ol class="process-steps">
+          <li>
+            <h3>1. Tell me what you’re trying to do</h3>
+            <p>Quick questions on budget, timing, and what you want.</p>
+          </li>
+          <li>
+            <h3>2. I scan real inventory for smart options</h3>
+            <p>I look at multiple dealerships and sources behind the scenes.</p>
+          </li>
+          <li>
+            <h3>3. We dial in the structure together</h3>
+            <p>Payments, term, down, mileage, pros/cons of each option.</p>
+          </li>
+          <li>
+            <h3>4. You decide what feels best</h3>
+            <p>I’ll tell you when something’s not a good value, too.</p>
+          </li>
+          <li>
+            <h3>5. You go in to sign &amp; drive</h3>
+            <p>You’re not walking in blind. You’re walking in with leverage.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- DEALS I'VE RECENTLY STRUCTURED -->
+    <section id="recent-deals">
+      <div class="container">
+        <h2>Deals I’ve recently helped structure for clients</h2>
+        <p class="section-intro">
+          I do my best work on new cars — that’s where there’s the most room to structure smarter leases, finance setups, or cash deals.
+        </p>
+
+        <div class="deal-cards">
+          <article class="deal-card">
+            <h3>2025 BMW 430i (New)</h3>
+            <p class="deal-highlight">$0 down, mid-$600s/month (lease)</p>
+            <p class="deal-story">
+              Client was getting quoted higher payments with money down at a dealership. I sourced a different in-stock
+              430i, cleaned up the structure, and kept them at a comfortable payment with no money down at signing (just
+              normal drive-offs).
+            </p>
+          </article>
+
+          <article class="deal-card">
+            <h3>2025 Toyota Camry SE (New)</h3>
+            <p class="deal-highlight">Payment under what they were being shown online</p>
+            <p class="deal-story">
+              Client had been shopping online and getting “starting from” payments that never lined up once they talked to
+              sales. I stepped in, focused on realistic inventory, and structured a deal that kept them under the monthly
+              number they wanted without nonsense add-ons.
+            </p>
+          </article>
+
+          <article class="deal-card">
+            <h3>2025 Honda Civic Sport (New)</h3>
+            <p class="deal-highlight">Strong structure in a tight new-car market</p>
+            <p class="deal-story">
+              New Civics are competitive and move fast. Instead of chasing random cars, I targeted the right trim and
+              color and made the numbers make sense for the client’s budget. We avoided the worst markups and stuck to a
+              clean, realistic payment.
+            </p>
+          </article>
+
+          <article class="deal-card">
+            <h3>2026 Mercedes C-Class (C300) (New)</h3>
+            <p class="deal-highlight">New-car luxury structure that actually made sense</p>
+            <p class="deal-story">
+              Client originally wanted a fully loaded spec that would’ve blown the payment out. I showed them a smarter
+              build and structure so they could still get into a new C-Class without stretching past where they were
+              comfortable.
+            </p>
+          </article>
         </div>
-        <div class="hero-divider"></div>
-        <ul class="hero-checks">
-          <li>Define the right car and budget with a straightforward conversation.</li>
-          <li>I shop multiple dealerships quietly in the background.</li>
-          <li>You see the numbers before you ever step into a store.</li>
-        </ul>
-        <div class="hero-footer">
-          <div>
-            <span class="label">Service area</span><br />
-            Southern California &amp; surrounding regions
+
+        <div class="section-cta">
+          <a href="#start-search" class="link-cta">Want me to run numbers on a 2025 or 2026 for you? Start your car search →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- START SEARCH / WIZARD ENTRY -->
+    <section id="start-search">
+      <div class="container">
+        <h2>Tell me what you’re looking for — I’ll handle the rest.</h2>
+        <p class="section-intro">
+          No pressure. No commitment. The more I know about what you’re trying to do, the better I can steer you away from bad deals.
+        </p>
+
+        <!-- WIZARD CONTAINER -->
+        <div id="dab-wizard">
+          <!-- STEP INDICATOR -->
+          <div class="wizard-steps-indicator">
+            <span class="wizard-step active" data-step="1">Basics</span>
+            <span class="wizard-step" data-step="2">Vehicle</span>
+            <span class="wizard-step" data-step="3">Budget</span>
+            <span class="wizard-step" data-step="4">Contact</span>
+            <span class="wizard-step" data-step="5">Done</span>
           </div>
-          <div>
-            <span class="label">Contact</span><br />
-            <strong>(949) 444-3388</strong>
-          </div>
-        </div>
-        <div class="hero-ribbon" aria-hidden="true"></div>
-      </aside>
-    </div>
-  </section>
 
-  <section id="how-it-works" aria-labelledby="how-heading">
-    <h2 id="how-heading">How the brokerage process works</h2>
-    <p>
-      Simple, transparent, and built around your deal—not the dealership’s goals. Share what you’re
-      looking for once; I handle the hunting, comparing, and negotiating.
-    </p>
+          <!-- WIZARD FORM -->
+          <form id="dab-wizard-form">
+            <!-- STEP 1: BASICS -->
+            <div class="wizard-step-panel" data-step="1">
+              <h3>Let’s get your car search started.</h3>
+              <p class="wizard-helper">No stress — this just helps me know how aggressive to get with your search.</p>
 
-    <div class="steps-grid">
-      <article class="step-card">
-        <div class="step-label">Step 1</div>
-        <h3>Tell me what you want</h3>
-        <p>
-          Share your ideal vehicle, budget, and timing. If you’re not sure yet, we’ll narrow it down together.
-        </p>
-        <ul>
-          <li>New or pre-owned</li>
-          <li>Lease or finance</li>
-          <li>Monthly budget &amp; down payment</li>
-        </ul>
-      </article>
+              <div class="wizard-field-group">
+                <label>What are you trying to do?</label>
+                <div class="option-group" data-field="goal">
+                  <label><input type="radio" name="goal" value="Lease" /> Lease</label>
+                  <label><input type="radio" name="goal" value="Finance" /> Finance</label>
+                  <label><input type="radio" name="goal" value="Cash buy" /> Cash buy</label>
+                  <label><input type="radio" name="goal" value="Not sure yet" /> Not sure yet</label>
+                </div>
+              </div>
 
-      <article class="step-card">
-        <div class="step-label">Step 2</div>
-        <h3>I do the hunting &amp; negotiating</h3>
-        <p>
-          I shop dealer networks, locate strong options, and negotiate using the same playbook dealerships rely on.
-        </p>
-        <ul>
-          <li>Compare multiple dealers behind the scenes</li>
-          <li>Transparent, out-the-door numbers</li>
-          <li>You see the deal before you ever step in</li>
-        </ul>
-      </article>
+              <div class="wizard-field-group">
+                <label>How soon are you trying to make something happen?</label>
+                <div class="option-group" data-field="timeline">
+                  <label><input type="radio" name="timeline" value="Just exploring options" /> Just exploring options</label>
+                  <label><input type="radio" name="timeline" value="Within 30 days" /> Within 30 days</label>
+                  <label><input type="radio" name="timeline" value="Ready this week" /> Ready this week</label>
+                  <label><input type="radio" name="timeline" value="ASAP (within a few days)" /> ASAP (within a few days)</label>
+                </div>
+              </div>
 
-      <article class="step-card">
-        <div class="step-label">Step 3</div>
-        <h3>You sign &amp; drive</h3>
-        <p>
-          Paperwork and numbers are structured in advance. You show up, sign, and drive away in the car you actually want.
-        </p>
-        <ul>
-          <li>Streamlined delivery experience</li>
-          <li>Support if anything changes</li>
-          <li>Ongoing help when it’s time for the next car</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section id="why-broker" aria-labelledby="why-heading">
-    <h2 id="why-heading">Why car buyers use a broker</h2>
-    <p>
-      Most people buy a car every few years. Dealerships negotiate every single day. My job is to close that experience
-      gap and make sure the numbers make sense for you—not for the store.
-    </p>
-
-    <div class="why-grid">
-      <article class="reason-card">
-        <h3>Someone on your side of the table</h3>
-        <p class="tagline">
-          The dealership’s job is to protect their profit. My role is the opposite—protecting your deal and your time.
-        </p>
-      </article>
-
-      <article class="reason-card">
-        <h3>Insider knowledge of how deals are built</h3>
-        <p class="tagline">
-          Because I’ve been on the inside, I understand how payments, discounts, and add-ons really work—and where
-          there’s room to move.
-        </p>
-      </article>
-
-      <article class="reason-card">
-        <h3>Less pressure, less guessing</h3>
-        <p class="tagline">
-          You don’t have to memorize every incentive or fee. I walk you through the options in plain language before you sign.
-        </p>
-      </article>
-
-      <article class="reason-card">
-        <h3>Time back in your life</h3>
-        <p class="tagline">
-          Instead of spending weekends at multiple dealerships, you let me do the outreach, comparisons, and back-and-forth.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <section id="recent-deals" aria-labelledby="deals-heading">
-    <h2 id="deals-heading">Recent deal structures</h2>
-    <p>
-      Examples of how deals can look when a broker handles the negotiating. Every deal is different—these are just a few patterns.
-    </p>
-
-    <div class="deals-grid">
-      <article class="deal-card">
-        <div class="deal-type">Finance</div>
-        <h3>2026 Ram 3500 Dually</h3>
-        <p class="tagline">
-          Heavy-duty truck for business use, with specific color and equipment requirements.
-        </p>
-        <ul>
-          <li>Targeted below advertised pricing through multi-dealer comparison</li>
-          <li>Structured for work use with the right term and payment balance</li>
-          <li>Delivery set in advance to avoid long in-store visits</li>
-        </ul>
-      </article>
-
-      <article class="deal-card">
-        <div class="deal-type">Lease</div>
-        <h3>2026 GLC 300</h3>
-        <p class="tagline">
-          Luxury lease arranged for a client focused on payment and equipment, not just sticker price.
-        </p>
-        <ul>
-          <li>Negotiated payment based on real numbers</li>
-          <li>Transparent fees reviewed line by line</li>
-          <li>Simple sign-and-drive experience with paperwork prepared in advance</li>
-        </ul>
-      </article>
-
-      <article class="deal-card">
-        <div class="deal-type">Purchase</div>
-        <h3>2023 Toyota RAV4</h3>
-        <p class="tagline">
-          Family SUV with specific color and package requirements.
-        </p>
-        <ul>
-          <li>Below advertised price after comparing multiple stores</li>
-          <li>Certified pre-owned for warranty peace of mind</li>
-          <li>Single visit to sign and drive away</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section id="faq" aria-labelledby="faq-heading">
-    <h2 id="faq-heading">Never worked with a broker before?</h2>
-    <p>
-      Here’s what that actually means—and how it helps you.
-    </p>
-
-    <div class="faq-grid">
-      <div class="faq-block">
-        <h3>From the dealership side to your side</h3>
-        <p>
-          I’ve spent time on the inside of the dealership world—on the sales side where every day is about moving units and
-          protecting profit. That experience is exactly what I now use for buyers.
-        </p>
-        <p>
-          When you walk in alone, you’re going up against a team that negotiates deals every day. Most buyers only do
-          this every few years. That experience gap is where a lot of money and options can be lost.
-        </p>
-      </div>
-      <div class="faq-block">
-        <h3>What a broker actually does</h3>
-        <p>
-          As your broker, I’m not tied to one store. I compare multiple dealerships, use the same tools and structure
-          they do, and then look for the best combination of price, payment, and terms for you.
-        </p>
-        <p>
-          You still pick up your vehicle from a dealership—but by the time you arrive, the numbers and structure have
-          already been reviewed and discussed with someone who understands how those deals are put together.
-        </p>
-        <p>
-          In short: the dealership focuses on their business. I focus on your outcome.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="start-search" aria-labelledby="start-heading">
-    <h2 id="start-heading">Tell me what you’re looking for</h2>
-    <p>
-      This is the same form I use to start every search. The more you share, the more precise I can be with options and negotiating.
-    </p>
-
-    <div class="contact-grid">
-      <aside class="contact-card">
-        <h3>Direct contact</h3>
-
-        <div class="contact-item">
-          <strong>Phone</strong>
-          (949) 444-3388
-        </div>
-
-        <div class="contact-item">
-          <strong>WhatsApp</strong>
-          <a href="https://wa.me" target="_blank" rel="noopener">Chat on WhatsApp</a>
-        </div>
-
-        <div class="contact-item">
-          <strong>Instagram</strong>
-          <a href="https://www.instagram.com/directautobrokerage" target="_blank" rel="noopener">
-            @directautobrokerage
-          </a>
-        </div>
-
-        <div class="service-area">
-          <strong>Service area</strong><br />
-          Southern California &amp; surrounding regions
-        </div>
-
-        <div class="social-links">
-          <span class="social-pill">Text or call works best.</span>
-          <span class="social-pill">No pressure—just straight answers.</span>
-        </div>
-      </aside>
-
-      <div class="zoho-shell">
-        <div class="zoho-title">Start my search</div>
-        <div class="zoho-caption">
-          Fill this out and I’ll review it personally. I’ll reach out with next steps and real options—not automated spam.
-        </div>
-
-        <div id="zoho-form-inner" class="zoho-form-inner">
-          <!-- IMPORTANT: do NOT change input name="" attributes inside this form. -->
-          <!-- BEGIN ZOHO FORM -->
-          <form action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/l6CxrUh7O8LK8PLXOJD20_lp9Dxubf4hLiDfmx26gPk/htmlRecords/submit" name="form" id="zohoAutoBrokerForm" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
-            <input type="hidden" name="zf_referrer_name" value="">
-            <input type="hidden" name="zf_redirect_url" value="">
-            <input type="hidden" name="zc_gad" value="">
-
-            <div>
-              <label for="Name_First">First Name</label>
-              <input type="text" maxlength="255" name="Name_First" fieldType="7" id="Name_First" />
+              <div class="wizard-nav">
+                <button type="button" class="btn-primary" data-action="next">Next step →</button>
+              </div>
             </div>
 
-            <div>
-              <label for="Name_Last">Last Name</label>
-              <input type="text" maxlength="255" name="Name_Last" fieldType="7" id="Name_Last" />
+            <!-- STEP 2: VEHICLE -->
+            <div class="wizard-step-panel" data-step="2" hidden>
+              <h3>What kind of car are you looking for?</h3>
+              <p class="wizard-helper">You don’t need to know the exact car yet — I’ll help you narrow it down.</p>
+
+              <div class="wizard-field-group">
+                <label>Are you thinking new or pre-owned?</label>
+                <div class="option-group" data-field="newOrUsed">
+                  <label><input type="radio" name="newOrUsed" value="New" /> New</label>
+                  <label><input type="radio" name="newOrUsed" value="Pre-owned" /> Pre-owned</label>
+                  <label><input type="radio" name="newOrUsed" value="Open to both" /> Open to both</label>
+                </div>
+              </div>
+
+              <div class="wizard-field-group">
+                <label>What type of vehicle fits your lifestyle best?</label>
+                <div class="option-group" data-field="vehicleType">
+                  <label><input type="radio" name="vehicleType" value="Sedan" /> Sedan</label>
+                  <label><input type="radio" name="vehicleType" value="SUV" /> SUV</label>
+                  <label><input type="radio" name="vehicleType" value="Truck" /> Truck</label>
+                  <label><input type="radio" name="vehicleType" value="Coupe" /> Coupe</label>
+                  <label><input type="radio" name="vehicleType" value="EV / Hybrid" /> EV / Hybrid</label>
+                  <label><input type="radio" name="vehicleType" value="Not sure yet" /> Not sure yet</label>
+                </div>
+              </div>
+
+              <div class="wizard-field-group">
+                <label>Any specific models you’ve been checking out?</label>
+                <textarea
+                  name="modelPreferences"
+                  rows="3"
+                  placeholder="Tell me anything — even if it’s just ‘something reliable under 20k.’"
+                ></textarea>
+              </div>
+
+              <div class="wizard-nav">
+                <button type="button" class="btn-secondary" data-action="back">← Go back</button>
+                <button type="button" class="btn-primary" data-action="next">Next step →</button>
+              </div>
             </div>
 
-            <div>
-              <label for="PhoneNumber_countrycode">Phone Number</label>
-              <input
-                type="text"
-                compname="PhoneNumber"
-                name="PhoneNumber_countrycode"
-                phoneFormat="1"
-                isCountryCodeEnabled="false"
-                maxlength="20"
-                value=""
-                fieldType="11"
-                id="PhoneNumber_countrycode"
-              />
+            <!-- STEP 3: BUDGET -->
+            <div class="wizard-step-panel" data-step="3" hidden>
+              <h3>Let’s talk budget real quick.</h3>
+              <p class="wizard-helper">
+                These aren’t commitments — this just helps me avoid showing you stuff that doesn’t fit.
+              </p>
+
+              <div class="wizard-field-group">
+                <label>What monthly payment range are you comfortable with?</label>
+                <div class="option-group" data-field="paymentRange">
+                  <label><input type="radio" name="paymentRange" value="Under 350" /> Under $350/mo</label>
+                  <label><input type="radio" name="paymentRange" value="350-500" /> $350–$500/mo</label>
+                  <label><input type="radio" name="paymentRange" value="500-700" /> $500–$700/mo</label>
+                  <label><input type="radio" name="paymentRange" value="700-1000" /> $700–$1,000/mo</label>
+                  <label><input type="radio" name="paymentRange" value="1000+" /> Over $1,000/mo</label>
+                  <label><input type="radio" name="paymentRange" value="Not sure yet" /> Not sure yet</label>
+                </div>
+              </div>
+
+              <div class="wizard-field-group">
+                <label>Any down payment planned?</label>
+                <div class="option-group" data-field="downPayment">
+                  <label><input type="radio" name="downPayment" value="0-1000" /> $0–$1,000</label>
+                  <label><input type="radio" name="downPayment" value="1000-3000" /> $1,000–$3,000</label>
+                  <label><input type="radio" name="downPayment" value="3000-5000" /> $3,000–$5,000</label>
+                  <label><input type="radio" name="downPayment" value="5000+" /> $5,000+</label>
+                  <label><input type="radio" name="downPayment" value="Havent decided" /> Haven’t decided yet</label>
+                </div>
+              </div>
+
+              <div class="wizard-field-group">
+                <label>How would you describe your credit situation?</label>
+                <div class="option-group" data-field="credit">
+                  <label><input type="radio" name="credit" value="Excellent" /> Excellent</label>
+                  <label><input type="radio" name="credit" value="Good" /> Good</label>
+                  <label><input type="radio" name="credit" value="Building / Fair" /> Building / Fair</label>
+                  <label><input type="radio" name="credit" value="Prefer not to say" /> Prefer not to say</label>
+                </div>
+              </div>
+
+              <p class="wizard-helper">
+                This isn’t a dealership interrogation — it just points me in the right direction.
+              </p>
+
+              <div class="wizard-nav">
+                <button type="button" class="btn-secondary" data-action="back">← Go back</button>
+                <button type="button" class="btn-primary" data-action="next">Next step →</button>
+              </div>
             </div>
 
-            <div>
-              <label for="Email">Email</label>
-              <input type="text" maxlength="255" name="Email" value="" fieldType="9" id="Email" />
+            <!-- STEP 4: CONTACT -->
+            <div class="wizard-step-panel" data-step="4" hidden>
+              <h3>Where should I send your options?</h3>
+              <p class="wizard-helper">I only reach out when there’s something worth your time.</p>
+
+              <div class="wizard-field-group">
+                <label for="firstName">First name</label>
+                <input type="text" id="firstName" name="firstName" />
+              </div>
+
+              <div class="wizard-field-group">
+                <label for="lastName">Last name</label>
+                <input type="text" id="lastName" name="lastName" />
+              </div>
+
+              <div class="wizard-field-group">
+                <label for="phone">Phone (required)</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="Your cell — I don’t spam."
+                  required
+                />
+              </div>
+
+              <div class="wizard-field-group">
+                <label for="email">Email (optional)</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Optional, but helpful if you want quotes sent."
+                />
+              </div>
+
+              <div class="wizard-field-group">
+                <label>What’s the best way to reach you?</label>
+                <div class="option-group" data-field="contactMethod">
+                  <label><input type="radio" name="contactMethod" value="Text" /> Text</label>
+                  <label><input type="radio" name="contactMethod" value="Call" /> Call</label>
+                  <label><input type="radio" name="contactMethod" value="WhatsApp" /> WhatsApp</label>
+                </div>
+              </div>
+
+              <div class="wizard-nav">
+                <button type="button" class="btn-secondary" data-action="back">← Go back</button>
+                <button type="submit" class="btn-primary">Submit my search</button>
+              </div>
             </div>
 
-            <div>
-              <label for="Dropdown">Deal Type</label>
-              <select name="Dropdown" id="Dropdown">
-                <option selected="true" value="-Select-">-Select-</option>
-                <option value="Lease">Lease</option>
-                <option value="Purchase">Purchase</option>
-                <option value="Not sure yet">Not sure yet</option>
-              </select>
-            </div>
+            <!-- STEP 5: CONFIRMATION -->
+            <div class="wizard-step-panel" data-step="5" hidden>
+              <h3>Got it — I’ll get on this for you.</h3>
+              <p>
+                Thanks for sending everything over. Here’s what happens next:
+              </p>
+              <ol>
+                <li>I personally look over what you’re trying to do.</li>
+                <li>If I’m confident I can help, I’ll text you with a couple of questions or options.</li>
+                <li>I quietly check real inventory and numbers in the background.</li>
+                <li>You’ll see actual payment structures and options before you ever step foot in a dealership.</li>
+              </ol>
+              <p class="wizard-helper">
+                If your timing is urgent (next 24–72 hours), text me now so I can prioritize your search.
+              </p>
 
-            <div style="grid-column: 1 / -1;">
-              <label for="MultiLine">What are you looking for?</label>
-              <textarea name="MultiLine" maxlength="65535" id="MultiLine"></textarea>
+              <div class="wizard-confirm-cta">
+                <a href="sms:+1-949-444-3388" class="btn-primary">Text Dan</a>
+                <a href="tel:+1-949-444-3388" class="btn-secondary">Call now</a>
+                <a href="#recent-deals" class="link-cta">View recent deals I’ve structured →</a>
+              </div>
             </div>
-
-            <button type="submit"><em>Submit</em></button>
           </form>
-          <!-- END ZOHO FORM -->
         </div>
 
-        <div id="zoho-thankyou" class="zoho-thankyou">
-          <div class="zoho-thankyou-title">Thanks — I’ve got your request.</div>
-          <div class="zoho-thankyou-text">
-            I’ll review what you sent and reach out with next steps. If it’s time-sensitive or you don’t hear back soon, you can always text or call me directly at (949) 444-3388.
-          </div>
+        <p class="section-footnote">This goes straight to me, not a call center.</p>
+      </div>
+    </section>
+
+    <!-- HOT DEAL FEED -->
+    <section id="hot-deals">
+      <div class="container">
+        <h2>New 2025–2026 deals I’m watching right now</h2>
+        <p class="section-intro">
+          New cars are where brokers usually save the most — better structures, cleaner numbers, less guessing. These are
+          the types of 2025–2026 deals I’m always chasing for clients.
+        </p>
+
+        <div class="deal-feed">
+          <article class="deal-feed-item">
+            <h3>2025 Kia Forte LXS (New)</h3>
+            <p>Est. structure: low $300s/month with reasonable drive-offs.</p>
+            <p class="deal-note">
+              Great first-car / commuter setup without going crazy on payment.
+            </p>
+          </article>
+
+          <article class="deal-feed-item">
+            <h3>2025 Honda CR-V EX-L (New)</h3>
+            <p>Est. structure: mid $500s/month for most average-credit situations.</p>
+            <p class="deal-note">
+              Sweet spot for families who want space, comfort, and reliability.
+            </p>
+          </article>
+
+          <article class="deal-feed-item">
+            <h3>2025 Chevy Silverado LT (New)</h3>
+            <p>Est. structure: depends on packages, but I’m always hunting clean 2025 truck deals with sane payments.</p>
+            <p class="deal-note">
+              If you’re a truck person, this is where a broker really helps.
+            </p>
+          </article>
+
+          <article class="deal-feed-item">
+            <h3>2025 Toyota RAV4 XLE (New)</h3>
+            <p>
+              Est. structure: highly competitive segment, but there are smart structures if you know where to look.
+            </p>
+            <p class="deal-note">
+              I focus on trims and programs that don’t waste your money.
+            </p>
+          </article>
+
+          <article class="deal-feed-item">
+            <h3>2026 Tesla Model 3 (New)</h3>
+            <p>EV programs and pricing move a lot.</p>
+            <p class="deal-note">
+              If you’re eyeing a 2026 EV, I’ll tell you honestly whether it makes sense now or if it’s better to time it differently.
+            </p>
+          </article>
         </div>
 
-        <!-- Hidden iframe so Zoho can respond without leaving your site -->
-        <iframe name="zohoHiddenFrame" id="zohoHiddenFrame" style="display:none;"></iframe>
+        <p class="section-footnote">
+          These aren’t guaranteed offers — they’re examples of the kinds of new-car structures I’m constantly looking for.
+          Tell me what you want in a 2025 or 2026, and I’ll see what kind of deal actually makes sense.
+        </p>
+        <div class="section-cta">
+          <a href="#start-search" class="link-cta">Tell me what you’re looking for →</a>
+        </div>
+      </div>
+    </section>
 
-        <div class="ai-helper-card">
-          <div class="ai-helper-title">
-            <span>Smart follow-up preview</span>
-            <span class="ai-chip">AI-style helper</span>
+    <!-- FAQ / BROKER -->
+    <section id="faq-broker">
+      <div class="container">
+        <h2>Never worked with an auto broker? Here’s what to know.</h2>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>Do you add fees on top?</h3>
+            <p>
+              No hidden broker games. If there’s a broker fee, it’s agreed up front, and I show you why the numbers still
+              make sense compared to going in alone.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Do I still go to the dealership?</h3>
+            <p>
+              Yes — but usually only when it’s time to sign and pick up. I take care of the back-and-forth before that.
+            </p>
+          </article>
+
+          <article class="faq-item">
+            <h3>Can you help with any brand?</h3>
+            <p>
+              I can work with most makes and models as long as there’s reasonable availability and the structure makes
+              sense for you.
+            </p>
+          </article>
+        </div>
+
+        <div class="section-cta">
+          <a href="#start-search" class="btn-primary">Start my car search</a>
+          <a href="sms:+1-949-444-3388" class="btn-secondary">Text me a question</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <h2>Who’s actually behind this?</h2>
+        <div class="about-layout">
+          <div class="about-text">
+            <p>
+              I’m Dan. I spent years inside the dealership world — especially at Mercedes — watching how numbers move,
+              how deals are structured, and how much time and energy people wasted just trying to get a fair shot.
+            </p>
+            <p>
+              Now I use that experience on the other side of the table, working directly for buyers across Southern
+              California. My only job is to make sure the deal structure, payment, and overall experience actually make
+              sense for you.
+            </p>
+            <p class="about-tagline">
+              Your personal auto broker — not tied to any store.
+            </p>
           </div>
-          <div class="ai-helper-description">
-            After you fill the form, you can generate a sample text message I might send as a follow-up. This runs in your browser only. Later we can swap this to a real ChatGPT API call.
-          </div>
-          <div class="ai-helper-actions">
-            <button type="button" id="generateFollowupBtn">Generate follow-up text</button>
-            <button type="button" id="generateSummaryBtn">Generate quick lead summary</button>
-          </div>
-          <div id="aiOutput" class="ai-output">
-            Fill out the form above and click a button to see a preview.
+          <div class="about-photo">
+            <!-- Optional image -->
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- REFERRALS -->
+    <section id="referrals">
+      <div class="container">
+        <h2>Refer a friend — get $100 when their deal closes.</h2>
+        <p class="section-intro">
+          If I help someone you send my way get into a car, I send you $100 as a thank-you when their deal closes. Simple.
+        </p>
+
+        <form id="referral-form">
+          <div class="form-row">
+            <label for="referrerName">Your name</label>
+            <input type="text" id="referrerName" name="referrerName" />
+          </div>
+          <div class="form-row">
+            <label for="referrerContact">Your phone or email</label>
+            <input type="text" id="referrerContact" name="referrerContact" />
+          </div>
+          <div class="form-row">
+            <label for="friendName">Friend’s first name</label>
+            <input type="text" id="friendName" name="friendName" />
+          </div>
+          <div class="form-row">
+            <label for="friendPhone">Friend’s phone</label>
+            <input type="tel" id="friendPhone" name="friendPhone" />
+          </div>
+          <div class="form-row">
+            <label for="friendNotes">What are they looking for? (optional)</label>
+            <textarea id="friendNotes" name="friendNotes" rows="3"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Send referral</button>
+        </form>
+
+        <p class="section-footnote">
+          Paid when your referral actually completes a deal. If multiple people refer the same person, I go off who they
+          confirm sent them.
+        </p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="final-cta">
+      <div class="container">
+        <h2>Ready for me to start looking for you?</h2>
+        <p>
+          If you’re already getting “numbers” from a dealer, I’m happy to look them over before you say yes to anything.
+        </p>
+        <div class="section-cta">
+          <a href="#start-search" class="btn-primary">Start my car search</a>
+          <a href="sms:+1-949-444-3388" class="btn-secondary">Text Dan</a>
+          <a href="tel:+1-949-444-3388" class="btn-secondary">Call now</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container footer-inner">
+      <p>Direct Auto Brokerage &mdash; Serving car buyers across Southern California.</p>
+      <p>
+        Contact:&nbsp;
+        <a href="tel:+1-949-444-3388">+1 (949) 444-3388</a> &nbsp;|&nbsp;
+        <a href="sms:+1-949-444-3388">Text</a>
+      </p>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer>
-  <div class="footer-inner">
-    <div>
-      © <span id="year"></span> Direct Auto Brokerage. All rights reserved.
-    </div>
-    <div class="footer-links">
-      <a href="#how-it-works">Process</a>
-      <a href="#recent-deals">Recent deals</a>
-      <a href="#start-search">Start my search</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Smooth scroll for internal links
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var targetId = this.getAttribute('href').slice(1);
-      var target = document.getElementById(targetId);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // Current year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Zoho submit handling: keep user on page, show thank you
-  document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('zohoAutoBrokerForm');
-    var hiddenFrame = document.getElementById('zohoHiddenFrame');
-    var formInner = document.getElementById('zoho-form-inner');
-    var thankYou = document.getElementById('zoho-thankyou');
-    var pendingSubmit = false;
-
-    if (form && hiddenFrame) {
-      // Send Zoho response into hidden iframe instead of taking over the page
-      form.target = 'zohoHiddenFrame';
-
-      form.addEventListener('submit', function () {
-        pendingSubmit = true;
-        var btn = form.querySelector('button[type="submit"]');
-        if (btn) {
-          btn.dataset.originalText = btn.textContent || btn.innerText;
-          btn.textContent = 'Sending...';
-          btn.disabled = true;
-        }
-      });
-
-      hiddenFrame.addEventListener('load', function () {
-        if (!pendingSubmit) return;
-        pendingSubmit = false;
-
-        var btn = form.querySelector('button[type="submit"]');
-        if (btn) {
-          if (btn.dataset.originalText) {
-            btn.textContent = btn.dataset.originalText;
-          }
-          btn.disabled = false;
-        }
-
-        if (formInner && thankYou) {
-          formInner.style.display = 'none';
-          thankYou.style.display = 'flex';
-        }
-
-        form.reset();
-      });
-    }
-
-    // "AI-style" helper – generates text locally using simple rules
-    var followupBtn = document.getElementById('generateFollowupBtn');
-    var summaryBtn = document.getElementById('generateSummaryBtn');
-    var aiOutput = document.getElementById('aiOutput');
-
-    function getField(id) {
-      var el = document.getElementById(id);
-      return el ? el.value.trim() : '';
-    }
-
-    if (followupBtn && aiOutput) {
-      followupBtn.addEventListener('click', function () {
-        var first = getField('Name_First') || 'there';
-        var dealType = getField('Dropdown');
-        var details = getField('MultiLine');
-        var phone = getField('PhoneNumber_countrycode');
-
-        var typeText = '';
-        if (dealType && dealType !== '-Select-') {
-          typeText = dealType.toLowerCase();
-        }
-
-        var snippet =
-          "Hey " +
-          first +
-          ", this is Dan with Direct Auto Brokerage. Thanks for reaching out" +
-          (typeText ? " about a " + typeText + " deal" : "") +
-          ". I’m going over what you sent" +
-          (details ? " about: \"" + details.slice(0, 120) + (details.length > 120 ? "..." : "") + "\"" : "") +
-          ".\n\n" +
-          "I’ll put together some options and follow up with you shortly" +
-          (phone ? " on " + phone : "") +
-          ". If you have any must-haves or a target payment, feel free to text them back to this number.";
-
-        aiOutput.textContent = snippet;
-      });
-    }
-
-    if (summaryBtn && aiOutput) {
-      summaryBtn.addEventListener('click', function () {
-        var first = getField('Name_First');
-        var last = getField('Name_Last');
-        var dealType = getField('Dropdown');
-        var details = getField('MultiLine');
-        var phone = getField('PhoneNumber_countrycode');
-        var email = getField('Email');
-
-        var name = (first + ' ' + last).trim() || 'Client';
-        var line1 = name + " is interested in";
-
-        if (dealType && dealType !== '-Select-') {
-          line1 += " a " + dealType.toLowerCase() + " deal";
-        } else {
-          line1 += " a vehicle deal";
-        }
-
-        line1 += ".";
-
-        var line2 = details
-          ? "Notes from request: " + details
-          : "No extra notes provided yet.";
-
-        var line3 =
-          "Contact: " +
-          (phone ? "phone " + phone : "no phone provided") +
-          (email ? (phone ? ", " : "") + "email " + email : "");
-
-        aiOutput.textContent = line1 + "\n" + line2 + "\n" + line3;
-      });
-    }
-  });
-
-  /*
-    NOTE FOR FUTURE REAL AI INTEGRATION:
-
-    When you're ready to plug in real ChatGPT / OpenAI, you would:
-      - Host a small backend (e.g., on Vercel / Netlify) with an /api/ai endpoint.
-      - Move the text-generation logic above into that backend, and call OpenAI there.
-      - From this page, replace the local generator with a fetch() to your backend:
-          fetch('https://your-backend.com/api/ai', { method: 'POST', body: JSON.stringify({...}) })
-
-    That keeps your API key safe and turns this "AI-style helper" into true AI.
-  */
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
