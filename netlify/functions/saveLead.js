@@ -1,5 +1,8 @@
 // netlify/functions/saveLead.js
 
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
 exports.handler = async (event) => {
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
@@ -24,6 +27,17 @@ exports.handler = async (event) => {
     };
   }
 
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    console.error('Supabase env vars are missing');
+    return {
+      statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({ error: 'Supabase configuration missing' }),
+    };
+  }
+
   let data;
   try {
     data = JSON.parse(event.body || '{}');
@@ -38,23 +52,80 @@ exports.handler = async (event) => {
     };
   }
 
-  // At this point, "data" contains everything from the wizard form
+  // Log raw lead for debugging
   console.log('New lead from Direct Auto Brokerage wizard:', data);
 
-  // TODO: You can add DB/email/AI logic here later.
-  //  - Save to Supabase / Airtable / DB
-  //  - Send email via SendGrid / Resend
-  //  - Call OpenAI to summarize / label the lead
+  // Map incoming fields to table columns
+  const lead = {
+    goal: data.goal || null,
+    timeline: data.timeline || null,
+    new_or_used: data.newOrUsed || null,
+    vehicle_type: data.vehicleType || null,
+    model_preferences: data.modelPreferences || null,
+    payment_range: data.paymentRange || null,
+    down_payment: data.downPayment || null,
+    credit: data.credit || null,
 
-  return {
-    statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      success: true,
-      message: 'Lead received by saveLead function.',
-    }),
+    first_name: data.firstName || null,
+    last_name: data.lastName || null,
+    phone: data.phone || null,
+    email: data.email || null,
+    contact_method: data.contactMethod || null,
+
+    raw_json: data || null,
   };
+
+  try {
+    // Use Supabase REST API
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: SUPABASE_SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify([lead]), // Supabase REST expects an array for bulk insert
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error('Supabase insert error:', response.status, text);
+      return {
+        statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          error: 'Failed to save lead in Supabase',
+          status: response.status,
+        }),
+      };
+    }
+
+    console.log('Lead saved to Supabase successfully');
+
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        success: true,
+        message: 'Lead received and stored in Supabase.',
+      }),
+    };
+  } catch (err) {
+    console.error('Error calling Supabase:', err);
+    return {
+      statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ error: 'Unexpected error while saving lead' }),
+    };
+  }
 };
