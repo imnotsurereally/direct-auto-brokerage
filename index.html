@@ -38,7 +38,7 @@
   }
   </script>
 
-  <!-- Favicon placeholders (add these files later if you want) -->
+  <!-- Favicon placeholders -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
 
@@ -128,11 +128,11 @@
             <p>Share a couple details and I’ll reach out personally to understand what you’re looking for.</p>
           </div>
 
-          <!-- HERO QUICK FORM (Zoho endpoint) -->
+          <!-- HERO QUICK FORM (Zoho endpoint with submit) -->
           <form
             class="lead-form"
             id="hero-lead-form"
-            action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY"
+            action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY/htmlRecords/submit"
             method="POST"
           >
             <input type="hidden" name="zf_referrer_name" value="Hero form - Direct Auto Brokerage" />
@@ -141,23 +141,19 @@
 
             <label class="field">
               <span>Name</span>
-              <!-- Map to Zoho's Name_First field -->
               <input type="text" name="Name_First" placeholder="Full name" required />
             </label>
 
             <label class="field">
               <span>Phone</span>
-              <!-- Map to Zoho's phone field -->
               <input type="tel" name="PhoneNumber_countrycode" placeholder="(949) 444-3388" required />
             </label>
 
             <label class="field">
               <span>What are you looking for?</span>
-              <!-- Map to Zoho's MultiLine field -->
               <textarea name="MultiLine" rows="3" placeholder="Year, make, model, lease/purchase, rough budget..." required></textarea>
             </label>
 
-            <!-- Optional email, not required -->
             <label class="field">
               <span>Email (optional)</span>
               <input type="email" name="Email" placeholder="you@example.com" />
@@ -295,7 +291,7 @@
     <div class="container">
       <div class="section__header reveal">
         <h2>Never worked with a broker before?</h2>
-        <p>Here’s why it exists — and how it helps you.</p>
+        <p>Here’s what that actually means — and how it helps you.</p>
       </div>
 
       <div class="trust-grid">
@@ -315,11 +311,11 @@
           <h3>What a broker actually does</h3>
           <p>
             As your broker, I’m not tied to one store. I compare multiple dealerships, use the same tools and structure they do,
-            and then push for the best combination of price, payment, and terms for you.
+            and then look for the best combination of price, payment, and terms for you.
           </p>
           <p>
             You still pick up your vehicle from a dealership—but by the time you arrive, the numbers and structure have already
-            been reviewed and discussed with someone who speaks the same language they do.
+            been reviewed and discussed with someone who understands how those deals are put together.
           </p>
         </div>
 
@@ -373,7 +369,7 @@
         <form
           class="lead-form lead-form--solid"
           id="car-finder-form"
-          action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY"
+          action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/IXQZu1tVSIu0q8vmAqi9W4CqilB0O6GxeRXvXRXH6fY/htmlRecords/submit"
           method="POST"
         >
           <input type="hidden" name="zf_referrer_name" value="Car Finder form - Direct Auto Brokerage" />
@@ -404,7 +400,6 @@
 
           <label class="field">
             <span>Are you looking to lease or purchase?</span>
-            <!-- Map to Zoho's Dropdown field -->
             <select name="Dropdown">
               <option value="">Select one</option>
               <option value="Purchase">Purchase</option>
@@ -415,7 +410,6 @@
 
           <label class="field">
             <span>What are you looking for?</span>
-            <!-- Map to Zoho's MultiLine field -->
             <textarea
               name="MultiLine"
               rows="4"
