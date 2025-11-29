@@ -14,10 +14,13 @@ if (navToggle && nav) {
   });
 }
 
+// Respect reduced motion for all enhanced effects
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 // Reveal on scroll – faster, almost no delay
 const revealEls = document.querySelectorAll(".reveal");
 
-if ("IntersectionObserver" in window && revealEls.length) {
+if (!prefersReducedMotion && "IntersectionObserver" in window && revealEls.length) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -39,9 +42,30 @@ if ("IntersectionObserver" in window && revealEls.length) {
     observer.observe(el);
   });
 } else {
-  // Fallback: just show everything
+  // Fallback or reduced motion: just show everything
   revealEls.forEach((el) => el.classList.add("is-visible"));
 }
+
+// Scroll progress indicator
+const docEl = document.documentElement;
+let ticking = false;
+
+const setScrollProgress = () => {
+  const scrollable = docEl.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  docEl.style.setProperty("--scroll-progress", `${progress}%`);
+  ticking = false;
+};
+
+const handleScroll = () => {
+  if (!ticking) {
+    window.requestAnimationFrame(setScrollProgress);
+    ticking = true;
+  }
+};
+
+window.addEventListener("scroll", handleScroll, { passive: true });
+setScrollProgress();
 
 // Dynamic year in footer
 const yearSpan = document.getElementById("year");
