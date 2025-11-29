@@ -57,7 +57,7 @@
         to bottom,
         rgba(5, 6, 8, 0.96),
         rgba(5, 6, 8, 0.88),
-        rgba(5, 6, 8, 0.0)
+        rgba(5, 6, 8, 0)
       );
       border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     }
@@ -314,7 +314,7 @@
       background: linear-gradient(
         to right,
         rgba(255, 255, 255, 0.04),
-        rgba(255, 255, 255, 0.0)
+        rgba(255, 255, 255, 0)
       );
       margin: 8px 0 10px;
     }
@@ -530,7 +530,7 @@
     .contact-grid {
       margin-top: 18px;
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 2.1fr);
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 2.1fr);
       gap: 20px;
       align-items: flex-start;
     }
@@ -587,22 +587,161 @@
       border-radius: var(--radius-xl);
       background: rgba(7, 9, 15, 0.98);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 14px;
-      min-height: 220px;
+      padding: 16px;
       position: relative;
       overflow: hidden;
     }
 
-    .zoho-shell-placeholder {
-      font-size: 13px;
-      color: var(--text-muted);
+    .zoho-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
     }
 
-    .zoho-shell-placeholder code {
+    .zoho-caption {
       font-size: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 2px 6px;
-      border-radius: 8px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .zoho-form-inner {
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .zoho-shell form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .zoho-shell label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .zoho-shell input[type="text"],
+    .zoho-shell select,
+    .zoho-shell textarea {
+      width: 100%;
+      padding: 7px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(2, 3, 6, 0.96);
+      color: var(--text-main);
+      font-size: 13px;
+    }
+
+    .zoho-shell textarea {
+      min-height: 80px;
+      resize: vertical;
+      grid-column: 1 / -1;
+    }
+
+    .zoho-shell button[type="submit"] {
+      margin-top: 4px;
+      padding: 9px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(45, 211, 111, 0.9);
+      background: linear-gradient(135deg, #2dd36f, #54f39a);
+      color: #021007;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      grid-column: 1 / -1;
+      justify-self: flex-start;
+    }
+
+    .zoho-shell button[disabled] {
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    .zoho-thankyou {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 6px;
+      min-height: 150px;
+      animation: fadeInUp 0.18s ease-out;
+    }
+
+    .zoho-thankyou-title {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .zoho-thankyou-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 380px;
+    }
+
+    .ai-helper-card {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: var(--radius-lg);
+      border: 1px dashed rgba(84, 243, 154, 0.4);
+      background: rgba(3, 12, 9, 0.9);
+      font-size: 12px;
+    }
+
+    .ai-helper-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ai-chip {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(84, 243, 154, 0.6);
+      color: #caffde;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .ai-helper-description {
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .ai-helper-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .ai-helper-actions button {
+      padding: 5px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(4, 9, 7, 0.95);
+      color: var(--text-main);
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .ai-output {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      padding: 8px 9px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      max-height: 130px;
+      overflow: auto;
     }
 
     footer {
@@ -630,6 +769,17 @@
       font-size: 12px;
     }
 
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 720px) {
       .nav-links {
         display: none;
@@ -648,6 +798,10 @@
       }
 
       .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .zoho-shell form {
         grid-template-columns: minmax(0, 1fr);
       }
     }
@@ -951,24 +1105,94 @@
       </aside>
 
       <div class="zoho-shell">
-        <!-- 
-          ZOHO FORM EMBED GOES HERE
+        <div class="zoho-title">Start my search</div>
+        <div class="zoho-caption">
+          Fill this out and I’ll review it personally. I’ll reach out with next steps and real options—not automated spam.
+        </div>
 
-          IMPORTANT:
-          - If you're currently using the iframe version from Zoho, paste the <iframe> embed code here.
-          - When you're ready to upgrade to a true HTML <form> integration, paste the full <form>...</form> 
-            block from Zoho "Embed → HTML" in this same spot and we can wire it up more deeply.
+        <div id="zoho-form-inner" class="zoho-form-inner">
+          <!-- IMPORTANT: do NOT change input name="" attributes inside this form. -->
+          <!-- BEGIN ZOHO FORM -->
+          <form action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/l6CxrUh7O8LK8PLXOJD20_lp9Dxubf4hLiDfmx26gPk/htmlRecords/submit" name="form" id="zohoAutoBrokerForm" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+            <input type="hidden" name="zf_referrer_name" value="">
+            <input type="hidden" name="zf_redirect_url" value="">
+            <input type="hidden" name="zc_gad" value="">
 
-          Example structure (THIS IS JUST AN EXAMPLE, DO NOT USE AS-IS):
-          
-          <form action="https://forms.zohopublic.com/..." method="POST">
-            ...all Zoho fields & hidden inputs...
+            <div>
+              <label for="Name_First">First Name</label>
+              <input type="text" maxlength="255" name="Name_First" fieldType="7" id="Name_First" />
+            </div>
+
+            <div>
+              <label for="Name_Last">Last Name</label>
+              <input type="text" maxlength="255" name="Name_Last" fieldType="7" id="Name_Last" />
+            </div>
+
+            <div>
+              <label for="PhoneNumber_countrycode">Phone Number</label>
+              <input
+                type="text"
+                compname="PhoneNumber"
+                name="PhoneNumber_countrycode"
+                phoneFormat="1"
+                isCountryCodeEnabled="false"
+                maxlength="20"
+                value=""
+                fieldType="11"
+                id="PhoneNumber_countrycode"
+              />
+            </div>
+
+            <div>
+              <label for="Email">Email</label>
+              <input type="text" maxlength="255" name="Email" value="" fieldType="9" id="Email" />
+            </div>
+
+            <div>
+              <label for="Dropdown">Deal Type</label>
+              <select name="Dropdown" id="Dropdown">
+                <option selected="true" value="-Select-">-Select-</option>
+                <option value="Lease">Lease</option>
+                <option value="Purchase">Purchase</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+
+            <div style="grid-column: 1 / -1;">
+              <label for="MultiLine">What are you looking for?</label>
+              <textarea name="MultiLine" maxlength="65535" id="MultiLine"></textarea>
+            </div>
+
+            <button type="submit"><em>Submit</em></button>
           </form>
-        -->
-        <div id="zoho-form-container" class="zoho-shell-placeholder">
-          Loading form…<br /><br />
-          Paste your Zoho embed code inside
-          <code>.zoho-shell</code> in this section in your GitHub file.
+          <!-- END ZOHO FORM -->
+        </div>
+
+        <div id="zoho-thankyou" class="zoho-thankyou">
+          <div class="zoho-thankyou-title">Thanks — I’ve got your request.</div>
+          <div class="zoho-thankyou-text">
+            I’ll review what you sent and reach out with next steps. If it’s time-sensitive or you don’t hear back soon, you can always text or call me directly at (949) 444-3388.
+          </div>
+        </div>
+
+        <!-- Hidden iframe so Zoho can respond without leaving your site -->
+        <iframe name="zohoHiddenFrame" id="zohoHiddenFrame" style="display:none;"></iframe>
+
+        <div class="ai-helper-card">
+          <div class="ai-helper-title">
+            <span>Smart follow-up preview</span>
+            <span class="ai-chip">AI-style helper</span>
+          </div>
+          <div class="ai-helper-description">
+            After you fill the form, you can generate a sample text message I might send as a follow-up. This runs in your browser only. Later we can swap this to a real ChatGPT API call.
+          </div>
+          <div class="ai-helper-actions">
+            <button type="button" id="generateFollowupBtn">Generate follow-up text</button>
+            <button type="button" id="generateSummaryBtn">Generate quick lead summary</button>
+          </div>
+          <div id="aiOutput" class="ai-output">
+            Fill out the form above and click a button to see a preview.
+          </div>
         </div>
       </div>
     </div>
@@ -1003,6 +1227,133 @@
 
   // Current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Zoho submit handling: keep user on page, show thank you
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('zohoAutoBrokerForm');
+    var hiddenFrame = document.getElementById('zohoHiddenFrame');
+    var formInner = document.getElementById('zoho-form-inner');
+    var thankYou = document.getElementById('zoho-thankyou');
+    var pendingSubmit = false;
+
+    if (form && hiddenFrame) {
+      // Send Zoho response into hidden iframe instead of taking over the page
+      form.target = 'zohoHiddenFrame';
+
+      form.addEventListener('submit', function () {
+        pendingSubmit = true;
+        var btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+          btn.dataset.originalText = btn.textContent || btn.innerText;
+          btn.textContent = 'Sending...';
+          btn.disabled = true;
+        }
+      });
+
+      hiddenFrame.addEventListener('load', function () {
+        if (!pendingSubmit) return;
+        pendingSubmit = false;
+
+        var btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+          if (btn.dataset.originalText) {
+            btn.textContent = btn.dataset.originalText;
+          }
+          btn.disabled = false;
+        }
+
+        if (formInner && thankYou) {
+          formInner.style.display = 'none';
+          thankYou.style.display = 'flex';
+        }
+
+        form.reset();
+      });
+    }
+
+    // "AI-style" helper – generates text locally using simple rules
+    var followupBtn = document.getElementById('generateFollowupBtn');
+    var summaryBtn = document.getElementById('generateSummaryBtn');
+    var aiOutput = document.getElementById('aiOutput');
+
+    function getField(id) {
+      var el = document.getElementById(id);
+      return el ? el.value.trim() : '';
+    }
+
+    if (followupBtn && aiOutput) {
+      followupBtn.addEventListener('click', function () {
+        var first = getField('Name_First') || 'there';
+        var dealType = getField('Dropdown');
+        var details = getField('MultiLine');
+        var phone = getField('PhoneNumber_countrycode');
+
+        var typeText = '';
+        if (dealType && dealType !== '-Select-') {
+          typeText = dealType.toLowerCase();
+        }
+
+        var snippet =
+          "Hey " +
+          first +
+          ", this is Dan with Direct Auto Brokerage. Thanks for reaching out" +
+          (typeText ? " about a " + typeText + " deal" : "") +
+          ". I’m going over what you sent" +
+          (details ? " about: \"" + details.slice(0, 120) + (details.length > 120 ? "..." : "") + "\"" : "") +
+          ".\n\n" +
+          "I’ll put together some options and follow up with you shortly" +
+          (phone ? " on " + phone : "") +
+          ". If you have any must-haves or a target payment, feel free to text them back to this number.";
+
+        aiOutput.textContent = snippet;
+      });
+    }
+
+    if (summaryBtn && aiOutput) {
+      summaryBtn.addEventListener('click', function () {
+        var first = getField('Name_First');
+        var last = getField('Name_Last');
+        var dealType = getField('Dropdown');
+        var details = getField('MultiLine');
+        var phone = getField('PhoneNumber_countrycode');
+        var email = getField('Email');
+
+        var name = (first + ' ' + last).trim() || 'Client';
+        var line1 = name + " is interested in";
+
+        if (dealType && dealType !== '-Select-') {
+          line1 += " a " + dealType.toLowerCase() + " deal";
+        } else {
+          line1 += " a vehicle deal";
+        }
+
+        line1 += ".";
+
+        var line2 = details
+          ? "Notes from request: " + details
+          : "No extra notes provided yet.";
+
+        var line3 =
+          "Contact: " +
+          (phone ? "phone " + phone : "no phone provided") +
+          (email ? (phone ? ", " : "") + "email " + email : "");
+
+        aiOutput.textContent = line1 + "\n" + line2 + "\n" + line3;
+      });
+    }
+  });
+
+  /*
+    NOTE FOR FUTURE REAL AI INTEGRATION:
+
+    When you're ready to plug in real ChatGPT / OpenAI, you would:
+      - Host a small backend (e.g., on Vercel / Netlify) with an /api/ai endpoint.
+      - Move the text-generation logic above into that backend, and call OpenAI there.
+      - From this page, replace the local generator with a fetch() to your backend:
+          fetch('https://your-backend.com/api/ai', { method: 'POST', body: JSON.stringify({...}) })
+
+    That keeps your API key safe and turns this "AI-style helper" into true AI.
+  */
 </script>
 </body>
 </html>
