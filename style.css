@@ -696,3 +696,24 @@ body {
     align-items: flex-start;
   }
 }
+/* Make the Zoho form blend into the background section */
+.zoho-form-wrapper {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  background: transparent;
+  padding: 0;
+}
+
+.zoho-form-wrapper iframe {
+  width: 100%;
+  min-height: 750px;
+  border: none;
+  
+  /* Match website background */
+  background: linear-gradient(to bottom right, #050b11, #0d1824);
+
+  /* Remove the “floating card” look */
+  border-radius: 0;
+  box-shadow: none;
+}
