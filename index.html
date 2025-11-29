@@ -455,7 +455,7 @@
 
   <script src="script.js"></script>
 
-  <!-- Inline script: replace forms with Thank You message after submit -->
+  <!-- Inline script: replace forms with highlighted green Thank You message after submit -->
   <script>
     (function () {
       function attachInlineThankYou(formId) {
@@ -464,10 +464,10 @@
 
         form.addEventListener("submit", function () {
           var thankMarkup =
-            '<div style="padding:1.5rem; border-radius:1rem; border:1px solid rgba(148,163,184,0.4); background:#020617; text-align:left;">' +
-            '<h3 style="margin-top:0;margin-bottom:0.5rem;">Thank you!</h3>' +
-            '<p style="margin:0;font-size:0.9rem;color:#cbd5f5;">We received your details and will contact you as soon as possible.</p>' +
-            "</div>";
+            '<div style="padding:1.8rem; border-radius:1rem; background:#082f23; border:1px solid #2af7b6; box-shadow:0 0 25px rgba(42,247,182,0.25); text-align:left; max-width:520px; margin:auto;">' +
+              '<h3 style="margin-top:0; margin-bottom:0.5rem; color:#2af7b6; font-size:1.35rem; font-weight:700;">Thank you!</h3>' +
+              '<p style="margin:0; font-size:1rem; color:#c4ffe9;">We received your details and will contact you as soon as possible.</p>' +
+            '</div>';
 
           form.outerHTML = thankMarkup;
         });
