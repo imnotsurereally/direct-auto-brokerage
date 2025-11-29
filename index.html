@@ -128,13 +128,13 @@
             <p>Share a couple details and I’ll reach out personally to understand what you’re looking for.</p>
           </div>
 
-          <!-- HERO QUICK FORM (Zoho endpoint, posts to hidden iframe) -->
+          <!-- HERO QUICK FORM (Zoho endpoint, opens Zoho in new tab) -->
           <form
             class="lead-form"
             id="hero-lead-form"
             action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/l6CxrUh7O8LK8PLXOJD20_lp9Dxubf4hLiDfmx26gPk/htmlRecords/submit"
             method="POST"
-            target="hidden_iframe"
+            target="_blank"
           >
             <input type="hidden" name="zf_referrer_name" value="Hero form - Direct Auto Brokerage" />
             <input type="hidden" name="zf_redirect_url" value="" />
@@ -366,13 +366,13 @@
       </div>
 
       <div class="section--contact__form reveal">
-        <!-- MAIN CAR FINDER FORM posting to Zoho in hidden iframe -->
+        <!-- MAIN CAR FINDER FORM posting to Zoho, opens Zoho in new tab -->
         <form
           class="lead-form lead-form--solid"
           id="car-finder-form"
           action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/l6CxrUh7O8LK8PLXOJD20_lp9Dxubf4hLiDfmx26gPk/htmlRecords/submit"
           method="POST"
-          target="hidden_iframe"
+          target="_blank"
         >
           <input type="hidden" name="zf_referrer_name" value="Car Finder form - Direct Auto Brokerage" />
           <input type="hidden" name="zf_redirect_url" value="" />
@@ -453,15 +453,12 @@
     </div>
   </footer>
 
-  <!-- Hidden iframe to catch Zoho response so user stays on your site -->
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
   <script src="script.js"></script>
 
   <!-- Inline script: replace forms with Thank You message after submit -->
   <script>
     (function () {
-      function attachThankYou(formId) {
+      function attachInlineThankYou(formId) {
         var form = document.getElementById(formId);
         if (!form) return;
 
@@ -476,8 +473,8 @@
         });
       }
 
-      attachThankYou("hero-lead-form");
-      attachThankYou("car-finder-form");
+      attachInlineThankYou("hero-lead-form");
+      attachInlineThankYou("car-finder-form");
     })();
   </script>
 </body>
