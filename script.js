@@ -7,7 +7,6 @@ if (navToggle && nav) {
     nav.classList.toggle("nav--open");
   });
 
-  // Close nav when a link is clicked (mobile)
   nav.addEventListener("click", (e) => {
     if (e.target.matches(".nav__link")) {
       nav.classList.remove("nav--open");
@@ -15,7 +14,7 @@ if (navToggle && nav) {
   });
 }
 
-// Reveal on scroll (slightly faster than before)
+// Reveal on scroll – faster, almost no delay
 const revealEls = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window && revealEls.length) {
@@ -30,13 +29,13 @@ if ("IntersectionObserver" in window && revealEls.length) {
       });
     },
     {
-      threshold: 0.18,
+      threshold: 0.15, // shows a bit earlier when scrolling fast
     }
   );
 
-  revealEls.forEach((el, index) => {
-    const delay = index * 0.06; // faster stagger than before
-    el.style.transitionDelay = `${delay}s`;
+  revealEls.forEach((el) => {
+    // Minimal or no stagger for snappier feel
+    el.style.transitionDelay = "0s";
     observer.observe(el);
   });
 } else {
