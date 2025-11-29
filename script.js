@@ -1,50 +1,103 @@
-// Mobile nav toggle
-const navToggle = document.querySelector(".nav__toggle");
-const nav = document.querySelector(".nav");
-
-if (navToggle && nav) {
-  navToggle.addEventListener("click", () => {
-    nav.classList.toggle("nav--open");
-  });
-
-  nav.addEventListener("click", (e) => {
-    if (e.target.matches(".nav__link")) {
-      nav.classList.remove("nav--open");
+// Smooth scroll for internal links
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const targetId = link.getAttribute('href').slice(1);
+    if (!targetId) return;
+    const target = document.getElementById(targetId);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
-}
+});
 
-// Reveal on scroll – faster, almost no delay
-const revealEls = document.querySelectorAll(".reveal");
+// Wizard logic
+(function () {
+  const form = document.getElementById('dab-wizard-form');
+  if (!form) return;
 
-if ("IntersectionObserver" in window && revealEls.length) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          el.classList.add("is-visible");
-          observer.unobserve(el);
-        }
-      });
-    },
-    {
-      threshold: 0.15, // shows a bit earlier when scrolling fast
-    }
+  const stepPanels = Array.from(form.querySelectorAll('.wizard-step-panel'));
+  const stepIndicators = Array.from(
+    document.querySelectorAll('.wizard-step')
   );
 
-  revealEls.forEach((el) => {
-    // Minimal or no stagger for snappier feel
-    el.style.transitionDelay = "0s";
-    observer.observe(el);
-  });
-} else {
-  // Fallback: just show everything
-  revealEls.forEach((el) => el.classList.add("is-visible"));
-}
+  let currentStep = 1;
 
-// Dynamic year in footer
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
+  function showStep(step) {
+    currentStep = step;
+
+    stepPanels.forEach(panel => {
+      const panelStep = Number(panel.dataset.step);
+      panel.hidden = panelStep !== currentStep;
+    });
+
+    stepIndicators.forEach(indicator => {
+      const s = Number(indicator.dataset.step);
+      indicator.classList.toggle('active', s === currentStep);
+    });
+  }
+
+  function goNext() {
+    if (currentStep < 5) {
+      showStep(currentStep + 1);
+    }
+  }
+
+  function goBack() {
+    if (currentStep > 1) {
+      showStep(currentStep - 1);
+    }
+  }
+
+  // Attach click handlers for wizard nav buttons
+  form.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    const action = btn.dataset.action;
+    if (action === 'next') {
+      e.preventDefault();
+      goNext();
+    } else if (action === 'back') {
+      e.preventDefault();
+      goBack();
+    }
+  });
+
+  // Handle submit: log data + show confirmation step
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const payload = {};
+    formData.forEach((value, key) => {
+      payload[key] = value;
+    });
+
+    console.log('Wizard submission:', payload);
+
+    // TODO: later send to Google Sheets / backend here
+
+    showStep(5);
+  });
+
+  // Start at step 1
+  showStep(1);
+})();
+
+// Handle referral form (prevent page reload for now)
+(function () {
+  const referralForm = document.getElementById('referral-form');
+  if (!referralForm) return;
+
+  referralForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new FormData(referralForm);
+    const payload = {};
+    data.forEach((value, key) => {
+      payload[key] = value;
+    });
+    console.log('Referral submitted:', payload);
+    alert('Thanks for the referral — I’ll reach out once they connect with me.');
+    referralForm.reset();
+  });
+})();
