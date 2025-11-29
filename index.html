@@ -128,19 +128,16 @@
             <p>Share a couple details and I’ll reach out personally to understand what you’re looking for.</p>
           </div>
 
-          <!-- HERO QUICK FORM (Zoho endpoint with submit + redirect) -->
+          <!-- HERO QUICK FORM (Zoho endpoint, posts to hidden iframe) -->
           <form
             class="lead-form"
             id="hero-lead-form"
             action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/l6CxrUh7O8LK8PLXOJD20_lp9Dxubf4hLiDfmx26gPk/htmlRecords/submit"
             method="POST"
+            target="hidden_iframe"
           >
             <input type="hidden" name="zf_referrer_name" value="Hero form - Direct Auto Brokerage" />
-            <input
-              type="hidden"
-              name="zf_redirect_url"
-              value="https://imnotsurereally.github.io/direct-auto-brokerage/#thankyou"
-            />
+            <input type="hidden" name="zf_redirect_url" value="" />
             <input type="hidden" name="zc_gad" value="" />
 
             <label class="field">
@@ -369,19 +366,16 @@
       </div>
 
       <div class="section--contact__form reveal">
-        <!-- MAIN CAR FINDER FORM posting to Zoho -->
+        <!-- MAIN CAR FINDER FORM posting to Zoho in hidden iframe -->
         <form
           class="lead-form lead-form--solid"
           id="car-finder-form"
           action="https://forms.zohopublic.com/directautobrokerage1/form/AutoBrokerLeadForm/formperma/l6CxrUh7O8LK8PLXOJD20_lp9Dxubf4hLiDfmx26gPk/htmlRecords/submit"
           method="POST"
+          target="hidden_iframe"
         >
           <input type="hidden" name="zf_referrer_name" value="Car Finder form - Direct Auto Brokerage" />
-          <input
-            type="hidden"
-            name="zf_redirect_url"
-            value="https://imnotsurereally.github.io/direct-auto-brokerage/#thankyou"
-          />
+          <input type="hidden" name="zf_redirect_url" value="" />
           <input type="hidden" name="zc_gad" value="" />
 
           <div class="field-group">
@@ -459,32 +453,31 @@
     </div>
   </footer>
 
+  <!-- Hidden iframe to catch Zoho response so user stays on your site -->
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
   <script src="script.js"></script>
 
-  <!-- Inline script to show thank-you message instead of forms -->
+  <!-- Inline script: replace forms with Thank You message after submit -->
   <script>
     (function () {
-      if (window.location.hash === "#thankyou") {
-        var heroForm = document.getElementById("hero-lead-form");
-        var carForm = document.getElementById("car-finder-form");
+      function attachThankYou(formId) {
+        var form = document.getElementById(formId);
+        if (!form) return;
 
-        var thankMarkup =
-          '<div style="padding:1.5rem; border-radius:1rem; border:1px solid rgba(148,163,184,0.4); background:#020617; text-align:left;">' +
-          '<h3 style="margin-top:0;margin-bottom:0.5rem;">Thank you!</h3>' +
-          '<p style="margin:0;font-size:0.9rem;color:#cbd5f5;">We received your details and will contact you as soon as possible.</p>' +
-          "</div>";
+        form.addEventListener("submit", function () {
+          var thankMarkup =
+            '<div style="padding:1.5rem; border-radius:1rem; border:1px solid rgba(148,163,184,0.4); background:#020617; text-align:left;">' +
+            '<h3 style="margin-top:0;margin-bottom:0.5rem;">Thank you!</h3>' +
+            '<p style="margin:0;font-size:0.9rem;color:#cbd5f5;">We received your details and will contact you as soon as possible.</p>' +
+            "</div>";
 
-        if (heroForm) {
-          heroForm.outerHTML = thankMarkup;
-        }
-        if (carForm) {
-          carForm.outerHTML = thankMarkup;
-          var carSection = document.getElementById("car-finder");
-          if (carSection) {
-            carSection.scrollIntoView({ behavior: "smooth" });
-          }
-        }
+          form.outerHTML = thankMarkup;
+        });
       }
+
+      attachThankYou("hero-lead-form");
+      attachThankYou("car-finder-form");
     })();
   </script>
 </body>
