@@ -8,638 +8,7 @@
     name="description"
     content="Direct Auto Brokerage – former Mercedes & dealership insider helping you get the right 2025–2026 car at the right numbers across Southern California."
   />
-
-  <!-- CHARCOAL LUXURY THEME, NO EXTERNAL CSS -->
-  <style>
-    :root {
-      --bg-main: #151515;
-      --bg-alt: #1b1b1b;
-      --bg-card: #202020;
-      --bg-soft: #232323;
-      --border-subtle: #333333;
-      --text-main: #f7f1e5;        /* warm light “champagne” */
-      --text-muted: #c4b89b;      /* muted gold-beige */
-      --accent: #f3c76a;          /* primary gold */
-      --accent-strong: #ffd98a;   /* brighter gold */
-      --accent-soft: #f3c76a33;
-      --accent-alt: #f0b45a;      /* secondary gold tone */
-      --danger: #ff6b6b;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top, #222 0, #151515 40%, #111 100%);
-      color: var(--text-main);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    a {
-      color: var(--accent-strong);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-    }
-
-    /* MOBILE STICKY BAR */
-    #mobile-sticky-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      display: flex;
-      justify-content: space-between;
-      gap: 0.5rem;
-      padding: 0.6rem 0.75rem;
-      background: linear-gradient(to top, #111111f0, #151515dd);
-      border-top: 1px solid var(--border-subtle);
-      backdrop-filter: blur(16px);
-    }
-
-    #mobile-sticky-bar a {
-      flex: 1;
-      font-size: 0.8rem;
-      padding: 0.45rem 0.3rem;
-      border-radius: 999px;
-      text-align: center;
-      text-decoration: none;
-      border: 1px solid var(--border-subtle);
-      background: #222222;
-      color: var(--text-main);
-      white-space: nowrap;
-    }
-
-    #mobile-sticky-bar a:first-child {
-      border-color: var(--accent-soft);
-      color: var(--accent-strong);
-    }
-
-    @media (min-width: 768px) {
-      #mobile-sticky-bar {
-        display: none;
-      }
-    }
-
-    /* HERO */
-    header#top {
-      background: radial-gradient(circle at top, #2b2b2b 0, #181818 40%, #121212 100%);
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .hero {
-      padding: 4.4rem 0 3rem;
-    }
-
-    .hero-content {
-      text-align: left;
-    }
-
-    .hero-content h1 {
-      margin: 0 0 1rem;
-      font-size: 2.45rem;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-      color: var(--accent-strong);
-    }
-
-    @media (min-width: 768px) {
-      .hero-content h1 {
-        font-size: 2.9rem;
-      }
-    }
-
-    .hero-subtitle {
-      margin: 0 0 1.5rem;
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 32rem;
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-microcopy {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* BUTTONS */
-    .btn-primary,
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.7rem 1.4rem;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      border: 1px solid transparent;
-      cursor: pointer;
-      text-decoration: none;
-      transition:
-        transform 0.1s ease,
-        box-shadow 0.1s ease,
-        background 0.15s ease,
-        border-color 0.15s ease,
-        color 0.15s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color: #2b210b;
-      box-shadow: 0 0 24px rgba(243, 199, 106, 0.45);
-      font-weight: 600;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 30px rgba(243, 199, 106, 0.7);
-      text-decoration: none;
-    }
-
-    .btn-secondary {
-      background: #202020;
-      border-color: var(--border-subtle);
-      color: var(--text-main);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent-strong);
-      text-decoration: none;
-    }
-
-    .link-cta {
-      color: var(--accent-strong);
-      font-weight: 500;
-      position: relative;
-      text-decoration: none;
-    }
-
-    .link-cta::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent-strong), transparent);
-      opacity: 0.9;
-    }
-
-    .link-cta:hover::after {
-      opacity: 1;
-    }
-
-    /* SECTIONS */
-    main {
-      flex: 1;
-      background: var(--bg-main);
-    }
-
-    main section {
-      padding: 3rem 0;
-    }
-
-    main section:nth-of-type(odd) {
-      background: var(--bg-main);
-    }
-
-    main section:nth-of-type(even) {
-      background: var(--bg-alt);
-    }
-
-    h2 {
-      font-size: 1.7rem;
-      margin: 0 0 1.2rem;
-      color: var(--accent-strong);
-    }
-
-    p {
-      color: var(--text-main);
-    }
-
-    .section-intro {
-      color: var(--text-muted);
-      max-width: 40rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .section-cta {
-      margin-top: 1.5rem;
-    }
-
-    .section-footnote {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* BENEFITS GRID */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .benefit {
-      background: var(--bg-card);
-      border-radius: 0.9rem;
-      padding: 1.1rem 1.1rem;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .benefit h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.05rem;
-      color: var(--accent-strong);
-    }
-
-    .benefit p {
-      margin: 0;
-      font-size: 0.92rem;
-      color: var(--text-muted);
-    }
-
-    @media (min-width: 768px) {
-      .benefits-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    /* PROCESS */
-    .process-steps {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem 0 0;
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .process-steps li {
-      background: var(--bg-card);
-      border-radius: 0.9rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .process-steps h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1rem;
-      color: var(--accent-strong);
-    }
-
-    .process-steps p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    /* DEAL CARDS */
-    .deal-cards {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .deal-card {
-      background: radial-gradient(circle at top left, #2b2b2b 0, #202020 40%, #181818 100%);
-      border-radius: 1rem;
-      padding: 1.2rem 1.25rem;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 0 24px rgba(0, 0, 0, 0.7);
-    }
-
-    .deal-card h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.05rem;
-      color: var(--accent-strong);
-    }
-
-    .deal-highlight {
-      margin: 0 0 0.5rem;
-      color: var(--accent-strong);
-      font-size: 0.9rem;
-    }
-
-    .deal-story {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    @media (min-width: 768px) {
-      .deal-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    /* HOT DEAL FEED */
-    .deal-feed {
-      margin-top: 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.9rem;
-    }
-
-    .deal-feed-item {
-      background: var(--bg-card);
-      border-radius: 0.9rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .deal-feed-item h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1rem;
-      color: var(--accent-strong);
-    }
-
-    .deal-feed-item p {
-      margin: 0 0 0.3rem;
-      font-size: 0.9rem;
-      color: var(--text-main);
-    }
-
-    .deal-note {
-      color: var(--text-muted);
-    }
-
-    /* FAQ */
-    .faq-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .faq-item {
-      background: var(--bg-card);
-      border-radius: 0.9rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .faq-item h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1rem;
-      color: var(--accent-strong);
-    }
-
-    .faq-item p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    /* ABOUT */
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .about-text p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .about-tagline {
-      margin-top: 0.7rem;
-      font-weight: 500;
-      color: var(--accent-strong);
-    }
-
-    .about-photo {
-      border-radius: 1rem;
-      background: radial-gradient(circle at top, var(--accent-soft), #222);
-      border: 1px solid var(--border-subtle);
-      min-height: 180px;
-    }
-
-    @media (max-width: 767px) {
-      .about-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* REFERRAL FORM */
-    #referral-form .form-row {
-      margin-bottom: 0.9rem;
-    }
-
-    #referral-form label {
-      display: block;
-      font-size: 0.85rem;
-      margin-bottom: 0.25rem;
-      color: var(--text-main);
-    }
-
-    #referral-form input,
-    #referral-form textarea {
-      width: 100%;
-      padding: 0.6rem 0.7rem;
-      border-radius: 0.55rem;
-      border: 1px solid var(--border-subtle);
-      background: #1a1a1a;
-      color: var(--text-main);
-      font-size: 0.9rem;
-    }
-
-    #referral-form input::placeholder,
-    #referral-form textarea::placeholder {
-      color: #8a8070;
-    }
-
-    #referral-form input:focus,
-    #referral-form textarea:focus {
-      outline: none;
-      border-color: var(--accent-strong);
-      box-shadow: 0 0 0 1px var(--accent-strong);
-    }
-
-    /* WIZARD */
-    #dab-wizard {
-      margin-top: 1.5rem;
-      background: var(--bg-soft);
-      border-radius: 1.1rem;
-      padding: 1.5rem 1.5rem 1.7rem;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 0 28px rgba(0, 0, 0, 0.7);
-    }
-
-    .wizard-steps-indicator {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.2rem;
-      font-size: 0.8rem;
-    }
-
-    .wizard-steps-indicator .wizard-step {
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      background: #1b1b1b;
-    }
-
-    .wizard-steps-indicator .wizard-step.active {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-    }
-
-    .wizard-step-panel h3 {
-      margin-top: 0;
-      font-size: 1.15rem;
-      margin-bottom: 0.3rem;
-      color: var(--accent-strong);
-    }
-
-    .wizard-helper {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .wizard-field-group {
-      margin-bottom: 1rem;
-    }
-
-    .wizard-field-group label {
-      display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.35rem;
-      color: var(--text-main);
-    }
-
-    .option-group {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.4rem;
-      font-size: 0.9rem;
-    }
-
-    .option-group label {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      border-radius: 999px;
-      padding: 0.4rem 0.7rem;
-      border: 1px solid var(--border-subtle);
-      background: #1b1b1b;
-      cursor: pointer;
-      color: var(--text-main);
-    }
-
-    .option-group input[type="radio"] {
-      accent-color: var(--accent);
-    }
-
-    textarea[name="modelPreferences"] {
-      width: 100%;
-      min-height: 80px;
-      padding: 0.6rem 0.7rem;
-      border-radius: 0.6rem;
-      border: 1px solid var(--border-subtle);
-      background: #1a1a1a;
-      color: var(--text-main);
-      font-size: 0.9rem;
-    }
-
-    textarea[name="modelPreferences"]:focus {
-      outline: none;
-      border-color: var(--accent-strong);
-      box-shadow: 0 0 0 1px var(--accent-strong);
-    }
-
-    .wizard-nav {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-
-    .wizard-nav .btn-primary,
-    .wizard-nav .btn-secondary {
-      flex: 1;
-      justify-content: center;
-    }
-
-    .wizard-confirm-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 1.2rem;
-    }
-
-    #dab-wizard input[type="text"],
-    #dab-wizard input[type="tel"],
-    #dab-wizard input[type="email"] {
-      width: 100%;
-      padding: 0.6rem 0.7rem;
-      border-radius: 0.55rem;
-      border: 1px solid var(--border-subtle);
-      background: #1a1a1a;
-      color: var(--text-main);
-      font-size: 0.9rem;
-    }
-
-    #dab-wizard input::placeholder {
-      color: #8a8070;
-    }
-
-    #dab-wizard input:focus {
-      outline: none;
-      border-color: var(--accent-strong);
-      box-shadow: 0 0 0 1px var(--accent-strong);
-    }
-
-    /* FOOTER */
-    #footer {
-      background: #151515;
-      border-top: 1px solid var(--border-subtle);
-      padding: 1.5rem 0 3.5rem;
-    }
-
-    .footer-inner {
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .footer-inner a {
-      color: var(--accent-strong);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- MOBILE STICKY BAR -->
@@ -649,11 +18,31 @@
     <a href="#start-search">Start search</a>
   </div>
 
+  <!-- TOP NAV -->
+  <header id="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark">DAB</span>
+        <div class="brand-text">
+          <span class="brand-name">Direct Auto Brokerage</span>
+          <span class="brand-tagline">Former dealer insider, now on your side.</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="#why-broker">Why a broker</a>
+        <a href="#recent-deals">Recent deals</a>
+        <a href="#finance-tools">Payment sandbox</a>
+        <a href="inventory.html">Explore new cars</a>
+        <a href="#start-search" class="nav-cta">Start my search</a>
+      </nav>
+    </div>
+  </header>
+
   <!-- HERO -->
-  <header id="top">
-    <div class="hero">
-      <div class="hero-content container">
-        <h1>Get the right car at the right numbers — without wasting your time at dealerships.</h1>
+  <section id="hero" class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <h1>Get the right car at the right numbers — without dealership games.</h1>
         <p class="hero-subtitle">
           Former Mercedes &amp; dealership insider working as your personal auto broker across Southern California.
         </p>
@@ -663,37 +52,60 @@
           <a href="tel:+1-949-444-3388" class="btn-secondary">Talk to me first</a>
         </div>
 
-        <p class="hero-microcopy">Simple. Transparent. No dealership games.</p>
+        <p class="hero-microcopy">
+          Simple. Transparent. No whole-day “let me talk to my manager” nonsense.
+        </p>
+
+        <div class="hero-badges">
+          <div class="badge-pill">New 2025–2026 cars specialist</div>
+          <div class="badge-pill">Paid mostly by the dealership</div>
+          <div class="badge-pill">You keep your time and leverage</div>
+        </div>
+      </div>
+
+      <div class="hero-panel reveal delay-1">
+        <div class="hero-panel-inner">
+          <h2>Quick snapshot</h2>
+          <ul class="hero-facts">
+            <li><span>Coverage</span><strong>All of SoCal</strong></li>
+            <li><span>Best work on</span><strong>New 2025–2026 cars</strong></li>
+            <li><span>Process</span><strong>Text, structure, then you sign</strong></li>
+          </ul>
+          <p class="hero-note">
+            Tell me what you’re trying to do. I quietly work the numbers in the background and only bring you real options.
+          </p>
+          <a href="#start-search" class="btn-outline">Start in under 60 seconds →</a>
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <main>
     <!-- WHY USE A BROKER -->
     <section id="why-broker">
       <div class="container">
-        <h2>Why car buyers use a broker instead of walking into a dealership alone</h2>
+        <h2 class="reveal">Why car buyers use a broker instead of walking into a dealership alone</h2>
         <div class="benefits-grid">
-          <article class="benefit">
+          <article class="benefit reveal">
             <h3>Better numbers, less back-and-forth</h3>
             <p>
-              I’ve worked inside dealerships. I know where the room actually is and what’s just a sales line.
+              I’ve worked inside dealerships. I know where the room actually is and what’s just a line to keep you in the chair.
             </p>
           </article>
-          <article class="benefit">
+          <article class="benefit reveal delay-1">
             <h3>Your time actually matters here</h3>
             <p>
               No whole-day test-drive games. I do the legwork, send you real options, and you only show up when it makes sense.
             </p>
           </article>
-          <article class="benefit">
+          <article class="benefit reveal delay-2">
             <h3>You’re not stuck to one store</h3>
             <p>
               I check multiple dealerships and inventory sources for you — not just whatever’s on one lot that day.
             </p>
           </article>
         </div>
-        <div class="section-cta">
+        <div class="section-cta reveal delay-2">
           <a href="#start-search" class="link-cta">Start your search →</a>
         </div>
       </div>
@@ -702,27 +114,27 @@
     <!-- PROCESS -->
     <section id="process">
       <div class="container">
-        <h2>Here’s how I make this easy for you</h2>
+        <h2 class="reveal">Here’s how I make this easy for you</h2>
         <ol class="process-steps">
-          <li>
+          <li class="reveal">
             <h3>1. Tell me what you’re trying to do</h3>
-            <p>Quick questions on budget, timing, and what you want.</p>
+            <p>Quick questions on budget, timing, and what you want. No pressure, no commitments.</p>
           </li>
-          <li>
+          <li class="reveal delay-1">
             <h3>2. I scan real inventory for smart options</h3>
-            <p>I look at multiple dealerships and sources behind the scenes.</p>
+            <p>I look at multiple dealerships and sources behind the scenes — not just one store’s leftovers.</p>
           </li>
-          <li>
+          <li class="reveal delay-2">
             <h3>3. We dial in the structure together</h3>
-            <p>Payments, term, down, mileage, pros/cons of each option.</p>
+            <p>Payments, term, down, mileage, pros/cons of each option — all laid out clearly.</p>
           </li>
-          <li>
+          <li class="reveal delay-3">
             <h3>4. You decide what feels best</h3>
-            <p>I’ll tell you when something’s not a good value, too.</p>
+            <p>If something isn’t a good value, I’ll tell you. My job is to protect you, not the store.</p>
           </li>
-          <li>
+          <li class="reveal delay-4">
             <h3>5. You go in to sign &amp; drive</h3>
-            <p>You’re not walking in blind. You’re walking in with leverage.</p>
+            <p>You’re not walking in blind. You’re walking in with leverage and a clear structure.</p>
           </li>
         </ol>
       </div>
@@ -731,15 +143,15 @@
     <!-- DEALS I'VE RECENTLY STRUCTURED -->
     <section id="recent-deals">
       <div class="container">
-        <h2>Deals I’ve recently helped structure for clients</h2>
-        <p class="section-intro">
+        <h2 class="reveal">Deals I’ve recently helped structure for clients</h2>
+        <p class="section-intro reveal">
           I do my best work on new cars — that’s where there’s the most room to structure smarter leases, finance setups, or cash deals.
         </p>
 
         <div class="deal-cards">
-          <article class="deal-card">
+          <article class="deal-card reveal">
             <h3>2025 BMW 430i (New)</h3>
-            <p class="deal-highlight">$0 down, mid-$600s/month (lease)</p>
+            <p class="deal-highlight">Restructured from “money down” to a clean, no-money-down setup.</p>
             <p class="deal-story">
               Client was getting quoted higher payments with money down at a dealership. I sourced a different in-stock
               430i, cleaned up the structure, and kept them at a comfortable payment with no money down at signing (just
@@ -747,9 +159,9 @@
             </p>
           </article>
 
-          <article class="deal-card">
+          <article class="deal-card reveal delay-1">
             <h3>2025 Toyota Camry SE (New)</h3>
-            <p class="deal-highlight">Payment under what they were being shown online</p>
+            <p class="deal-highlight">Kept them under the number they actually wanted, not the “starting from” number.</p>
             <p class="deal-story">
               Client had been shopping online and getting “starting from” payments that never lined up once they talked to
               sales. I stepped in, focused on realistic inventory, and structured a deal that kept them under the monthly
@@ -757,9 +169,9 @@
             </p>
           </article>
 
-          <article class="deal-card">
+          <article class="deal-card reveal delay-2">
             <h3>2025 Honda Civic Sport (New)</h3>
-            <p class="deal-highlight">Strong structure in a tight new-car market</p>
+            <p class="deal-highlight">Smart structure in a tight new-car market.</p>
             <p class="deal-story">
               New Civics are competitive and move fast. Instead of chasing random cars, I targeted the right trim and
               color and made the numbers make sense for the client’s budget. We avoided the worst markups and stuck to a
@@ -767,9 +179,9 @@
             </p>
           </article>
 
-          <article class="deal-card">
+          <article class="deal-card reveal delay-3">
             <h3>2026 Mercedes C-Class (C300) (New)</h3>
-            <p class="deal-highlight">New-car luxury structure that actually made sense</p>
+            <p class="deal-highlight">Luxury structure that actually made sense long term.</p>
             <p class="deal-story">
               Client originally wanted a fully loaded spec that would’ve blown the payment out. I showed them a smarter
               build and structure so they could still get into a new C-Class without stretching past where they were
@@ -778,8 +190,80 @@
           </article>
         </div>
 
-        <div class="section-cta">
-          <a href="#start-search" class="link-cta">Want me to run numbers on a 2025 or 2026 for you? Start your car search →</a>
+        <div class="section-cta reveal delay-3">
+          <a href="#start-search" class="link-cta">
+            Want me to run numbers on a 2025 or 2026 for you? Start your car search →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINANCE TOOLS / CALCULATOR -->
+    <section id="finance-tools">
+      <div class="container">
+        <h2 class="reveal">Play with a payment sandbox (for fun, not a quote)</h2>
+        <p class="section-intro reveal">
+          This is just a simple payment sandbox — not a credit app, not a formal quote. It’s here so you can feel the
+          difference between price, down, term, and rate. When you’re serious, I’ll build a real structure for you.
+        </p>
+
+        <div class="finance-layout">
+          <div class="finance-card reveal">
+            <h3>Payment sandbox</h3>
+            <form id="payment-calculator">
+              <div class="calc-row">
+                <label for="calcPrice">Estimated vehicle price</label>
+                <div class="input-with-prefix">
+                  <span>$</span>
+                  <input id="calcPrice" type="number" min="0" step="500" value="35000" />
+                </div>
+              </div>
+
+              <div class="calc-row">
+                <label for="calcDown">Estimated down payment</label>
+                <div class="input-with-prefix">
+                  <span>$</span>
+                  <input id="calcDown" type="number" min="0" step="500" value="5000" />
+                </div>
+              </div>
+
+              <div class="calc-row calc-flex">
+                <div>
+                  <label for="calcRate">Approx. APR</label>
+                  <div class="input-with-suffix">
+                    <input id="calcRate" type="number" min="0" step="0.25" value="5.5" />
+                    <span>%</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="calcTerm">Term (months)</label>
+                  <input id="calcTerm" type="number" min="12" step="12" value="60" />
+                </div>
+              </div>
+
+              <p class="calc-note">
+                This is just math on a rough structure — no taxes, fees, or programs layered in. When you’re ready, I’ll
+                run real options for you.
+              </p>
+            </form>
+          </div>
+
+          <div class="finance-summary reveal delay-1">
+            <div class="finance-summary-inner">
+              <h3>Rough payment feel</h3>
+              <div class="payment-display">
+                <span class="payment-label">Estimated payment</span>
+                <span class="payment-value" id="calcPayment">$0 / mo</span>
+              </div>
+              <p class="payment-caption">
+                When your expectations and reality are close, it’s easier for me to structure something that feels good.
+              </p>
+              <a href="#start-search" class="btn-primary">Send me what you’re trying to do</a>
+              <p class="fine-print">
+                This tool is for ballpark feel only. Final structures depend on programs, inventory, taxes, and approval.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -787,23 +271,21 @@
     <!-- START SEARCH / WIZARD ENTRY -->
     <section id="start-search">
       <div class="container">
-        <h2>Tell me what you’re looking for — I’ll handle the rest.</h2>
-        <p class="section-intro">
+        <h2 class="reveal">Tell me what you’re looking for — I’ll handle the rest.</h2>
+        <p class="section-intro reveal">
           No pressure. No commitment. The more I know about what you’re trying to do, the better I can steer you away from bad deals.
         </p>
 
         <!-- WIZARD CONTAINER -->
-        <div id="dab-wizard">
-          <!-- STEP INDICATOR -->
+        <div id="dab-wizard" class="reveal">
           <div class="wizard-steps-indicator">
-            <span class="wizard-step active" data-step="1">Basics</span>
-            <span class="wizard-step" data-step="2">Vehicle</span>
-            <span class="wizard-step" data-step="3">Budget</span>
-            <span class="wizard-step" data-step="4">Contact</span>
-            <span class="wizard-step" data-step="5">Done</span>
+            <span class="wizard-chip active" data-step="1">Basics</span>
+            <span class="wizard-chip" data-step="2">Vehicle</span>
+            <span class="wizard-chip" data-step="3">Budget</span>
+            <span class="wizard-chip" data-step="4">Contact</span>
+            <span class="wizard-chip" data-step="5">Done</span>
           </div>
 
-          <!-- WIZARD FORM -->
           <form id="dab-wizard-form">
             <!-- STEP 1: BASICS -->
             <div class="wizard-step-panel" data-step="1">
@@ -973,7 +455,7 @@
 
               <div class="wizard-nav">
                 <button type="button" class="btn-secondary" data-action="back">← Go back</button>
-                <button type="submit" class="btn-primary">Submit my search</button>
+                <button type="submit" class="btn-primary" id="wizardSubmitButton">Submit my search</button>
               </div>
             </div>
 
@@ -987,7 +469,7 @@
                 <li>I personally look over what you’re trying to do.</li>
                 <li>If I’m confident I can help, I’ll text you with a couple of questions or options.</li>
                 <li>I quietly check real inventory and numbers in the background.</li>
-                <li>You’ll see actual payment structures and options before you ever step foot in a dealership.</li>
+                <li>You’ll see structures and options before you ever step foot in a dealership.</li>
               </ol>
               <p class="wizard-helper">
                 If your timing is urgent (next 24–72 hours), text me now so I can prioritize your search.
@@ -1000,23 +482,25 @@
               </div>
             </div>
           </form>
+
+          <div id="wizard-status" class="wizard-status" aria-live="polite"></div>
         </div>
 
-        <p class="section-footnote">This goes straight to me, not a call center.</p>
+        <p class="section-footnote reveal">This goes straight to me, not a call center.</p>
       </div>
     </section>
 
     <!-- HOT DEAL FEED -->
     <section id="hot-deals">
       <div class="container">
-        <h2>New 2025–2026 deals I’m watching right now</h2>
-        <p class="section-intro">
+        <h2 class="reveal">New 2025–2026 deals I’m watching right now</h2>
+        <p class="section-intro reveal">
           New cars are where brokers usually save the most — better structures, cleaner numbers, less guessing. These are
           the types of 2025–2026 deals I’m always chasing for clients.
         </p>
 
         <div class="deal-feed">
-          <article class="deal-feed-item">
+          <article class="deal-feed-item reveal">
             <h3>2025 Kia Forte LXS (New)</h3>
             <p>Est. structure: low $300s/month with reasonable drive-offs.</p>
             <p class="deal-note">
@@ -1024,7 +508,7 @@
             </p>
           </article>
 
-          <article class="deal-feed-item">
+          <article class="deal-feed-item reveal delay-1">
             <h3>2025 Honda CR-V EX-L (New)</h3>
             <p>Est. structure: mid $500s/month for most average-credit situations.</p>
             <p class="deal-note">
@@ -1032,7 +516,7 @@
             </p>
           </article>
 
-          <article class="deal-feed-item">
+          <article class="deal-feed-item reveal delay-2">
             <h3>2025 Chevy Silverado LT (New)</h3>
             <p>Est. structure: depends on packages, but I’m always hunting clean 2025 truck deals with sane payments.</p>
             <p class="deal-note">
@@ -1040,7 +524,7 @@
             </p>
           </article>
 
-          <article class="deal-feed-item">
+          <article class="deal-feed-item reveal delay-3">
             <h3>2025 Toyota RAV4 XLE (New)</h3>
             <p>
               Est. structure: highly competitive segment, but there are smart structures if you know where to look.
@@ -1050,7 +534,7 @@
             </p>
           </article>
 
-          <article class="deal-feed-item">
+          <article class="deal-feed-item reveal delay-4">
             <h3>2026 Tesla Model 3 (New)</h3>
             <p>EV programs and pricing move a lot.</p>
             <p class="deal-note">
@@ -1059,11 +543,11 @@
           </article>
         </div>
 
-        <p class="section-footnote">
+        <p class="section-footnote reveal">
           These aren’t guaranteed offers — they’re examples of the kinds of new-car structures I’m constantly looking for.
           Tell me what you want in a 2025 or 2026, and I’ll see what kind of deal actually makes sense.
         </p>
-        <div class="section-cta">
+        <div class="section-cta reveal">
           <a href="#start-search" class="link-cta">Tell me what you’re looking for →</a>
         </div>
       </div>
@@ -1072,10 +556,10 @@
     <!-- FAQ / BROKER -->
     <section id="faq-broker">
       <div class="container">
-        <h2>Never worked with an auto broker? Here’s what to know.</h2>
+        <h2 class="reveal">Never worked with an auto broker? Here’s what to know.</h2>
 
         <div class="faq-list">
-          <article class="faq-item">
+          <article class="faq-item reveal">
             <h3>Do you add fees on top?</h3>
             <p>
               No hidden broker games. If there’s a broker fee, it’s agreed up front, and I show you why the numbers still
@@ -1083,14 +567,14 @@
             </p>
           </article>
 
-          <article class="faq-item">
+          <article class="faq-item reveal delay-1">
             <h3>Do I still go to the dealership?</h3>
             <p>
               Yes — but usually only when it’s time to sign and pick up. I take care of the back-and-forth before that.
             </p>
           </article>
 
-          <article class="faq-item">
+          <article class="faq-item reveal delay-2">
             <h3>Can you help with any brand?</h3>
             <p>
               I can work with most makes and models as long as there’s reasonable availability and the structure makes
@@ -1099,7 +583,7 @@
           </article>
         </div>
 
-        <div class="section-cta">
+        <div class="section-cta reveal">
           <a href="#start-search" class="btn-primary">Start my car search</a>
           <a href="sms:+1-949-444-3388" class="btn-secondary">Text me a question</a>
         </div>
@@ -1109,9 +593,9 @@
     <!-- ABOUT -->
     <section id="about">
       <div class="container">
-        <h2>Who’s actually behind this?</h2>
+        <h2 class="reveal">Who’s actually behind this?</h2>
         <div class="about-layout">
-          <div class="about-text">
+          <div class="about-text reveal">
             <p>
               I’m Dan. I spent years inside the dealership world — especially at Mercedes — watching how numbers move,
               how deals are structured, and how much time and energy people wasted just trying to get a fair shot.
@@ -1125,8 +609,8 @@
               Your personal auto broker — not tied to any store.
             </p>
           </div>
-          <div class="about-photo">
-            <!-- Optional image -->
+          <div class="about-photo reveal delay-1">
+            <!-- Drop a headshot or logo later -->
           </div>
         </div>
       </div>
@@ -1135,12 +619,12 @@
     <!-- REFERRALS -->
     <section id="referrals">
       <div class="container">
-        <h2>Refer a friend — get $100 when their deal closes.</h2>
-        <p class="section-intro">
+        <h2 class="reveal">Refer a friend — get $100 when their deal closes.</h2>
+        <p class="section-intro reveal">
           If I help someone you send my way get into a car, I send you $100 as a thank-you when their deal closes. Simple.
         </p>
 
-        <form id="referral-form">
+        <form id="referral-form" class="reveal">
           <div class="form-row">
             <label for="referrerName">Your name</label>
             <input type="text" id="referrerName" name="referrerName" />
@@ -1162,10 +646,11 @@
             <textarea id="friendNotes" name="friendNotes" rows="3"></textarea>
           </div>
 
-          <button type="submit" class="btn-primary">Send referral</button>
+          <button type="submit" class="btn-secondary">Send referral</button>
+          <div id="referral-status" class="form-status" aria-live="polite"></div>
         </form>
 
-        <p class="section-footnote">
+        <p class="section-footnote reveal">
           Paid when your referral actually completes a deal. If multiple people refer the same person, I go off who they
           confirm sent them.
         </p>
@@ -1175,11 +660,11 @@
     <!-- FINAL CTA -->
     <section id="final-cta">
       <div class="container">
-        <h2>Ready for me to start looking for you?</h2>
-        <p>
+        <h2 class="reveal">Ready for me to start looking for you?</h2>
+        <p class="reveal">
           If you’re already getting “numbers” from a dealer, I’m happy to look them over before you say yes to anything.
         </p>
-        <div class="section-cta">
+        <div class="section-cta reveal">
           <a href="#start-search" class="btn-primary">Start my car search</a>
           <a href="sms:+1-949-444-3388" class="btn-secondary">Text Dan</a>
           <a href="tel:+1-949-444-3388" class="btn-secondary">Call now</a>
