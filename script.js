@@ -1,131 +1,188 @@
-// Smooth scroll for internal links
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    const targetId = link.getAttribute('href').slice(1);
-    if (!targetId) return;
-    const target = document.getElementById(targetId);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
+// =============================
+// Direct Auto Brokerage Wizard
+// New script.js
+// =============================
 
-// Wizard logic
-(function () {
-  const form = document.getElementById('dab-wizard-form');
-  if (!form) return;
+// ------ CONFIG ------
 
-  const stepPanels = Array.from(form.querySelectorAll('.wizard-step-panel'));
-  const stepIndicators = Array.from(
-    document.querySelectorAll('.wizard-step')
+// Supabase Edge Function endpoint
+const SAVE_LEAD_ENDPOINT =
+  "https://vccajljhxoujfggbhxdm.supabase.co/functions/v1/save-lead";
+
+// Optional: update this if you add UTM or ad tracking later
+function getAdSource() {
+  const url = new URL(window.location.href);
+  return {
+    utm_source: url.searchParams.get("utm_source") || null,
+    utm_campaign: url.searchParams.get("utm_campaign") || null,
+    utm_medium: url.searchParams.get("utm_medium") || null,
+    referrer: document.referrer || null,
+  };
+}
+
+// ------ WIZARD SETUP ------
+
+document.addEventListener("DOMContentLoaded", () => {
+  const steps = Array.from(document.querySelectorAll(".wizard-step"));
+  const nextButtons = Array.from(
+    document.querySelectorAll("[data-action='next']")
   );
+  const backButtons = Array.from(
+    document.querySelectorAll("[data-action='back']")
+  );
+  const form = document.querySelector("#leadWizardForm");
+  const submitButton = document.querySelector("#wizardSubmitButton");
+  const statusBox = document.querySelector("#wizardStatus");
 
-  let currentStep = 1;
+  let currentStep = 0;
 
-  function showStep(step) {
-    currentStep = step;
+  if (!form) {
+    console.error("leadWizardForm not found in HTML.");
+    return;
+  }
 
-    stepPanels.forEach(panel => {
-      const panelStep = Number(panel.dataset.step);
-      panel.hidden = panelStep !== currentStep;
+  // Initialize steps
+  function showStep(index) {
+    steps.forEach((step, i) => {
+      step.style.display = i === index ? "block" : "none";
     });
 
-    stepIndicators.forEach(indicator => {
-      const s = Number(indicator.dataset.step);
-      indicator.classList.toggle('active', s === currentStep);
+    // Scroll to top of wizard on step change (helpful on mobile)
+    const wizard = document.querySelector(".wizard-container");
+    if (wizard) wizard.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  showStep(currentStep);
+
+  // Handle Next
+  nextButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentStep < steps.length - 1) {
+        currentStep += 1;
+        showStep(currentStep);
+      }
     });
-  }
-
-  function goNext() {
-    if (currentStep < 5) {
-      showStep(currentStep + 1);
-    }
-  }
-
-  function goBack() {
-    if (currentStep > 1) {
-      showStep(currentStep - 1);
-    }
-  }
-
-  // Attach click handlers for wizard nav buttons
-  form.addEventListener('click', e => {
-    const btn = e.target.closest('button[data-action]');
-    if (!btn) return;
-    const action = btn.dataset.action;
-    if (action === 'next') {
-      e.preventDefault();
-      goNext();
-    } else if (action === 'back') {
-      e.preventDefault();
-      goBack();
-    }
   });
 
-  // Handle submit: send data to Netlify function + show confirmation
-  form.addEventListener('submit', async e => {
+  // Handle Back
+  backButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentStep > 0) {
+        currentStep -= 1;
+        showStep(currentStep);
+      }
+    });
+  });
+
+  // ------ FORM SUBMIT ------
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(form);
-    const payload = {};
-    formData.forEach((value, key) => {
-      payload[key] = value;
-    });
+    clearStatus();
 
-    console.log('Wizard submission payload:', payload);
+    const payload = collectFormData(form);
 
-    // Call Netlify function (backend)
+    if (!payload.phone) {
+      setStatus(
+        "Please add a phone number so I know where to follow up.",
+        "error"
+      );
+      return;
+    }
+
+    lockSubmit(true);
+
     try {
-      const res = await fetch('/.netlify/functions/saveLead', {
-        method: 'POST',
+      const response = await fetch(SAVE_LEAD_ENDPOINT, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
-      let data = {};
-      try {
-        data = await res.json();
-      } catch (err) {
-        // ignore JSON parse errors, not critical
+      if (!response.ok) {
+        console.error("save-lead response not OK:", response.status);
+        const text = await response.text().catch(() => "");
+        console.error("Response body:", text);
+        throw new Error("Server error while saving your info.");
       }
 
-      console.log('Netlify saveLead response:', data);
+      // Optional: read JSON response
+      // const result = await response.json().catch(() => ({}));
 
-      if (!res.ok) {
-        console.error('saveLead returned non-OK status:', res.status);
-      }
-    } catch (err) {
-      console.error('Error calling saveLead function:', err);
-      alert(
-        "Your info was captured in the browser, but there was an issue talking to the server.\n\nIf this keeps happening, please text me directly at 949-444-3388."
+      setStatus(
+        "Got it. I’ll review your info and reach out with real options shortly.",
+        "success"
       );
+      form.reset();
+      currentStep = 0;
+      showStep(currentStep);
+    } catch (err) {
+      console.error("Error submitting lead:", err);
+      setStatus(
+        "Something went wrong sending your info. Please try again in a moment or text me directly.",
+        "error"
+      );
+    } finally {
+      lockSubmit(false);
     }
-
-    // Show confirmation step regardless so user flow stays smooth
-    showStep(5);
   });
 
-  // Start at step 1
-  showStep(1);
-})();
+  // ------ HELPERS ------
 
-// Handle referral form (prevent page reload for now)
-(function () {
-  const referralForm = document.getElementById('referral-form');
-  if (!referralForm) return;
+  function collectFormData(formEl) {
+    const formData = new FormData(formEl);
 
-  referralForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const data = new FormData(referralForm);
-    const payload = {};
-    data.forEach((value, key) => {
-      payload[key] = value;
-    });
-    console.log('Referral submitted:', payload);
-    alert('Thanks for the referral — I’ll reach out once they connect with me.');
-    referralForm.reset();
-  });
-})();
+    // Base fields expected by save-lead function
+    const data = {
+      goal: formData.get("goal") || null,
+      timeline: formData.get("timeline") || null,
+      newOrUsed: formData.get("newOrUsed") || null,
+      vehicleType: formData.get("vehicleType") || null,
+      modelPreferences: formData.get("modelPreferences") || null,
+      paymentRange: formData.get("paymentRange") || null,
+      downPayment: formData.get("downPayment") || null,
+      credit: formData.get("credit") || null,
+
+      firstName: formData.get("firstName") || null,
+      lastName: formData.get("lastName") || null,
+      phone: (formData.get("phone") || "").trim(),
+      email: (formData.get("email") || "").trim() || null,
+      contactMethod: formData.get("contactMethod") || null,
+    };
+
+    // Attach ad/source metadata
+    data.adSource = getAdSource();
+
+    return data;
+  }
+
+  function lockSubmit(locked) {
+    if (!submitButton) return;
+    submitButton.disabled = locked;
+    submitButton.textContent = locked ? "Sending..." : "Submit";
+  }
+
+  function setStatus(message, type) {
+    if (!statusBox) return;
+    statusBox.textContent = message;
+    statusBox.style.display = "block";
+    statusBox.classList.remove("status-error", "status-success");
+    if (type === "error") {
+      statusBox.classList.add("status-error");
+    } else if (type === "success") {
+      statusBox.classList.add("status-success");
+    }
+  }
+
+  function clearStatus() {
+    if (!statusBox) return;
+    statusBox.textContent = "";
+    statusBox.style.display = "none";
+    statusBox.classList.remove("status-error", "status-success");
+  }
+});
