@@ -1,174 +1,153 @@
 // =============================
 // Direct Auto Brokerage Wizard
-// script.js
+// script.js – clean version
 // =============================
 
-// ------ CONFIG ------
+// ---- CONFIG ----
 
-// Supabase Edge Function endpoint
+// ✅ Supabase Edge Function endpoint (from save-lead Details tab)
 const SAVE_LEAD_ENDPOINT =
-  "https://vccajljhxoujfggbhxdm.supabase.co/functions/v1/save-lead";
+  "https://vccajijhxuofjgqbhxdm.supabase.co/functions/v1/save-lead";
 
-// Optional: update this if you add UTM or ad tracking later
+// Optional: UTM / ad tracking helper
 function getAdSource() {
-  const url = new URL(window.location.href);
-  return {
-    utm_source: url.searchParams.get("utm_source") || null,
-    utm_campaign: url.searchParams.get("utm_campaign") || null,
-    utm_medium: url.searchParams.get("utm_medium") || null,
-    referrer: document.referrer || null,
-  };
+  try {
+    const url = new URL(window.location.href);
+    return {
+      utm_source: url.searchParams.get("utm_source") || null,
+      utm_campaign: url.searchParams.get("utm_campaign") || null,
+      utm_medium: url.searchParams.get("utm_medium") || null,
+      referrer: document.referrer || null,
+    };
+  } catch (e) {
+    return {
+      utm_source: null,
+      utm_campaign: null,
+      utm_medium: null,
+      referrer: document.referrer || null,
+    };
+  }
 }
 
-// ------ WIZARD SETUP ------
+// ---- WIZARD LOGIC ----
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("#dab-wizard-form");
-  const wizardContainer = document.querySelector("#dab-wizard");
+  const form = document.getElementById("dab-wizard-form");
+  if (!form) {
+    console.error("dab-wizard-form not found in HTML.");
+    return;
+  }
 
-  // Each step panel is one screen of the wizard
-  const stepPanels = Array.from(
+  const panels = Array.from(
     document.querySelectorAll(".wizard-step-panel")
   );
-
-  // Top step indicators (Basics / Vehicle / Budget / Contact / Done)
-  const stepIndicators = Array.from(
-    document.querySelectorAll(".wizard-steps-indicator .wizard-step")
+  const indicators = Array.from(
+    document.querySelectorAll(".wizard-step-indicator .wizard-step, .wizard-steps-indicator .wizard-step")
   );
 
+  // In your HTML, the step indicators are inside .wizard-steps-indicator
+  // This selector just makes sure we catch them either way.
+
+  let currentStepIndex = 0;
+
+  // Status message box under the form
+  let statusBox = document.getElementById("wizardStatus");
+  if (!statusBox) {
+    statusBox = document.createElement("div");
+    statusBox.id = "wizardStatus";
+    statusBox.style.display = "none";
+    statusBox.style.marginTop = "1rem";
+    statusBox.style.fontSize = "0.95rem";
+    form.parentNode.appendChild(statusBox);
+  }
+
+  function setStatus(message, type) {
+    statusBox.textContent = message;
+    statusBox.style.display = "block";
+    statusBox.style.color = type === "error" ? "#b00020" : "#0a7a2a";
+  }
+
+  function clearStatus() {
+    statusBox.textContent = "";
+    statusBox.style.display = "none";
+  }
+
+  function scrollWizardIntoView() {
+    const wizard = document.getElementById("dab-wizard");
+    if (wizard) {
+      wizard.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function showStep(index) {
+    if (!panels.length) return;
+
+    // Clamp index
+    if (index < 0) index = 0;
+    if (index >= panels.length) index = panels.length - 1;
+    currentStepIndex = index;
+
+    panels.forEach((panel, i) => {
+      const isActive = i === currentStepIndex;
+      panel.hidden = !isActive;
+      panel.style.display = isActive ? "block" : "none";
+    });
+
+    indicators.forEach((ind, i) => {
+      if (i === currentStepIndex) {
+        ind.classList.add("active");
+      } else {
+        ind.classList.remove("active");
+      }
+    });
+
+    scrollWizardIntoView();
+  }
+
+  // Initial state
+  showStep(0);
+
+  // Next / Back buttons
   const nextButtons = Array.from(
     document.querySelectorAll("[data-action='next']")
   );
   const backButtons = Array.from(
     document.querySelectorAll("[data-action='back']")
   );
-  const submitButton = form
-    ? form.querySelector("button[type='submit']")
-    : null;
 
-  // Create / locate status box
-  let statusBox = document.querySelector("#wizardStatus");
-  if (!statusBox && form) {
-    statusBox = document.createElement("div");
-    statusBox.id = "wizardStatus";
-    statusBox.className = "wizard-status";
-    statusBox.style.display = "none";
-    form.appendChild(statusBox);
-  }
-
-  if (!form || stepPanels.length === 0) {
-    console.error("Wizard form or step panels not found in HTML.");
-    return;
-  }
-
-  let currentStepIndex = 0;
-
-  // Show a given step by index (0-based)
-  function showStep(index) {
-    stepPanels.forEach((panel, i) => {
-      panel.hidden = i !== index;
-    });
-
-    // Update step indicators (if present)
-    stepIndicators.forEach((indicator) => {
-      const stepNumber = parseInt(indicator.dataset.step || "0", 10) - 1;
-      indicator.classList.toggle("active", stepNumber === index);
-    });
-
-    if (wizardContainer) {
-      wizardContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
-  // Initial step
-  showStep(currentStepIndex);
-
-  // Handle "Next" buttons
   nextButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      if (currentStepIndex < stepPanels.length - 1) {
-        currentStepIndex += 1;
-        showStep(currentStepIndex);
+      clearStatus();
+      if (currentStepIndex < panels.length - 1) {
+        showStep(currentStepIndex + 1);
       }
     });
   });
 
-  // Handle "Back" buttons
   backButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
+      clearStatus();
       if (currentStepIndex > 0) {
-        currentStepIndex -= 1;
-        showStep(currentStepIndex);
+        showStep(currentStepIndex - 1);
       }
     });
   });
 
-  // ------ FORM SUBMIT ------
+  // ---- FORM SUBMIT ----
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  const submitButton = form.querySelector("button[type='submit']");
 
-    clearStatus();
+  function lockSubmit(locked) {
+    if (!submitButton) return;
+    submitButton.disabled = locked;
+    submitButton.textContent = locked ? "Sending..." : "Submit my search";
+  }
 
-    const payload = collectFormData(form);
+  function collectFormData() {
+    const formData = new FormData(form);
 
-    if (!payload.phone) {
-      setStatus(
-        "Please add a phone number so I know where to follow up.",
-        "error"
-      );
-      return;
-    }
-
-    lockSubmit(true);
-
-    try {
-      const response = await fetch(SAVE_LEAD_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        console.error("save-lead response not OK:", response.status);
-        const text = await response.text().catch(() => "");
-        console.error("Response body:", text);
-        throw new Error("Server error while saving your info.");
-      }
-
-      // Optional: read JSON response
-      // const result = await response.json().catch(() => ({}));
-
-      setStatus(
-        "Got it. I’ll review your info and reach out with real options shortly.",
-        "success"
-      );
-
-      // Reset form and move to the "Done" step (step 5)
-      form.reset();
-      currentStepIndex = stepPanels.length - 1; // last panel (data-step="5")
-      showStep(currentStepIndex);
-    } catch (err) {
-      console.error("Error submitting lead:", err);
-      setStatus(
-        "Something went wrong sending your info. Please try again in a moment or text me directly.",
-        "error"
-      );
-    } finally {
-      lockSubmit(false);
-    }
-  });
-
-  // ------ HELPERS ------
-
-  function collectFormData(formEl) {
-    const formData = new FormData(formEl);
-
-    // Base fields expected by save-lead function
     const data = {
       goal: formData.get("goal") || null,
       timeline: formData.get("timeline") || null,
@@ -184,36 +163,62 @@ document.addEventListener("DOMContentLoaded", () => {
       phone: (formData.get("phone") || "").trim(),
       email: (formData.get("email") || "").trim() || null,
       contactMethod: formData.get("contactMethod") || null,
-    };
 
-    // Attach ad/source metadata
-    data.adSource = getAdSource();
+      adSource: getAdSource(),
+    };
 
     return data;
   }
 
-  function lockSubmit(locked) {
-    if (!submitButton) return;
-    submitButton.disabled = locked;
-    submitButton.textContent = locked ? "Sending..." : "Submit my search";
-  }
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clearStatus();
 
-  function setStatus(message, type) {
-    if (!statusBox) return;
-    statusBox.textContent = message;
-    statusBox.style.display = "block";
-    statusBox.classList.remove("status-error", "status-success");
-    if (type === "error") {
-      statusBox.classList.add("status-error");
-    } else if (type === "success") {
-      statusBox.classList.add("status-success");
+    const payload = collectFormData();
+
+    if (!payload.phone) {
+      setStatus(
+        "Please add a phone number so I know where to follow up.",
+        "error"
+      );
+      return;
     }
-  }
 
-  function clearStatus() {
-    if (!statusBox) return;
-    statusBox.textContent = "";
-    statusBox.style.display = "none";
-    statusBox.classList.remove("status-error", "status-success");
-  }
+    try {
+      lockSubmit(true);
+
+      const response = await fetch(SAVE_LEAD_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        console.error("save-lead response not OK:", response.status);
+        const text = await response.text().catch(() => "");
+        console.error("Response body:", text);
+        throw new Error("Server error while saving your info.");
+      }
+
+      // If we get here, Supabase saved the lead
+      setStatus(
+        "Got it. I’ll review your info and reach out with real options shortly.",
+        "success"
+      );
+
+      // Reset form and jump to Done step (step index 4 if 5 steps total)
+      form.reset();
+      showStep(panels.length - 1);
+    } catch (err) {
+      console.error("Error submitting lead:", err);
+      setStatus(
+        "Something went wrong sending your info. Please try again in a moment or text me directly.",
+        "error"
+      );
+    } finally {
+      lockSubmit(false);
+    }
+  });
 });
