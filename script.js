@@ -1,6 +1,6 @@
 // =============================
 // Direct Auto Brokerage Wizard
-// New script.js
+// script.js
 // =============================
 
 // ------ CONFIG ------
@@ -23,55 +23,84 @@ function getAdSource() {
 // ------ WIZARD SETUP ------
 
 document.addEventListener("DOMContentLoaded", () => {
-  const steps = Array.from(document.querySelectorAll(".wizard-step"));
+  const form = document.querySelector("#dab-wizard-form");
+  const wizardContainer = document.querySelector("#dab-wizard");
+
+  // Each step panel is one screen of the wizard
+  const stepPanels = Array.from(
+    document.querySelectorAll(".wizard-step-panel")
+  );
+
+  // Top step indicators (Basics / Vehicle / Budget / Contact / Done)
+  const stepIndicators = Array.from(
+    document.querySelectorAll(".wizard-steps-indicator .wizard-step")
+  );
+
   const nextButtons = Array.from(
     document.querySelectorAll("[data-action='next']")
   );
   const backButtons = Array.from(
     document.querySelectorAll("[data-action='back']")
   );
-  const form = document.querySelector("#leadWizardForm");
-  const submitButton = document.querySelector("#wizardSubmitButton");
-  const statusBox = document.querySelector("#wizardStatus");
+  const submitButton = form
+    ? form.querySelector("button[type='submit']")
+    : null;
 
-  let currentStep = 0;
+  // Create / locate status box
+  let statusBox = document.querySelector("#wizardStatus");
+  if (!statusBox && form) {
+    statusBox = document.createElement("div");
+    statusBox.id = "wizardStatus";
+    statusBox.className = "wizard-status";
+    statusBox.style.display = "none";
+    form.appendChild(statusBox);
+  }
 
-  if (!form) {
-    console.error("leadWizardForm not found in HTML.");
+  if (!form || stepPanels.length === 0) {
+    console.error("Wizard form or step panels not found in HTML.");
     return;
   }
 
-  // Initialize steps
+  let currentStepIndex = 0;
+
+  // Show a given step by index (0-based)
   function showStep(index) {
-    steps.forEach((step, i) => {
-      step.style.display = i === index ? "block" : "none";
+    stepPanels.forEach((panel, i) => {
+      panel.hidden = i !== index;
     });
 
-    // Scroll to top of wizard on step change (helpful on mobile)
-    const wizard = document.querySelector(".wizard-container");
-    if (wizard) wizard.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Update step indicators (if present)
+    stepIndicators.forEach((indicator) => {
+      const stepNumber = parseInt(indicator.dataset.step || "0", 10) - 1;
+      indicator.classList.toggle("active", stepNumber === index);
+    });
+
+    if (wizardContainer) {
+      wizardContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
-  showStep(currentStep);
+  // Initial step
+  showStep(currentStepIndex);
 
-  // Handle Next
+  // Handle "Next" buttons
   nextButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      if (currentStep < steps.length - 1) {
-        currentStep += 1;
-        showStep(currentStep);
+      if (currentStepIndex < stepPanels.length - 1) {
+        currentStepIndex += 1;
+        showStep(currentStepIndex);
       }
     });
   });
 
-  // Handle Back
+  // Handle "Back" buttons
   backButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      if (currentStep > 0) {
-        currentStep -= 1;
-        showStep(currentStep);
+      if (currentStepIndex > 0) {
+        currentStepIndex -= 1;
+        showStep(currentStepIndex);
       }
     });
   });
@@ -118,9 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "Got it. I’ll review your info and reach out with real options shortly.",
         "success"
       );
+
+      // Reset form and move to the "Done" step (step 5)
       form.reset();
-      currentStep = 0;
-      showStep(currentStep);
+      currentStepIndex = stepPanels.length - 1; // last panel (data-step="5")
+      showStep(currentStepIndex);
     } catch (err) {
       console.error("Error submitting lead:", err);
       setStatus(
@@ -164,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function lockSubmit(locked) {
     if (!submitButton) return;
     submitButton.disabled = locked;
-    submitButton.textContent = locked ? "Sending..." : "Submit";
+    submitButton.textContent = locked ? "Sending..." : "Submit my search";
   }
 
   function setStatus(message, type) {
