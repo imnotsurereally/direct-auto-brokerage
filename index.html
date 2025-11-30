@@ -9,21 +9,21 @@
     content="Direct Auto Brokerage – former Mercedes & dealership insider helping you get the right 2025–2026 car at the right numbers across Southern California."
   />
 
-  <!-- PURE DARK THEME, NO EXTERNAL CSS -->
+  <!-- CHARCOAL LUXURY THEME, NO EXTERNAL CSS -->
   <style>
     :root {
-      --bg-main: #000000;
-      --bg-alt: #050505;
-      --bg-card: #111111;
-      --bg-soft: #101010;
-      --border-subtle: #262626;
-      --text-main: #f7f7f7;
-      --text-muted: #b3b3b3;
-      --accent: #f5c451;          /* gold */
-      --accent-strong: #ffd977;
-      --accent-soft: #f5c45133;
-      --accent-blue: #4ea8ff;
-      --danger: #ff5c5c;
+      --bg-main: #151515;
+      --bg-alt: #1b1b1b;
+      --bg-card: #202020;
+      --bg-soft: #232323;
+      --border-subtle: #333333;
+      --text-main: #f7f1e5;        /* warm light “champagne” */
+      --text-muted: #c4b89b;      /* muted gold-beige */
+      --accent: #f3c76a;          /* primary gold */
+      --accent-strong: #ffd98a;   /* brighter gold */
+      --accent-soft: #f3c76a33;
+      --accent-alt: #f0b45a;      /* secondary gold tone */
+      --danger: #ff6b6b;
     }
 
     * {
@@ -33,7 +33,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at top, #181818 0, #000 45%, #000 100%) !important;
+      background: radial-gradient(circle at top, #222 0, #151515 40%, #111 100%);
       color: var(--text-main);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -46,7 +46,7 @@
     }
 
     a {
-      color: var(--accent-blue);
+      color: var(--accent-strong);
       text-decoration: none;
     }
 
@@ -71,7 +71,7 @@
       justify-content: space-between;
       gap: 0.5rem;
       padding: 0.6rem 0.75rem;
-      background: linear-gradient(to top, #000000ee, #000000cc);
+      background: linear-gradient(to top, #111111f0, #151515dd);
       border-top: 1px solid var(--border-subtle);
       backdrop-filter: blur(16px);
     }
@@ -84,7 +84,7 @@
       text-align: center;
       text-decoration: none;
       border: 1px solid var(--border-subtle);
-      background: #111111;
+      background: #222222;
       color: var(--text-main);
       white-space: nowrap;
     }
@@ -102,12 +102,12 @@
 
     /* HERO */
     header#top {
-      background: radial-gradient(circle at top, #252525 0, #050505 45%, #000 100%);
+      background: radial-gradient(circle at top, #2b2b2b 0, #181818 40%, #121212 100%);
       border-bottom: 1px solid var(--border-subtle);
     }
 
     .hero {
-      padding: 4.5rem 0 3rem;
+      padding: 4.4rem 0 3rem;
     }
 
     .hero-content {
@@ -116,10 +116,10 @@
 
     .hero-content h1 {
       margin: 0 0 1rem;
-      font-size: 2.4rem;
+      font-size: 2.45rem;
       line-height: 1.15;
       letter-spacing: 0.01em;
-      color: #ffffff;
+      color: var(--accent-strong);
     }
 
     @media (min-width: 768px) {
@@ -153,29 +153,35 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.7rem 1.35rem;
+      padding: 0.7rem 1.4rem;
       border-radius: 999px;
       font-size: 0.95rem;
       border: 1px solid transparent;
       cursor: pointer;
       text-decoration: none;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease,
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color: #000000;
-      box-shadow: 0 0 26px rgba(245, 196, 81, 0.5);
+      color: #2b210b;
+      box-shadow: 0 0 24px rgba(243, 199, 106, 0.45);
+      font-weight: 600;
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 0 32px rgba(245, 196, 81, 0.7);
+      box-shadow: 0 0 30px rgba(243, 199, 106, 0.7);
       text-decoration: none;
     }
 
     .btn-secondary {
-      background: #050505;
+      background: #202020;
       border-color: var(--border-subtle);
       color: var(--text-main);
     }
@@ -187,7 +193,7 @@
     }
 
     .link-cta {
-      color: var(--accent-blue);
+      color: var(--accent-strong);
       font-weight: 500;
       position: relative;
       text-decoration: none;
@@ -200,8 +206,8 @@
       bottom: -2px;
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, var(--accent-blue), transparent);
-      opacity: 0.8;
+      background: linear-gradient(90deg, var(--accent-strong), transparent);
+      opacity: 0.9;
     }
 
     .link-cta:hover::after {
@@ -211,7 +217,7 @@
     /* SECTIONS */
     main {
       flex: 1;
-      background: #000000;
+      background: var(--bg-main);
     }
 
     main section {
@@ -229,7 +235,7 @@
     h2 {
       font-size: 1.7rem;
       margin: 0 0 1.2rem;
-      color: #ffffff;
+      color: var(--accent-strong);
     }
 
     p {
@@ -271,7 +277,7 @@
     .benefit h3 {
       margin: 0 0 0.4rem;
       font-size: 1.05rem;
-      color: #ffffff;
+      color: var(--accent-strong);
     }
 
     .benefit p {
@@ -305,7 +311,7 @@
     .process-steps h3 {
       margin: 0 0 0.4rem;
       font-size: 1rem;
-      color: #ffffff;
+      color: var(--accent-strong);
     }
 
     .process-steps p {
@@ -323,17 +329,17 @@
     }
 
     .deal-card {
-      background: linear-gradient(145deg, #161616, #050505);
+      background: radial-gradient(circle at top left, #2b2b2b 0, #202020 40%, #181818 100%);
       border-radius: 1rem;
       padding: 1.2rem 1.25rem;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 0 26px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.7);
     }
 
     .deal-card h3 {
       margin: 0 0 0.4rem;
       font-size: 1.05rem;
-      color: #ffffff;
+      color: var(--accent-strong);
     }
 
     .deal-highlight {
@@ -372,7 +378,7 @@
     .deal-feed-item h3 {
       margin: 0 0 0.4rem;
       font-size: 1rem;
-      color: #ffffff;
+      color: var(--accent-strong);
     }
 
     .deal-feed-item p {
@@ -403,7 +409,7 @@
     .faq-item h3 {
       margin: 0 0 0.4rem;
       font-size: 1rem;
-      color: #ffffff;
+      color: var(--accent-strong);
     }
 
     .faq-item p {
@@ -433,7 +439,7 @@
 
     .about-photo {
       border-radius: 1rem;
-      background: radial-gradient(circle at top, var(--accent-soft), #050505);
+      background: radial-gradient(circle at top, var(--accent-soft), #222);
       border: 1px solid var(--border-subtle);
       min-height: 180px;
     }
@@ -462,21 +468,21 @@
       padding: 0.6rem 0.7rem;
       border-radius: 0.55rem;
       border: 1px solid var(--border-subtle);
-      background: #050505;
+      background: #1a1a1a;
       color: var(--text-main);
       font-size: 0.9rem;
     }
 
     #referral-form input::placeholder,
     #referral-form textarea::placeholder {
-      color: #777777;
+      color: #8a8070;
     }
 
     #referral-form input:focus,
     #referral-form textarea:focus {
       outline: none;
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 1px var(--accent-blue);
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 1px var(--accent-strong);
     }
 
     /* WIZARD */
@@ -486,7 +492,7 @@
       border-radius: 1.1rem;
       padding: 1.5rem 1.5rem 1.7rem;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 0 32px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 28px rgba(0, 0, 0, 0.7);
     }
 
     .wizard-steps-indicator {
@@ -502,7 +508,7 @@
       border-radius: 999px;
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      background: #050505;
+      background: #1b1b1b;
     }
 
     .wizard-steps-indicator .wizard-step.active {
@@ -515,7 +521,7 @@
       margin-top: 0;
       font-size: 1.15rem;
       margin-bottom: 0.3rem;
-      color: #ffffff;
+      color: var(--accent-strong);
     }
 
     .wizard-helper {
@@ -549,7 +555,7 @@
       border-radius: 999px;
       padding: 0.4rem 0.7rem;
       border: 1px solid var(--border-subtle);
-      background: #050505;
+      background: #1b1b1b;
       cursor: pointer;
       color: var(--text-main);
     }
@@ -564,15 +570,15 @@
       padding: 0.6rem 0.7rem;
       border-radius: 0.6rem;
       border: 1px solid var(--border-subtle);
-      background: #050505;
+      background: #1a1a1a;
       color: var(--text-main);
       font-size: 0.9rem;
     }
 
     textarea[name="modelPreferences"]:focus {
       outline: none;
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 1px var(--accent-blue);
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 1px var(--accent-strong);
     }
 
     .wizard-nav {
@@ -602,24 +608,24 @@
       padding: 0.6rem 0.7rem;
       border-radius: 0.55rem;
       border: 1px solid var(--border-subtle);
-      background: #050505;
+      background: #1a1a1a;
       color: var(--text-main);
       font-size: 0.9rem;
     }
 
     #dab-wizard input::placeholder {
-      color: #777777;
+      color: #8a8070;
     }
 
     #dab-wizard input:focus {
       outline: none;
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 1px var(--accent-blue);
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 1px var(--accent-strong);
     }
 
     /* FOOTER */
     #footer {
-      background: #000000;
+      background: #151515;
       border-top: 1px solid var(--border-subtle);
       padding: 1.5rem 0 3.5rem;
     }
@@ -631,7 +637,7 @@
     }
 
     .footer-inner a {
-      color: var(--accent-blue);
+      color: var(--accent-strong);
     }
   </style>
 </head>
