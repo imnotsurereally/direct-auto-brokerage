@@ -18,14 +18,17 @@
     <a href="#start-search">Start search</a>
   </div>
 
-  <!-- TOP NAV / HERO WRAPPER -->
+  <!-- TOP NAV ONLY -->
   <header id="site-header">
-    <div class="nav-bar">
-      <div class="nav-logo">
-        <span class="logo-mark">DAB</span>
-        <span class="logo-text">Direct Auto Brokerage</span>
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark">DAB</span>
+        <div class="brand-text">
+          <span class="brand-name">Direct Auto Brokerage</span>
+          <span class="brand-tagline">Former dealer insider on your side.</span>
+        </div>
       </div>
-      <nav class="nav-links">
+      <nav class="main-nav">
         <a href="#why-broker">Why a broker</a>
         <a href="#process">How it works</a>
         <a href="#calculator">Payment play</a>
@@ -34,68 +37,70 @@
         <a href="#start-search" class="nav-cta">Start search</a>
       </nav>
     </div>
-
-    <!-- HERO -->
-    <div class="hero hero-split" data-reveal>
-      <div class="hero-text container">
-        <h1>
-          Get the right car at the right numbers — <span class="accent">without dealership games.</span>
-        </h1>
-        <p class="hero-subtitle">
-          Former Mercedes &amp; dealership insider working as your personal auto broker across Southern California.
-        </p>
-
-        <div class="hero-ctas">
-          <a href="#start-search" class="btn-primary">Start my 2025–2026 car search</a>
-          <a href="tel:+1-949-444-3388" class="btn-ghost">Talk to me first</a>
-        </div>
-
-        <div class="hero-microcopy">
-          <span>Simple. Transparent. No “let me talk to my manager” theater.</span>
-        </div>
-      </div>
-
-      <div class="hero-panel container">
-        <div class="hero-stats-card" data-reveal>
-          <h2 class="card-title">Where I do my best work</h2>
-          <ul class="hero-stat-list">
-            <li><span>✔</span> New 2025–2026 cars &amp; SUVs</li>
-            <li><span>✔</span> Lease, finance, or strong cash structures</li>
-            <li><span>✔</span> Multiple dealerships, not just one lot</li>
-            <li><span>✔</span> You walk in with leverage, not hope</li>
-          </ul>
-          <p class="hero-note">
-            My job isn’t to sell you a payment — it’s to protect you from a bad one.
-          </p>
-        </div>
-      </div>
-    </div>
   </header>
 
   <main>
+    <!-- HERO (now outside header, uses existing hero-section CSS) -->
+    <section class="hero-section" data-reveal>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>
+            Get the right car at the right numbers — without dealership games.
+          </h1>
+          <p class="hero-subtitle">
+            Former Mercedes &amp; dealership insider working as your personal auto broker across Southern California.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#start-search" class="btn-primary">Start my 2025–2026 car search</a>
+            <a href="tel:+1-949-444-3388" class="btn-secondary">Talk to me first</a>
+          </div>
+
+          <div class="hero-microcopy">
+            <span>Simple. Transparent. No “let me talk to my manager” theater.</span>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-panel-inner">
+            <h2>Where I do my best work</h2>
+            <ul class="hero-facts small">
+              <li><span>✔</span><strong>New 2025–2026 cars &amp; SUVs</strong></li>
+              <li><span>✔</span><strong>Lease, finance, or strong cash structures</strong></li>
+              <li><span>✔</span><strong>Multiple dealerships, not just one lot</strong></li>
+              <li><span>✔</span><strong>You walk in with leverage, not hope</strong></li>
+            </ul>
+            <p class="hero-note">
+              My job isn’t to sell you a payment — it’s to protect you from a bad one.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY USE A BROKER -->
     <section id="why-broker" class="section" data-reveal>
       <div class="container">
         <h2>Why car buyers use a broker instead of going in alone</h2>
-        <div class="section-subtitle">
+        <div class="section-intro">
           You already know how it feels to lose a Saturday at a dealership. Let’s not do that again.
         </div>
 
-        <div class="card-grid">
-          <article class="card">
+        <div class="benefits-grid">
+          <article class="benefit">
             <h3>Better numbers, less back-and-forth</h3>
             <p>
               I’ve sat in the tower. I know where the room really is and what’s just “we’re at our absolute best” talk.
             </p>
           </article>
-          <article class="card">
+          <article class="benefit">
             <h3>Your time actually matters here</h3>
             <p>
               No eight-hour “maybe we can make it work” dance. I do the legwork, filter the noise, and only bring you
               real options.
             </p>
           </article>
-          <article class="card">
+          <article class="benefit">
             <h3>You’re not stuck to one store</h3>
             <p>
               I’m not tied to a single rooftop. I pull from multiple dealerships and inventory sources across SoCal.
@@ -113,7 +118,7 @@
     <section id="process" class="section section-alt" data-reveal>
       <div class="container">
         <h2>Here’s how I make this easy</h2>
-        <ol class="process-list">
+        <ol class="process-steps">
           <li>
             <h3>1. You tell me the mission</h3>
             <p>Quick questions on timing, payment comfort, and what you’re trying to accomplish.</p>
@@ -144,7 +149,7 @@
         <div class="section-header-split">
           <div>
             <h2>Play with payments before the dealership does.</h2>
-            <p class="section-subtitle">
+            <p class="section-intro">
               Rough numbers only — this is just to give you a feel. When you’re ready, I’ll structure the real deal.
             </p>
           </div>
@@ -153,45 +158,56 @@
           </div>
         </div>
 
-        <div class="calculator-layout">
-          <form id="finance-calculator" class="card calculator-card">
-            <div class="calculator-row">
+        <div class="finance-layout">
+          <form id="finance-calculator" class="finance-card">
+            <h3>0–72 month payment sandbox</h3>
+
+            <div class="calc-row">
               <label for="calcPrice">Estimated vehicle price</label>
-              <input
-                type="number"
-                id="calcPrice"
-                min="0"
-                step="500"
-                placeholder="e.g. 38,000"
-              />
+              <div class="input-with-prefix">
+                <span>$</span>
+                <input
+                  type="number"
+                  id="calcPrice"
+                  min="0"
+                  step="500"
+                  placeholder="e.g. 38000"
+                />
+              </div>
             </div>
 
-            <div class="calculator-row">
+            <div class="calc-row">
               <label for="calcDown">Cash down</label>
-              <input
-                type="number"
-                id="calcDown"
-                min="0"
-                step="500"
-                placeholder="e.g. 4,000"
-              />
+              <div class="input-with-prefix">
+                <span>$</span>
+                <input
+                  type="number"
+                  id="calcDown"
+                  min="0"
+                  step="500"
+                  placeholder="e.g. 4000"
+                />
+              </div>
             </div>
 
-            <div class="calculator-row">
+            <div class="calc-row">
               <label for="calcTrade">Your trade (rough estimate)</label>
-              <input
-                type="number"
-                id="calcTrade"
-                min="0"
-                step="500"
-                placeholder="e.g. 8,000"
-              />
-              <p class="helper-text">
+              <div class="input-with-prefix">
+                <span>$</span>
+                <input
+                  type="number"
+                  id="calcTrade"
+                  min="0"
+                  step="500"
+                  placeholder="e.g. 8000"
+                />
+              </div>
+              <p class="calc-note">
                 This doesn’t pull values — it just lets you see how trade equity might impact payment.
               </p>
             </div>
 
-            <div class="calculator-row calculator-split">
+            <div class="calc-row calc-flex">
               <div>
                 <label for="calcTerm">Term (months)</label>
                 <input
@@ -205,28 +221,34 @@
               </div>
               <div>
                 <label for="calcAPR">Estimated APR %</label>
-                <input
-                  type="number"
-                  id="calcAPR"
-                  min="0"
-                  max="30"
-                  step="0.25"
-                  placeholder="e.g. 5.9"
-                />
+                <div class="input-with-suffix">
+                  <input
+                    type="number"
+                    id="calcAPR"
+                    min="0"
+                    max="30"
+                    step="0.25"
+                    placeholder="e.g. 5.9"
+                  />
+                  <span>%</span>
+                </div>
               </div>
             </div>
 
-            <div class="calculator-row">
+            <div class="calc-row">
               <label for="calcTax">Sales tax % (optional)</label>
-              <input
-                type="number"
-                id="calcTax"
-                min="0"
-                max="15"
-                step="0.25"
-                placeholder="e.g. 7.75"
-              />
-              <p class="helper-text">
+              <div class="input-with-suffix">
+                <input
+                  type="number"
+                  id="calcTax"
+                  min="0"
+                  max="15"
+                  step="0.25"
+                  placeholder="e.g. 7.75"
+                />
+                <span>%</span>
+              </div>
+              <p class="calc-note">
                 If you leave this blank, I’ll just calculate off the vehicle price without tax.
               </p>
             </div>
@@ -236,21 +258,22 @@
             </button>
 
             <div id="calcResult" class="calc-result">
-              <div class="calc-result-main">
-                <span class="label">Estimated payment:</span>
-                <span class="value" id="calcPaymentDisplay">—</span>
+              <div class="payment-display">
+                <span class="payment-label">Estimated payment:</span>
+                <span class="payment-value" id="calcPaymentDisplay">—</span>
               </div>
-              <div class="calc-result-meta" id="calcResultMeta"></div>
+              <div class="payment-caption" id="calcResultMeta"></div>
+              <p class="fine-print">
+                This is a rough estimate and not an offer or approval. Real programs, taxes, and approval will move these numbers.
+              </p>
             </div>
           </form>
 
-          <div class="card calculator-copy">
+          <div class="finance-summary-inner">
             <h3>What this calculator is <em>not</em></h3>
-            <ul>
-              <li>It’s not an offer or an approval.</li>
-              <li>It doesn’t pull your credit or lock in a rate.</li>
-              <li>It doesn’t show dealer markups, add-ons, or hidden fees.</li>
-            </ul>
+            <p>
+              It’s not an offer, it doesn’t pull your credit, and it doesn’t show dealer markups, add-ons, or hidden fees.
+            </p>
             <p>
               It’s just a clean sandbox so you can stop guessing. When you’re serious, I look at real programs and
               inventory and tell you where the smart play actually is.
@@ -268,50 +291,62 @@
     <section id="hot-deals" class="section section-alt" data-reveal>
       <div class="container">
         <h2>New 2025–2026 deals I’m watching</h2>
-        <p class="section-subtitle">
+        <p class="section-intro">
           These aren’t offers — they’re the types of structures I’m constantly hunting and improving for clients.
         </p>
 
-        <div class="deal-grid">
-          <article class="card deal-card">
+        <div class="deal-cards">
+          <article class="deal-card">
             <h3>2025 Kia Forte LXS</h3>
-            <p class="deal-tag">Smart commuter | New</p>
-            <p>Targeting low $300s/month with reasonable drive-offs in most average-credit situations.</p>
+            <p class="deal-highlight">Smart commuter | New</p>
+            <p class="deal-story">
+              Targeting low $300s/month with reasonable drive-offs in most average-credit situations.
+            </p>
           </article>
 
-          <article class="card deal-card">
+          <article class="deal-card">
             <h3>2025 Honda CR-V EX-L</h3>
-            <p class="deal-tag">Family sweet spot | New</p>
-            <p>Comfort, space, and reliability — without getting pushed into silly add-ons and markups.</p>
+            <p class="deal-highlight">Family sweet spot | New</p>
+            <p class="deal-story">
+              Comfort, space, and reliability — without getting pushed into silly add-ons and markups.
+            </p>
           </article>
 
-          <article class="card deal-card">
+          <article class="deal-card">
             <h3>2025 Toyota Camry SE</h3>
-            <p class="deal-tag">Payment-conscious | New</p>
-            <p>Great for people who want a safe, normal payment and zero surprises in the F&amp;I office.</p>
+            <p class="deal-highlight">Payment-conscious | New</p>
+            <p class="deal-story">
+              Great for people who want a safe, normal payment and zero surprises in the F&amp;I office.
+            </p>
           </article>
 
-          <article class="card deal-card">
+          <article class="deal-card">
             <h3>2025 Chevy Silverado LT</h3>
-            <p class="deal-tag">Truck buyers | New</p>
-            <p>I focus on packages that actually hold value instead of just loading you up with payment.</p>
+            <p class="deal-highlight">Truck buyers | New</p>
+            <p class="deal-story">
+              I focus on packages that actually hold value instead of just loading you up with payment.
+            </p>
           </article>
 
-          <article class="card deal-card">
+          <article class="deal-card">
             <h3>2026 Mercedes C-Class (C300)</h3>
-            <p class="deal-tag">Luxury new car | New</p>
-            <p>Smart builds and structures that feel like an upgrade, not a payment you regret.</p>
+            <p class="deal-highlight">Luxury new car | New</p>
+            <p class="deal-story">
+              Smart builds and structures that feel like an upgrade, not a payment you regret.
+            </p>
           </article>
 
-          <article class="card deal-card">
+          <article class="deal-card">
             <h3>2026 Tesla Model 3</h3>
-            <p class="deal-tag">EV game | New</p>
-            <p>Programs move a lot. I’ll tell you honestly if now is smart or if waiting makes more sense.</p>
+            <p class="deal-highlight">EV game | New</p>
+            <p class="deal-story">
+              Programs move a lot. I’ll tell you honestly if now is smart or if waiting makes more sense.
+            </p>
           </article>
         </div>
 
         <div class="section-cta">
-          <a href="inventory.html" class="btn-ghost">Explore 2025–2026 inventory →</a>
+          <a href="inventory.html" class="btn-secondary">Explore 2025–2026 inventory →</a>
           <a href="#start-search" class="btn-primary">Tell me what you’re hunting</a>
         </div>
       </div>
@@ -321,7 +356,7 @@
     <section id="start-search" class="section" data-reveal>
       <div class="container">
         <h2>Tell me what you’re trying to do — I’ll handle the heavy lifting.</h2>
-        <p class="section-subtitle">
+        <p class="section-intro">
           No pressure. No commitment. The more I know about your situation, the better I can steer you away from bad deals.
         </p>
 
@@ -408,7 +443,7 @@
               </div>
 
               <div class="wizard-nav">
-                <button type="button" class="btn-ghost" data-action="back">← Go back</button>
+                <button type="button" class="btn-secondary" data-action="back">← Go back</button>
                 <button type="button" class="btn-primary" data-action="next">Next step →</button>
               </div>
             </div>
@@ -454,7 +489,7 @@
               </div>
 
               <div class="wizard-nav">
-                <button type="button" class="btn-ghost" data-action="back">← Go back</button>
+                <button type="button" class="btn-secondary" data-action="back">← Go back</button>
                 <button type="button" class="btn-primary" data-action="next">Next step →</button>
               </div>
             </div>
@@ -505,7 +540,7 @@
               </div>
 
               <div class="wizard-nav">
-                <button type="button" class="btn-ghost" data-action="back">← Go back</button>
+                <button type="button" class="btn-secondary" data-action="back">← Go back</button>
                 <button type="submit" id="wizardSubmitButton" class="btn-primary">
                   Submit my search
                 </button>
@@ -530,7 +565,7 @@
 
               <div class="wizard-confirm-cta">
                 <a href="sms:+1-949-444-3388" class="btn-primary">Text Dan</a>
-                <a href="tel:+1-949-444-3388" class="btn-ghost">Call now</a>
+                <a href="tel:+1-949-444-3388" class="btn-secondary">Call now</a>
               </div>
             </div>
           </form>
@@ -585,7 +620,7 @@
                 <textarea id="friendNotes" name="friendNotes" rows="3"></textarea>
               </div>
 
-              <button type="submit" class="btn-ghost full-width">
+              <button type="submit" class="btn-secondary full-width">
                 Send referral
               </button>
               <div id="referralStatus" class="wizard-status small"></div>
@@ -610,8 +645,8 @@
         </p>
         <div class="section-cta">
           <a href="#start-search" class="btn-primary">Start my car search</a>
-          <a href="sms:+1-949-444-3388" class="btn-ghost">Text me your quote</a>
-          <a href="tel:+1-949-444-3388" class="btn-ghost">Call now</a>
+          <a href="sms:+1-949-444-3388" class="btn-secondary">Text me your quote</a>
+          <a href="tel:+1-949-444-3388" class="btn-secondary">Call now</a>
         </div>
       </div>
     </section>
