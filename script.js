@@ -1,15 +1,12 @@
 // =============================
-// Direct Auto Brokerage Wizard
-// script.js – clean version
+// Direct Auto Brokerage – Frontend logic
 // =============================
 
-// ---- CONFIG ----
-
-// ✅ Supabase Edge Function endpoint (from save-lead Details tab)
+// Supabase Edge Function endpoint (save-lead)
 const SAVE_LEAD_ENDPOINT =
-  "https://vccajijhxuofjgqbhxdm.supabase.co/functions/v1/save-lead";
+  "https://vccajljhxoujfggbhxdm.supabase.co/functions/v1/save-lead";
 
-// Optional: UTM / ad tracking helper
+// Optional: UTM & referrer tracking
 function getAdSource() {
   try {
     const url = new URL(window.location.href);
@@ -29,115 +26,97 @@ function getAdSource() {
   }
 }
 
-// ---- WIZARD LOGIC ----
-
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("dab-wizard-form");
-  if (!form) {
-    console.error("dab-wizard-form not found in HTML.");
-    return;
-  }
+  setupScrollReveal();
+  setupWizard();
+  setupPaymentCalculator();
+  setupReferralForm();
+});
 
-  const panels = Array.from(
+// -----------------------------
+// Scroll reveal animations
+// -----------------------------
+function setupScrollReveal() {
+  const revealEls = Array.from(document.querySelectorAll(".reveal"));
+  if (!revealEls.length || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+    }
+  );
+
+  revealEls.forEach((el) => observer.observe(el));
+}
+
+// -----------------------------
+// Wizard / lead capture
+// -----------------------------
+function setupWizard() {
+  const form = document.querySelector("#dab-wizard-form");
+  const stepPanels = Array.from(
     document.querySelectorAll(".wizard-step-panel")
   );
-  const indicators = Array.from(
-    document.querySelectorAll(".wizard-step-indicator .wizard-step, .wizard-steps-indicator .wizard-step")
-  );
-
-  // In your HTML, the step indicators are inside .wizard-steps-indicator
-  // This selector just makes sure we catch them either way.
-
-  let currentStepIndex = 0;
-
-  // Status message box under the form
-  let statusBox = document.getElementById("wizardStatus");
-  if (!statusBox) {
-    statusBox = document.createElement("div");
-    statusBox.id = "wizardStatus";
-    statusBox.style.display = "none";
-    statusBox.style.marginTop = "1rem";
-    statusBox.style.fontSize = "0.95rem";
-    form.parentNode.appendChild(statusBox);
-  }
-
-  function setStatus(message, type) {
-    statusBox.textContent = message;
-    statusBox.style.display = "block";
-    statusBox.style.color = type === "error" ? "#b00020" : "#0a7a2a";
-  }
-
-  function clearStatus() {
-    statusBox.textContent = "";
-    statusBox.style.display = "none";
-  }
-
-  function scrollWizardIntoView() {
-    const wizard = document.getElementById("dab-wizard");
-    if (wizard) {
-      wizard.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
-  function showStep(index) {
-    if (!panels.length) return;
-
-    // Clamp index
-    if (index < 0) index = 0;
-    if (index >= panels.length) index = panels.length - 1;
-    currentStepIndex = index;
-
-    panels.forEach((panel, i) => {
-      const isActive = i === currentStepIndex;
-      panel.hidden = !isActive;
-      panel.style.display = isActive ? "block" : "none";
-    });
-
-    indicators.forEach((ind, i) => {
-      if (i === currentStepIndex) {
-        ind.classList.add("active");
-      } else {
-        ind.classList.remove("active");
-      }
-    });
-
-    scrollWizardIntoView();
-  }
-
-  // Initial state
-  showStep(0);
-
-  // Next / Back buttons
+  const chips = Array.from(document.querySelectorAll(".wizard-chip"));
   const nextButtons = Array.from(
     document.querySelectorAll("[data-action='next']")
   );
   const backButtons = Array.from(
     document.querySelectorAll("[data-action='back']")
   );
+  const statusBox = document.querySelector("#wizard-status");
+  const submitButton = document.querySelector("#wizardSubmitButton");
 
-  nextButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      clearStatus();
-      if (currentStepIndex < panels.length - 1) {
-        showStep(currentStepIndex + 1);
-      }
+  if (!form || !stepPanels.length) {
+    // Not on this page
+    return;
+  }
+
+  let currentStep = 1;
+
+  function goToStep(step) {
+    currentStep = step;
+    stepPanels.forEach((panel) => {
+      const s = Number(panel.getAttribute("data-step"));
+      panel.hidden = s !== currentStep;
     });
-  });
-
-  backButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      clearStatus();
-      if (currentStepIndex > 0) {
-        showStep(currentStepIndex - 1);
-      }
+    chips.forEach((chip) => {
+      const s = Number(chip.getAttribute("data-step"));
+      chip.classList.toggle("active", s === currentStep);
     });
-  });
 
-  // ---- FORM SUBMIT ----
+    const wizard = document.querySelector("#dab-wizard");
+    if (wizard) {
+      wizard.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 
-  const submitButton = form.querySelector("button[type='submit']");
+  function setStatus(message, type) {
+    if (!statusBox) return;
+    statusBox.textContent = message;
+    statusBox.classList.remove("status-error", "status-success");
+    if (type === "error") {
+      statusBox.classList.add("status-error");
+      statusBox.style.display = "block";
+    } else if (type === "success") {
+      statusBox.classList.add("status-success");
+      statusBox.style.display = "block";
+    } else {
+      statusBox.style.display = "none";
+    }
+  }
+
+  function clearStatus() {
+    setStatus("", null);
+  }
 
   function lockSubmit(locked) {
     if (!submitButton) return;
@@ -145,8 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.textContent = locked ? "Sending..." : "Submit my search";
   }
 
-  function collectFormData() {
-    const formData = new FormData(form);
+  function collectFormData(formEl) {
+    const formData = new FormData(formEl);
 
     const data = {
       goal: formData.get("goal") || null,
@@ -163,18 +142,42 @@ document.addEventListener("DOMContentLoaded", () => {
       phone: (formData.get("phone") || "").trim(),
       email: (formData.get("email") || "").trim() || null,
       contactMethod: formData.get("contactMethod") || null,
-
-      adSource: getAdSource(),
     };
 
+    data.adSource = getAdSource();
     return data;
   }
 
+  // Initial state
+  goToStep(currentStep);
+  clearStatus();
+
+  // Next buttons
+  nextButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentStep < stepPanels.length) {
+        goToStep(currentStep + 1);
+      }
+    });
+  });
+
+  // Back buttons
+  backButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentStep > 1) {
+        goToStep(currentStep - 1);
+      }
+    });
+  });
+
+  // Form submit
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     clearStatus();
 
-    const payload = collectFormData();
+    const payload = collectFormData(form);
 
     if (!payload.phone) {
       setStatus(
@@ -184,9 +187,15 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    try {
-      lockSubmit(true);
+    // Mild validation for contact preference
+    if (!payload.contactMethod) {
+      setStatus("How do you prefer I reach out — text, call, or WhatsApp?", "error");
+      return;
+    }
 
+    lockSubmit(true);
+
+    try {
       const response = await fetch(SAVE_LEAD_ENDPOINT, {
         method: "POST",
         headers: {
@@ -202,15 +211,13 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error("Server error while saving your info.");
       }
 
-      // If we get here, Supabase saved the lead
       setStatus(
         "Got it. I’ll review your info and reach out with real options shortly.",
         "success"
       );
 
-      // Reset form and jump to Done step (step index 4 if 5 steps total)
       form.reset();
-      showStep(panels.length - 1);
+      goToStep(5);
     } catch (err) {
       console.error("Error submitting lead:", err);
       setStatus(
@@ -221,4 +228,84 @@ document.addEventListener("DOMContentLoaded", () => {
       lockSubmit(false);
     }
   });
-});
+}
+
+// -----------------------------
+// Finance calculator
+// -----------------------------
+function setupPaymentCalculator() {
+  const priceInput = document.querySelector("#calcPrice");
+  const downInput = document.querySelector("#calcDown");
+  const rateInput = document.querySelector("#calcRate");
+  const termInput = document.querySelector("#calcTerm");
+  const paymentDisplay = document.querySelector("#calcPayment");
+
+  if (
+    !priceInput ||
+    !downInput ||
+    !rateInput ||
+    !termInput ||
+    !paymentDisplay
+  ) {
+    return;
+  }
+
+  function formatMoney(num) {
+    if (!isFinite(num)) return "$0 / mo";
+    const rounded = Math.round(num);
+    return `$${rounded.toLocaleString()} / mo`;
+  }
+
+  function updatePayment() {
+    const price = Number(priceInput.value) || 0;
+    const down = Number(downInput.value) || 0;
+    const rate = Number(rateInput.value) || 0;
+    const term = Number(termInput.value) || 0;
+
+    const principal = Math.max(price - down, 0);
+
+    if (principal <= 0 || term <= 0) {
+      paymentDisplay.textContent = "$0 / mo";
+      return;
+    }
+
+    const monthlyRate = rate > 0 ? rate / 100 / 12 : 0;
+    let payment;
+
+    if (monthlyRate === 0) {
+      payment = principal / term;
+    } else {
+      const factor =
+        (monthlyRate * Math.pow(1 + monthlyRate, term)) /
+        (Math.pow(1 + monthlyRate, term) - 1);
+      payment = principal * factor;
+    }
+
+    paymentDisplay.textContent = formatMoney(payment);
+  }
+
+  [priceInput, downInput, rateInput, termInput].forEach((input) => {
+    input.addEventListener("input", updatePayment);
+  });
+
+  updatePayment();
+}
+
+// -----------------------------
+// Referral form (simple front-end only)
+// -----------------------------
+function setupReferralForm() {
+  const referralForm = document.querySelector("#referral-form");
+  const statusBox = document.querySelector("#referral-status");
+
+  if (!referralForm) return;
+
+  referralForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (statusBox) {
+      statusBox.textContent =
+        "Got it. I’ll note this referral. When their deal closes, I’ll reach out to send your $100.";
+    }
+    referralForm.reset();
+  });
+}
