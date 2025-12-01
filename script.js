@@ -3,9 +3,8 @@
 // =============================
 
 // Supabase Edge Function endpoint (save-lead)
-// NOTE: keep your real deployed URL here
 const SAVE_LEAD_ENDPOINT =
-  "https://vccajljhxoujfggbhxdm.supabase.co/functions/v1/save-lead";
+  "https://vccajijhxuofjgqbhxdm.supabase.co/functions/v1/save-lead";
 
 // Optional: UTM & referrer tracking
 function getAdSource() {
@@ -224,9 +223,8 @@ function setupWizard() {
       });
 
       if (!response.ok) {
-        console.error("save-lead response not OK:", response.status);
         const text = await response.text().catch(() => "");
-        console.error("Response body:", text);
+        console.error("save-lead response not OK:", response.status, text);
         throw new Error("Server error while saving your info.");
       }
 
