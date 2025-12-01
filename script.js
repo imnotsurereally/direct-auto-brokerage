@@ -1,8 +1,9 @@
 // =============================
-// Direct Auto Brokerage – Frontend logic
+// Direct Auto Brokerage – Frontend logic (updated)
 // =============================
 
 // Supabase Edge Function endpoint (save-lead)
+// NOTE: keep your real deployed URL here
 const SAVE_LEAD_ENDPOINT =
   "https://vccajljhxoujfggbhxdm.supabase.co/functions/v1/save-lead";
 
@@ -37,8 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
 // Scroll reveal animations
 // -----------------------------
 function setupScrollReveal() {
-  const revealEls = Array.from(document.querySelectorAll(".reveal"));
+  // Support both .reveal class (inventory.html) and [data-reveal] (index.html)
+  const revealEls = Array.from(
+    document.querySelectorAll("[data-reveal], .reveal")
+  );
   if (!revealEls.length || !("IntersectionObserver" in window)) return;
+
+  // Make sure anything with data-reveal also has the reveal class for CSS
+  revealEls.forEach((el) => {
+    if (!el.classList.contains("reveal")) {
+      el.classList.add("reveal");
+    }
+  });
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -61,18 +72,19 @@ function setupScrollReveal() {
 // Wizard / lead capture
 // -----------------------------
 function setupWizard() {
-  const form = document.querySelector("#dab-wizard-form");
+  // Match your current HTML IDs/classes
+  const form = document.querySelector("#leadWizardForm");
   const stepPanels = Array.from(
     document.querySelectorAll(".wizard-step-panel")
   );
-  const chips = Array.from(document.querySelectorAll(".wizard-chip"));
+  const steps = Array.from(document.querySelectorAll(".wizard-step"));
   const nextButtons = Array.from(
     document.querySelectorAll("[data-action='next']")
   );
   const backButtons = Array.from(
     document.querySelectorAll("[data-action='back']")
   );
-  const statusBox = document.querySelector("#wizard-status");
+  const statusBox = document.querySelector("#wizardStatus");
   const submitButton = document.querySelector("#wizardSubmitButton");
 
   if (!form || !stepPanels.length) {
@@ -84,16 +96,18 @@ function setupWizard() {
 
   function goToStep(step) {
     currentStep = step;
+
     stepPanels.forEach((panel) => {
       const s = Number(panel.getAttribute("data-step"));
       panel.hidden = s !== currentStep;
     });
-    chips.forEach((chip) => {
-      const s = Number(chip.getAttribute("data-step"));
-      chip.classList.toggle("active", s === currentStep);
+
+    steps.forEach((stepEl) => {
+      const s = Number(stepEl.getAttribute("data-step"));
+      stepEl.classList.toggle("active", s === currentStep);
     });
 
-    const wizard = document.querySelector("#dab-wizard");
+    const wizard = document.querySelector("#wizard");
     if (wizard) {
       wizard.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -101,17 +115,20 @@ function setupWizard() {
 
   function setStatus(message, type) {
     if (!statusBox) return;
-    statusBox.textContent = message;
+    statusBox.textContent = message || "";
     statusBox.classList.remove("status-error", "status-success");
+
+    if (!message) {
+      statusBox.style.display = "none";
+      return;
+    }
+
     if (type === "error") {
       statusBox.classList.add("status-error");
-      statusBox.style.display = "block";
     } else if (type === "success") {
       statusBox.classList.add("status-success");
-      statusBox.style.display = "block";
-    } else {
-      statusBox.style.display = "none";
     }
+    statusBox.style.display = "block";
   }
 
   function clearStatus() {
@@ -187,9 +204,11 @@ function setupWizard() {
       return;
     }
 
-    // Mild validation for contact preference
     if (!payload.contactMethod) {
-      setStatus("How do you prefer I reach out — text, call, or WhatsApp?", "error");
+      setStatus(
+        "How do you prefer I reach out — text, call, or WhatsApp?",
+        "error"
+      );
       return;
     }
 
@@ -234,61 +253,95 @@ function setupWizard() {
 // Finance calculator
 // -----------------------------
 function setupPaymentCalculator() {
+  const form = document.querySelector("#finance-calculator");
   const priceInput = document.querySelector("#calcPrice");
   const downInput = document.querySelector("#calcDown");
-  const rateInput = document.querySelector("#calcRate");
+  const tradeInput = document.querySelector("#calcTrade");
   const termInput = document.querySelector("#calcTerm");
-  const paymentDisplay = document.querySelector("#calcPayment");
+  const aprInput = document.querySelector("#calcAPR");
+  const taxInput = document.querySelector("#calcTax");
+  const paymentDisplay = document.querySelector("#calcPaymentDisplay");
+  const resultMeta = document.querySelector("#calcResultMeta");
 
   if (
+    !form ||
     !priceInput ||
     !downInput ||
-    !rateInput ||
+    !tradeInput ||
     !termInput ||
+    !aprInput ||
     !paymentDisplay
   ) {
+    // Not on this page
     return;
   }
 
-  function formatMoney(num) {
-    if (!isFinite(num)) return "$0 / mo";
-    const rounded = Math.round(num);
-    return `$${rounded.toLocaleString()} / mo`;
+  function formatCurrency(value) {
+    if (isNaN(value) || !isFinite(value)) return "—";
+    return value.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 2,
+    });
   }
 
-  function updatePayment() {
-    const price = Number(priceInput.value) || 0;
-    const down = Number(downInput.value) || 0;
-    const rate = Number(rateInput.value) || 0;
-    const term = Number(termInput.value) || 0;
+  function calculatePayment() {
+    const price = parseFloat(priceInput.value) || 0;
+    const down = parseFloat(downInput.value) || 0;
+    const trade = parseFloat(tradeInput.value) || 0;
+    let term = parseInt(termInput.value, 10) || 0;
+    const apr = parseFloat(aprInput.value) || 0;
+    const taxRate = parseFloat(taxInput.value) || 0;
 
-    const principal = Math.max(price - down, 0);
+    if (term < 0) term = 0;
+    if (term > 72) term = 72;
+    termInput.value = term || "";
 
-    if (principal <= 0 || term <= 0) {
-      paymentDisplay.textContent = "$0 / mo";
-      return;
+    // Rough tax: price * taxRate%, then subtract down & trade
+    const taxAmount = taxRate > 0 ? price * (taxRate / 100) : 0;
+    const gross = price + taxAmount;
+    const financed = Math.max(gross - down - trade, 0);
+
+    let monthly = 0;
+
+    if (financed > 0 && term > 0) {
+      const monthlyRate = apr > 0 ? apr / 100 / 12 : 0;
+      if (monthlyRate === 0) {
+        monthly = financed / term;
+      } else {
+        const factor = Math.pow(1 + monthlyRate, term);
+        monthly = (financed * monthlyRate * factor) / (factor - 1);
+      }
     }
 
-    const monthlyRate = rate > 0 ? rate / 100 / 12 : 0;
-    let payment;
+    paymentDisplay.textContent =
+      financed > 0 && term > 0 ? formatCurrency(monthly) + "/mo" : "—";
 
-    if (monthlyRate === 0) {
-      payment = principal / term;
-    } else {
-      const factor =
-        (monthlyRate * Math.pow(1 + monthlyRate, term)) /
-        (Math.pow(1 + monthlyRate, term) - 1);
-      payment = principal * factor;
+    if (resultMeta) {
+      const parts = [];
+      parts.push(
+        `Est. amount financed: ${formatCurrency(financed)} (after down & trade).`
+      );
+      if (taxRate > 0) {
+        parts.push(
+          `Includes approx. ${formatCurrency(
+            taxAmount
+          )} in tax at ${taxRate.toFixed(2)}%.`
+        );
+      }
+      if (term > 0 && apr >= 0) {
+        parts.push(
+          `Based on ${term} months at ~${apr.toFixed(2)}% APR (rough only).`
+        );
+      }
+      resultMeta.textContent = parts.join(" ");
     }
-
-    paymentDisplay.textContent = formatMoney(payment);
   }
 
-  [priceInput, downInput, rateInput, termInput].forEach((input) => {
-    input.addEventListener("input", updatePayment);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    calculatePayment();
   });
-
-  updatePayment();
 }
 
 // -----------------------------
@@ -296,7 +349,7 @@ function setupPaymentCalculator() {
 // -----------------------------
 function setupReferralForm() {
   const referralForm = document.querySelector("#referral-form");
-  const statusBox = document.querySelector("#referral-status");
+  const statusBox = document.querySelector("#referralStatus");
 
   if (!referralForm) return;
 
