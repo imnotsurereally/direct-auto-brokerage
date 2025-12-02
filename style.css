@@ -6,10 +6,10 @@
   --border-subtle: #3a3a3d;
 
   --text-main: #f9f3e6;      /* champagne */
-  --text-muted: #c4b89b;    /* muted gold-beige */
+  --text-muted: #c4b89b;     /* muted gold-beige */
 
-  --accent: #f3c76a;        /* gold */
-  --accent-strong: #ffd98a; /* bright gold */
+  --accent: #f3c76a;         /* gold */
+  --accent-strong: #ffd98a;  /* bright gold */
   --accent-soft: #f3c76a33;
   --accent-alt: #f0b45a;
 
@@ -25,16 +25,13 @@ html,
 body {
   margin: 0;
   padding: 0;
+}
+
+body {
   background: radial-gradient(circle at top, #303035 0, #1e1e1f 40%, #151518 100%);
   color: var(--text-main);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 a {
@@ -54,11 +51,9 @@ a:hover {
 
 /* HEADER / NAV */
 #site-header {
-  position: sticky;
-  top: 0;
+  position: relative; /* not sticky so the top doesn't get "stuck" */
   z-index: 40;
   background: linear-gradient(to bottom, #1b1b1e, #1b1b1ed0, transparent);
-  backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -66,7 +61,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 0;
   gap: 1rem;
 }
 
@@ -187,12 +182,12 @@ a:hover {
 
 /* HERO */
 .hero-section {
-  padding: 4.2rem 0 3.2rem;
+  padding: 4rem 0 3rem;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.6fr);
   gap: 2rem;
   align-items: center;
 }
@@ -202,6 +197,10 @@ a:hover {
   font-size: 2.5rem;
   line-height: 1.15;
   letter-spacing: 0.01em;
+  color: var(--accent-strong);
+}
+
+.hero-copy .accent {
   color: var(--accent-strong);
 }
 
@@ -221,22 +220,6 @@ a:hover {
 
 .hero-microcopy {
   font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.badge-pill {
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
-  background: #26262b;
-  border: 1px solid var(--border-subtle);
-  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
@@ -268,7 +251,7 @@ a:hover {
 
 .hero-facts li {
   display: flex;
-  justify-content: space-between;
+  gap: 0.4rem;
   margin-bottom: 0.3rem;
 }
 
@@ -280,38 +263,26 @@ a:hover {
   color: var(--text-main);
 }
 
-.hero-facts.small li {
-  justify-content: flex-start;
-  gap: 0.4rem;
-}
-
 .hero-note {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-bottom: 0.8rem;
 }
 
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.1rem;
-  border-radius: 999px;
-  border: 1px solid var(--accent-soft);
-  background: transparent;
-  color: var(--accent-strong);
-  font-size: 0.9rem;
-  text-decoration: none;
-}
+@media (max-width: 900px) {
+  .hero-section {
+    padding-top: 3.4rem;
+  }
 
-.btn-outline:hover {
-  background: #2a2a30;
-  text-decoration: none;
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* Buttons */
 .btn-primary,
-.btn-secondary {
+.btn-secondary,
+.btn-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -350,6 +321,18 @@ a:hover {
   text-decoration: none;
 }
 
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border-subtle);
+  color: var(--text-main);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent-soft);
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
 .link-cta {
   color: var(--accent-strong);
   font-weight: 500;
@@ -372,30 +355,17 @@ a:hover {
   opacity: 1;
 }
 
-@media (max-width: 900px) {
-  .hero-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-section {
-    padding-top: 3.4rem;
-  }
-}
-
-/* MAIN SECTIONS */
+/* SECTIONS */
 main {
-  flex: 1;
+  padding-bottom: 3.5rem;
 }
 
-main section {
+.section {
   padding: 3rem 0;
-}
-
-main section:nth-of-type(odd) {
   background: var(--bg-main);
 }
 
-main section:nth-of-type(even) {
+.section-alt {
   background: var(--bg-alt);
 }
 
@@ -405,10 +375,7 @@ h2 {
   color: var(--accent-strong);
 }
 
-p {
-  color: var(--text-main);
-}
-
+.section-subtitle,
 .section-intro {
   color: var(--text-muted);
   max-width: 40rem;
@@ -430,41 +397,40 @@ p {
   color: var(--text-muted);
 }
 
-/* BENEFITS */
-.benefits-grid {
+/* CARD GRID */
+.card-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
-  margin-top: 1.5rem;
 }
 
-.benefit {
+.card {
   background: var(--bg-card);
-  border-radius: 0.9rem;
-  padding: 1.1rem 1.1rem;
+  border-radius: 1rem;
+  padding: 1.1rem 1.2rem;
   border: 1px solid var(--border-subtle);
 }
 
-.benefit h3 {
+.card h3 {
   margin: 0 0 0.4rem;
   font-size: 1.05rem;
   color: var(--accent-strong);
 }
 
-.benefit p {
+.card p {
   margin: 0;
   font-size: 0.92rem;
   color: var(--text-muted);
 }
 
 @media (min-width: 768px) {
-  .benefits-grid {
+  .card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-/* PROCESS */
-.process-steps {
+/* PROCESS LIST */
+.process-list {
   list-style: none;
   padding: 0;
   margin: 1.5rem 0 0;
@@ -472,27 +438,27 @@ p {
   gap: 0.9rem;
 }
 
-.process-steps li {
+.process-list li {
   background: var(--bg-card);
   border-radius: 0.9rem;
   padding: 1rem 1.1rem;
   border: 1px solid var(--border-subtle);
 }
 
-.process-steps h3 {
+.process-list h3 {
   margin: 0 0 0.4rem;
   font-size: 1rem;
   color: var(--accent-strong);
 }
 
-.process-steps p {
+.process-list p {
   margin: 0;
   font-size: 0.9rem;
   color: var(--text-muted);
 }
 
-/* DEAL CARDS */
-.deal-cards {
+/* HOT DEAL CARDS */
+.deal-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -513,157 +479,26 @@ p {
   color: var(--accent-strong);
 }
 
-.deal-highlight {
+.deal-tag {
   margin: 0 0 0.5rem;
   color: var(--accent-strong);
   font-size: 0.9rem;
 }
 
-.deal-story {
+.deal-card p {
   margin: 0;
   font-size: 0.9rem;
   color: var(--text-muted);
 }
 
 @media (min-width: 768px) {
-  .deal-cards {
+  .deal-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-/* HOT DEAL FEED */
-.deal-feed {
-  margin-top: 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.9rem;
-}
-
-.deal-feed-item {
-  background: var(--bg-card);
-  border-radius: 0.9rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--border-subtle);
-}
-
-.deal-feed-item h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1rem;
-  color: var(--accent-strong);
-}
-
-.deal-feed-item p {
-  margin: 0 0 0.3rem;
-  font-size: 0.9rem;
-  color: var(--text-main);
-}
-
-.deal-note {
-  color: var(--text-muted);
-}
-
-/* FAQ */
-.faq-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.faq-item {
-  background: var(--bg-card);
-  border-radius: 0.9rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--border-subtle);
-}
-
-.faq-item h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1rem;
-  color: var(--accent-strong);
-}
-
-.faq-item p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-/* ABOUT */
-.about-layout {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.about-text p {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-
-.about-tagline {
-  margin-top: 0.7rem;
-  font-weight: 500;
-  color: var(--accent-strong);
-}
-
-.about-photo {
-  border-radius: 1rem;
-  background: radial-gradient(circle at top, var(--accent-soft), #26262b);
-  border: 1px solid var(--border-subtle);
-  min-height: 180px;
-}
-
-@media (max-width: 767px) {
-  .about-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* REFERRAL FORM */
-#referral-form .form-row {
-  margin-bottom: 0.9rem;
-}
-
-#referral-form label {
-  display: block;
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
-  color: var(--text-main);
-}
-
-#referral-form input,
-#referral-form textarea {
-  width: 100%;
-  padding: 0.6rem 0.7rem;
-  border-radius: 0.55rem;
-  border: 1px solid var(--border-subtle);
-  background: #26262b;
-  color: var(--text-main);
-  font-size: 0.9rem;
-}
-
-#referral-form input::placeholder,
-#referral-form textarea::placeholder {
-  color: #8a8070;
-}
-
-#referral-form input:focus,
-#referral-form textarea:focus {
-  outline: none;
-  border-color: var(--accent-strong);
-  box-shadow: 0 0 0 1px var(--accent-strong);
-}
-
-.form-status {
-  margin-top: 0.6rem;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
 /* WIZARD */
-#dab-wizard {
+.wizard-container {
   margin-top: 1.5rem;
   background: var(--bg-soft);
   border-radius: 1.1rem;
@@ -680,7 +515,7 @@ p {
   font-size: 0.8rem;
 }
 
-.wizard-chip {
+.wizard-step {
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   border: 1px solid var(--border-subtle);
@@ -688,7 +523,7 @@ p {
   background: #232329;
 }
 
-.wizard-chip.active {
+.wizard-step.active {
   border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent-strong);
@@ -711,7 +546,7 @@ p {
   margin-bottom: 1rem;
 }
 
-.wizard-field-group label {
+.wizard-field-group > label {
   display: block;
   font-size: 0.9rem;
   margin-bottom: 0.35rem;
@@ -766,7 +601,7 @@ textarea[name="modelPreferences"]:focus {
 }
 
 .wizard-nav .btn-primary,
-.wizard-nav .btn-secondary {
+.wizard-nav .btn-ghost {
   flex: 1;
   justify-content: center;
 }
@@ -778,9 +613,9 @@ textarea[name="modelPreferences"]:focus {
   margin-top: 1.2rem;
 }
 
-#dab-wizard input[type="text"],
-#dab-wizard input[type="tel"],
-#dab-wizard input[type="email"] {
+#wizard input[type="text"],
+#wizard input[type="tel"],
+#wizard input[type="email"] {
   width: 100%;
   padding: 0.6rem 0.7rem;
   border-radius: 0.55rem;
@@ -790,11 +625,11 @@ textarea[name="modelPreferences"]:focus {
   font-size: 0.9rem;
 }
 
-#dab-wizard input::placeholder {
+#wizard input::placeholder {
   color: #8a8070;
 }
 
-#dab-wizard input:focus {
+#wizard input:focus {
   outline: none;
   border-color: var(--accent-strong);
   box-shadow: 0 0 0 1px var(--accent-strong);
@@ -816,79 +651,60 @@ textarea[name="modelPreferences"]:focus {
   color: var(--accent-strong);
 }
 
-/* FINANCE TOOLS */
-.finance-layout {
+.wizard-status.small {
+  font-size: 0.8rem;
+}
+
+/* ABOUT */
+.about-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+  grid-template-columns: 1.4fr 1fr 1fr;
   gap: 1.5rem;
-  align-items: stretch;
+  margin-top: 1.5rem;
+  align-items: flex-start;
 }
 
-.finance-card,
-.finance-summary-inner {
-  background: var(--bg-card);
-  border-radius: 1rem;
-  border: 1px solid var(--border-subtle);
-  padding: 1.2rem 1.25rem;
+.about-text p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
-.finance-card h3,
-.finance-summary-inner h3 {
-  margin: 0 0 0.8rem;
-  font-size: 1.15rem;
+.about-tagline {
+  margin-top: 0.7rem;
+  font-weight: 500;
   color: var(--accent-strong);
 }
 
-.calc-row {
+.about-panel {
+  display: flex;
+}
+
+.about-highlight-card {
+  width: 100%;
+}
+
+.calculator-panel {
+  display: flex;
+}
+
+.calculator-card {
+  width: 100%;
+}
+
+/* REFERRAL FORM */
+.referral-form .form-row {
   margin-bottom: 0.9rem;
 }
 
-.calc-row label {
+.referral-form label {
   display: block;
   font-size: 0.85rem;
   margin-bottom: 0.25rem;
   color: var(--text-main);
 }
 
-.input-with-prefix,
-.input-with-suffix {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: #26262b;
-  border-radius: 0.55rem;
-  border: 1px solid var(--border-subtle);
-  padding: 0.1rem 0.6rem;
-}
-
-.input-with-prefix span,
-.input-with-suffix span {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.input-with-prefix input,
-.input-with-suffix input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  color: var(--text-main);
-  padding: 0.4rem 0;
-  font-size: 0.9rem;
-}
-
-.input-with-prefix input:focus,
-.input-with-suffix input:focus {
-  outline: none;
-}
-
-.calc-flex {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-#calcTerm {
+.referral-form input,
+.referral-form textarea {
   width: 100%;
   padding: 0.6rem 0.7rem;
   border-radius: 0.55rem;
@@ -898,40 +714,85 @@ textarea[name="modelPreferences"]:focus {
   font-size: 0.9rem;
 }
 
-#calcTerm:focus {
+.referral-form input::placeholder,
+.referral-form textarea::placeholder {
+  color: #8a8070;
+}
+
+.referral-form input:focus,
+.referral-form textarea:focus {
   outline: none;
   border-color: var(--accent-strong);
   box-shadow: 0 0 0 1px var(--accent-strong);
 }
 
-.calc-note {
+/* FINANCING CALCULATOR */
+.calculator-row {
+  margin-bottom: 0.9rem;
+}
+
+.calculator-row label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-main);
+}
+
+.calculator-row input[type="number"] {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border-subtle);
+  background: #26262b;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.calculator-row input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent-strong);
+  box-shadow: 0 0 0 1px var(--accent-strong);
+}
+
+.calculator-row input[type="range"] {
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.calculator-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.helper-text {
   font-size: 0.8rem;
   color: var(--text-muted);
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
 }
 
-.payment-display {
+.calc-result-main {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 0.6rem;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
 }
 
-.payment-label {
-  font-size: 0.85rem;
+.calc-result-main .label {
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
 
-.payment-value {
-  font-size: 1.8rem;
+.calc-result-main .value {
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--accent-strong);
 }
 
-.payment-caption {
-  font-size: 0.9rem;
+.calc-result-meta {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  margin-bottom: 0.9rem;
 }
 
 .fine-print {
@@ -939,15 +800,9 @@ textarea[name="modelPreferences"]:focus {
   color: var(--text-muted);
 }
 
-@media (max-width: 900px) {
-  .finance-layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* INVENTORY PAGE */
-.inventory-body main section:nth-of-type(odd),
-.inventory-body main section:nth-of-type(even) {
+/* INVENTORY PAGE SPECIFICS */
+.inventory-body main .section,
+.inventory-body main .section-alt {
   background: transparent;
 }
 
@@ -1063,14 +918,21 @@ textarea[name="modelPreferences"]:focus {
   color: var(--accent-strong);
 }
 
+.footer-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
 /* SCROLL REVEAL ANIMATIONS */
-.reveal {
+.reveal,
+[data-reveal] {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.in-view {
+.reveal.in-view,
+[data-reveal].in-view {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1091,97 +953,9 @@ textarea[name="modelPreferences"]:focus {
   transition-delay: 0.4s;
 }
 
-/* ========================= */
-/* NEW: HOMEPAGE POLISH      */
-/* ========================= */
-
-/* Generic card */
-.card {
-  background: var(--bg-card);
-  border-radius: 1.1rem;
-  border: 1px solid var(--border-subtle);
-  padding: 1.3rem 1.4rem;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
-}
-
-/* Wizard container uses card base */
-.wizard-container {
-  background: var(--bg-soft);
-  border-radius: 1.1rem;
-  border: 1px solid var(--border-subtle);
-  padding: 1.4rem 1.4rem 1.6rem;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.75);
-}
-
-/* Section header split in calculator */
-.section-header-split {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.3rem;
-}
-
-.section-header-split .section-intro {
-  margin-bottom: 0;
-}
-
-.section-tag {
-  font-size: 0.8rem;
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--accent-soft);
-  background: #232329;
-  color: var(--accent-strong);
-  white-space: nowrap;
-}
-
-/* Full-width buttons (used in forms) */
-.full-width {
-  width: 100%;
-}
-
-/* About panel highlight */
-.about-panel .about-highlight-card {
-  background: radial-gradient(circle at top, #34343a 0, #26262b 40%, #202024 100%);
-  border-radius: 1.1rem;
-  border: 1px solid var(--border-subtle);
-  padding: 1.3rem 1.4rem 1.5rem;
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.7);
-}
-
-/* Calculator CTA text */
-.calculator-cta {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-/* Wizard steps (new style aligned with .wizard-step spans) */
-.wizard-step {
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid var(--border-subtle);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  background: #232329;
-}
-
-.wizard-step.active {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent-strong);
-}
-
-/* Smaller status in referral card */
-.wizard-status.small {
-  font-size: 0.8rem;
-  margin-top: 0.6rem;
-}
-
-/* Slight tighten on final CTA section */
-#final-cta .section-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+/* RESPONSIVE ABOUT LAYOUT */
+@media (max-width: 900px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
 }
