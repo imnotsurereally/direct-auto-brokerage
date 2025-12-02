@@ -288,7 +288,7 @@ function setupPaymentCalculator() {
     const taxRate = parseFloat(taxInput.value) || 0;
 
     if (term < 0) term = 0;
-    if (term > 72) term = 72;
+    if (term > 84) term = 84;
     if (termInput.value && termInput.value !== String(term)) {
       termInput.value = term;
     }
