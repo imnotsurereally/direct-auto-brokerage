@@ -1,5 +1,5 @@
 // =============================
-// Direct Auto Brokerage – Frontend logic (updated)
+// Direct Auto Brokerage – Frontend logic
 // =============================
 
 // Supabase Edge Function endpoint (save-lead)
@@ -14,14 +14,18 @@ function getAdSource() {
       utm_source: url.searchParams.get("utm_source") || null,
       utm_campaign: url.searchParams.get("utm_campaign") || null,
       utm_medium: url.searchParams.get("utm_medium") || null,
+      utm_content: url.searchParams.get("utm_content") || null,
       referrer: document.referrer || null,
+      path: window.location.pathname,
     };
   } catch (e) {
     return {
       utm_source: null,
       utm_campaign: null,
       utm_medium: null,
+      utm_content: null,
       referrer: document.referrer || null,
+      path: window.location.pathname,
     };
   }
 }
@@ -29,24 +33,16 @@ function getAdSource() {
 document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();
   setupWizard();
-  setupPaymentCalculator();
-  setupReferralForm();
+  setupUnlockForms();
+  setupReferralForm(); // safe even if form not on page
 });
 
 // -----------------------------
 // Scroll reveal animations
 // -----------------------------
 function setupScrollReveal() {
-  const revealEls = Array.from(
-    document.querySelectorAll("[data-reveal], .reveal")
-  );
+  const revealEls = Array.from(document.querySelectorAll(".reveal"));
   if (!revealEls.length || !("IntersectionObserver" in window)) return;
-
-  revealEls.forEach((el) => {
-    if (!el.classList.contains("reveal")) {
-      el.classList.add("reveal");
-    }
-  });
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -57,17 +53,21 @@ function setupScrollReveal() {
         }
       });
     },
-    { threshold: 0.15 }
+    {
+      threshold: 0.15,
+    }
   );
 
   revealEls.forEach((el) => observer.observe(el));
 }
 
 // -----------------------------
-// Wizard / lead capture
+// Wizard / lead capture (main brief on homepage)
 // -----------------------------
 function setupWizard() {
   const form = document.querySelector("#leadWizardForm");
+  if (!form) return; // Not on this page
+
   const stepPanels = Array.from(
     document.querySelectorAll(".wizard-step-panel")
   );
@@ -81,21 +81,17 @@ function setupWizard() {
   const statusBox = document.querySelector("#wizardStatus");
   const submitButton = document.querySelector("#wizardSubmitButton");
 
-  if (!form || !stepPanels.length) return;
-
   let currentStep = 1;
 
   function goToStep(step) {
     currentStep = step;
-
     stepPanels.forEach((panel) => {
       const s = Number(panel.getAttribute("data-step"));
       panel.hidden = s !== currentStep;
     });
-
-    steps.forEach((stepEl) => {
-      const s = Number(stepEl.getAttribute("data-step"));
-      stepEl.classList.toggle("active", s === currentStep);
+    steps.forEach((chip) => {
+      const s = Number(chip.getAttribute("data-step"));
+      chip.classList.toggle("active", s === currentStep);
     });
 
     const wizard = document.querySelector("#wizard");
@@ -106,20 +102,17 @@ function setupWizard() {
 
   function setStatus(message, type) {
     if (!statusBox) return;
-    statusBox.textContent = message || "";
+    statusBox.textContent = message;
     statusBox.classList.remove("status-error", "status-success");
-
-    if (!message) {
-      statusBox.style.display = "none";
-      return;
-    }
-
     if (type === "error") {
       statusBox.classList.add("status-error");
+      statusBox.style.display = "block";
     } else if (type === "success") {
       statusBox.classList.add("status-success");
+      statusBox.style.display = "block";
+    } else {
+      statusBox.style.display = "none";
     }
-    statusBox.style.display = "block";
   }
 
   function clearStatus() {
@@ -150,6 +143,8 @@ function setupWizard() {
       phone: (formData.get("phone") || "").trim(),
       email: (formData.get("email") || "").trim() || null,
       contactMethod: formData.get("contactMethod") || null,
+
+      source: "wizard",
     };
 
     data.adSource = getAdSource();
@@ -208,13 +203,16 @@ function setupWizard() {
     try {
       const response = await fetch(SAVE_LEAD_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
+        console.error("save-lead response not OK:", response.status);
         const text = await response.text().catch(() => "");
-        console.error("save-lead response not OK:", response.status, text);
+        console.error("Response body:", text);
         throw new Error("Server error while saving your info.");
       }
 
@@ -238,187 +236,83 @@ function setupWizard() {
 }
 
 // -----------------------------
-// Finance calculator (with sliders + negative trade support)
+// Locked deals unlock forms
 // -----------------------------
-function setupPaymentCalculator() {
-  const form = document.querySelector("#finance-calculator");
-  const priceInput = document.querySelector("#calcPrice");
-  const downInput = document.querySelector("#calcDown");
-  const tradeInput = document.querySelector("#calcTrade");
-  const termInput = document.querySelector("#calcTerm");
-  const aprInput = document.querySelector("#calcAPR");
-  const taxInput = document.querySelector("#calcTax");
-  const paymentDisplay = document.querySelector("#calcPaymentDisplay");
-  const resultMeta = document.querySelector("#calcResultMeta");
+function setupUnlockForms() {
+  const forms = Array.from(document.querySelectorAll(".unlock-offer-form"));
+  if (!forms.length) return;
 
-  const priceSlider = document.querySelector("#calcPriceSlider");
-  const downSlider = document.querySelector("#calcDownSlider");
-  const tradeSlider = document.querySelector("#calcTradeSlider");
-  const termSlider = document.querySelector("#calcTermSlider");
-  const aprSlider = document.querySelector("#calcAPRSlider");
-  const taxSlider = document.querySelector("#calcTaxSlider");
+  forms.forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  if (
-    !form ||
-    !priceInput ||
-    !downInput ||
-    !tradeInput ||
-    !termInput ||
-    !aprInput ||
-    !paymentDisplay
-  ) {
-    return;
-  }
+      const statusBox = form.querySelector(".unlock-status");
+      const formData = new FormData(form);
 
-  function formatCurrency(value) {
-    if (isNaN(value) || !isFinite(value)) return "—";
-    return value.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 2,
-    });
-  }
+      const firstName = (formData.get("firstName") || "").trim();
+      const phone = (formData.get("phone") || "").trim();
+      const offerCode = form.getAttribute("data-offer") || null;
 
-  function calculatePayment() {
-    const price = parseFloat(priceInput.value) || 0;
-    const down = parseFloat(downInput.value) || 0;
-    const trade = parseFloat(tradeInput.value) || 0; // can be negative (upside down)
-    let term = parseInt(termInput.value, 10) || 0;
-    const apr = parseFloat(aprInput.value) || 0;
-    const taxRate = parseFloat(taxInput.value) || 0;
-
-    if (term < 0) term = 0;
-    if (term > 84) term = 84;
-    if (termInput.value && termInput.value !== String(term)) {
-      termInput.value = term;
-    }
-
-    const taxAmount = taxRate > 0 ? price * (taxRate / 100) : 0;
-    const gross = price + taxAmount;
-    const financed = Math.max(gross - down - trade, 0); // negative trade increases financed
-
-    let monthly = 0;
-
-    if (financed > 0 && term > 0) {
-      const monthlyRate = apr > 0 ? apr / 100 / 12 : 0;
-      if (monthlyRate === 0) {
-        monthly = financed / term;
-      } else {
-        const factor = Math.pow(1 + monthlyRate, term);
-        monthly = (financed * monthlyRate * factor) / (factor - 1);
+      if (statusBox) {
+        statusBox.textContent = "";
+        statusBox.classList.remove("status-error", "status-success");
       }
-    }
 
-    paymentDisplay.textContent =
-      financed > 0 && term > 0 ? `${formatCurrency(monthly)}/mo` : "—";
-
-    if (resultMeta) {
-      const parts = [];
-      parts.push(
-        `Est. amount financed: ${formatCurrency(financed)} (after down & trade).`
-      );
-      if (taxRate > 0) {
-        parts.push(
-          `Includes approx. ${formatCurrency(
-            taxAmount
-          )} in tax at ${taxRate.toFixed(2)}%.`
-        );
-      }
-      if (term > 0 && apr >= 0) {
-        parts.push(
-          `Based on ${term} months at ~${apr.toFixed(2)}% APR (very rough).`
-        );
-      }
-      resultMeta.textContent = parts.join(" ");
-    }
-  }
-
-  function bindSlider(input, slider, config) {
-    if (!slider || !input) return;
-    const { min, max, step, defaultValue } = config;
-
-    slider.min = min;
-    slider.max = max;
-    slider.step = step;
-
-    const initial =
-      input.value && !isNaN(parseFloat(input.value))
-        ? parseFloat(input.value)
-        : defaultValue;
-
-    slider.value = initial;
-    input.value = initial;
-
-    input.addEventListener("input", () => {
-      const v = parseFloat(input.value);
-      if (!isNaN(v)) {
-        const clamped = Math.max(min, Math.min(max, v));
-        if (clamped !== v) {
-          input.value = clamped;
+      if (!phone) {
+        if (statusBox) {
+          statusBox.textContent =
+            "Add a cell number so I can text you this lane.";
+          statusBox.classList.add("status-error");
         }
-        slider.value = clamped;
+        return;
       }
-      calculatePayment();
+
+      const payload = {
+        firstName: firstName || null,
+        phone,
+        offerCode,
+        source: "locked_deals_page",
+        contactMethod: "Text",
+        adSource: getAdSource(),
+      };
+
+      if (statusBox) {
+        statusBox.textContent = "Unlocking this lane...";
+        statusBox.classList.remove("status-error", "status-success");
+      }
+
+      try {
+        const response = await fetch(SAVE_LEAD_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          console.error("save-lead unlock response not OK:", response.status);
+          const text = await response.text().catch(() => "");
+          console.error("Response body:", text);
+          throw new Error("Server error while saving your info.");
+        }
+
+        form.reset();
+        if (statusBox) {
+          statusBox.textContent =
+            "Got it. I’ll text you shortly with how this lane looks for you.";
+          statusBox.classList.add("status-success");
+        }
+      } catch (err) {
+        console.error("Error submitting unlock lead:", err);
+        if (statusBox) {
+          statusBox.textContent =
+            "Something went wrong unlocking this lane. You can also text me directly.";
+          statusBox.classList.add("status-error");
+        }
+      }
     });
-
-    slider.addEventListener("input", () => {
-      input.value = slider.value;
-      calculatePayment();
-    });
-  }
-
-  // Bind sliders with sensible ranges
-  bindSlider(priceInput, priceSlider, {
-    min: 5000,
-    max: 120000,
-    step: 500,
-    defaultValue: 38000,
   });
-
-  bindSlider(downInput, downSlider, {
-    min: 0,
-    max: 30000,
-    step: 500,
-    defaultValue: 4000,
-  });
-
-  // Trade can be negative for negative equity
-  bindSlider(tradeInput, tradeSlider, {
-    min: -20000,
-    max: 20000,
-    step: 500,
-    defaultValue: 0,
-  });
-
-  bindSlider(termInput, termSlider, {
-    min: 12,
-    max: 84,
-    step: 6,
-    defaultValue: 60,
-  });
-
-  bindSlider(aprInput, aprSlider, {
-    min: 0,
-    max: 20,
-    step: 0.25,
-    defaultValue: 6.9,
-  });
-
-  bindSlider(taxInput, taxSlider, {
-    min: 0,
-    max: 12,
-    step: 0.25,
-    defaultValue: 7.75,
-  });
-
-  // Submit just recalculates; user can also play live with sliders
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    calculatePayment();
-  });
-
-  // Initial calculation
-  calculatePayment();
 }
 
 // -----------------------------
