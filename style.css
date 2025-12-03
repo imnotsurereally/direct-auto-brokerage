@@ -959,3 +959,20 @@ textarea[name="modelPreferences"]:focus {
     grid-template-columns: 1fr;
   }
 }
+
+/* === HOTFIX TO UNBREAK HERO === */
+.hero-section {
+  padding-top: 2.5rem !important;
+}
+
+.hero-grid {
+  margin-top: 0 !important;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+section {
+  opacity: 1 !important;
+}
