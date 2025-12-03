@@ -83,7 +83,7 @@ function setupWizard() {
 
   let currentStep = 1;
 
-  function goToStep(step) {
+  function goToStep(step, { scroll = true } = {}) {
     currentStep = step;
     stepPanels.forEach((panel) => {
       const s = Number(panel.getAttribute("data-step"));
@@ -93,6 +93,8 @@ function setupWizard() {
       const s = Number(chip.getAttribute("data-step"));
       chip.classList.toggle("active", s === currentStep);
     });
+
+    if (!scroll) return;
 
     const wizard = document.querySelector("#wizard");
     if (wizard) {
@@ -151,8 +153,8 @@ function setupWizard() {
     return data;
   }
 
-  // Initial state
-  goToStep(currentStep);
+  // Initial state – DO NOT SCROLL ON LOAD
+  goToStep(currentStep, { scroll: false });
   clearStatus();
 
   // Next buttons
@@ -160,7 +162,7 @@ function setupWizard() {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       if (currentStep < stepPanels.length) {
-        goToStep(currentStep + 1);
+        goToStep(currentStep + 1, { scroll: true });
       }
     });
   });
@@ -170,7 +172,7 @@ function setupWizard() {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       if (currentStep > 1) {
-        goToStep(currentStep - 1);
+        goToStep(currentStep - 1, { scroll: true });
       }
     });
   });
@@ -222,7 +224,7 @@ function setupWizard() {
       );
 
       form.reset();
-      goToStep(5);
+      goToStep(5, { scroll: true });
     } catch (err) {
       console.error("Error submitting lead:", err);
       setStatus(
