@@ -14,18 +14,14 @@ function getAdSource() {
       utm_source: url.searchParams.get("utm_source") || null,
       utm_campaign: url.searchParams.get("utm_campaign") || null,
       utm_medium: url.searchParams.get("utm_medium") || null,
-      utm_content: url.searchParams.get("utm_content") || null,
       referrer: document.referrer || null,
-      path: window.location.pathname,
     };
   } catch (e) {
     return {
       utm_source: null,
       utm_campaign: null,
       utm_medium: null,
-      utm_content: null,
       referrer: document.referrer || null,
-      path: window.location.pathname,
     };
   }
 }
@@ -33,8 +29,7 @@ function getAdSource() {
 document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();
   setupWizard();
-  setupUnlockForms();
-  setupReferralForm(); // safe even if form not on page
+  setupDealUnlock();
 });
 
 // -----------------------------
@@ -62,12 +57,10 @@ function setupScrollReveal() {
 }
 
 // -----------------------------
-// Wizard / lead capture (main brief on homepage)
+// Wizard / lead capture (homepage)
 // -----------------------------
 function setupWizard() {
   const form = document.querySelector("#leadWizardForm");
-  if (!form) return; // Not on this page
-
   const stepPanels = Array.from(
     document.querySelectorAll(".wizard-step-panel")
   );
@@ -81,9 +74,14 @@ function setupWizard() {
   const statusBox = document.querySelector("#wizardStatus");
   const submitButton = document.querySelector("#wizardSubmitButton");
 
+  if (!form || !stepPanels.length) {
+    // Not on this page
+    return;
+  }
+
   let currentStep = 1;
 
-  function goToStep(step, { scroll = true } = {}) {
+  function goToStep(step) {
     currentStep = step;
     stepPanels.forEach((panel) => {
       const s = Number(panel.getAttribute("data-step"));
@@ -93,8 +91,6 @@ function setupWizard() {
       const s = Number(chip.getAttribute("data-step"));
       chip.classList.toggle("active", s === currentStep);
     });
-
-    if (!scroll) return;
 
     const wizard = document.querySelector("#wizard");
     if (wizard) {
@@ -127,7 +123,7 @@ function setupWizard() {
     submitButton.textContent = locked ? "Sending..." : "Submit my search";
   }
 
-  function collectFormData(formEl) {
+  function collectWizardData(formEl) {
     const formData = new FormData(formEl);
 
     const data = {
@@ -145,16 +141,16 @@ function setupWizard() {
       phone: (formData.get("phone") || "").trim(),
       email: (formData.get("email") || "").trim() || null,
       contactMethod: formData.get("contactMethod") || null,
-
-      source: "wizard",
     };
 
+    data.leadType = "wizard";
+    data.dealName = null;
     data.adSource = getAdSource();
     return data;
   }
 
-  // Initial state – DO NOT SCROLL ON LOAD
-  goToStep(currentStep, { scroll: false });
+  // Initial state
+  goToStep(currentStep);
   clearStatus();
 
   // Next buttons
@@ -162,7 +158,7 @@ function setupWizard() {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       if (currentStep < stepPanels.length) {
-        goToStep(currentStep + 1, { scroll: true });
+        goToStep(currentStep + 1);
       }
     });
   });
@@ -172,7 +168,7 @@ function setupWizard() {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       if (currentStep > 1) {
-        goToStep(currentStep - 1, { scroll: true });
+        goToStep(currentStep - 1);
       }
     });
   });
@@ -182,7 +178,7 @@ function setupWizard() {
     e.preventDefault();
     clearStatus();
 
-    const payload = collectFormData(form);
+    const payload = collectWizardData(form);
 
     if (!payload.phone) {
       setStatus(
@@ -224,7 +220,7 @@ function setupWizard() {
       );
 
       form.reset();
-      goToStep(5, { scroll: true });
+      goToStep(5);
     } catch (err) {
       console.error("Error submitting lead:", err);
       setStatus(
@@ -238,50 +234,118 @@ function setupWizard() {
 }
 
 // -----------------------------
-// Locked deals unlock forms
+// Locked deals – inline unlock forms (deals.html)
 // -----------------------------
-function setupUnlockForms() {
-  const forms = Array.from(document.querySelectorAll(".unlock-offer-form"));
-  if (!forms.length) return;
+function setupDealUnlock() {
+  const toggleButtons = Array.from(
+    document.querySelectorAll(".deal-unlock-toggle")
+  );
+  const unlockPanels = Array.from(
+    document.querySelectorAll(".deal-unlock-panel")
+  );
+  const forms = Array.from(document.querySelectorAll(".deal-unlock-form"));
 
+  if (!toggleButtons.length && !forms.length) {
+    return; // not on deals page
+  }
+
+  // Toggle open/close of unlock panels
+  toggleButtons.forEach((btn) => {
+    const targetSelector = btn.getAttribute("data-target");
+    const panel = targetSelector
+      ? document.querySelector(targetSelector)
+      : null;
+
+    btn.addEventListener("click", () => {
+      if (!panel) return;
+
+      const shouldOpen = panel.hasAttribute("hidden");
+
+      // Close all panels first
+      unlockPanels.forEach((p) => p.setAttribute("hidden", "true"));
+
+      if (shouldOpen) {
+        panel.removeAttribute("hidden");
+        panel.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  });
+
+  // Handle form submit for each deal
   forms.forEach((form) => {
+    const statusBox = form.querySelector(".deal-unlock-status");
+    const submitBtn = form.querySelector("button[type='submit']");
+    const dealAttr = form.getAttribute("data-deal");
+    const dealNameDefault =
+      dealAttr || form.querySelector("input[name='dealName']")?.value || null;
+
+    function setStatus(message, type) {
+      if (!statusBox) return;
+      statusBox.textContent = message;
+      statusBox.classList.remove("status-error", "status-success");
+      if (type === "error") {
+        statusBox.classList.add("status-error");
+        statusBox.style.display = "block";
+      } else if (type === "success") {
+        statusBox.classList.add("status-success");
+        statusBox.style.display = "block";
+      } else {
+        statusBox.style.display = "none";
+      }
+    }
+
+    function lockSubmit(locked) {
+      if (!submitBtn) return;
+      submitBtn.disabled = locked;
+      submitBtn.textContent = locked
+        ? "Sending..."
+        : submitBtn.dataset.originalText || "Unlock this deal";
+    }
+
+    // Store original button text
+    if (submitBtn && !submitBtn.dataset.originalText) {
+      submitBtn.dataset.originalText = submitBtn.textContent;
+    }
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      setStatus("", null);
 
-      const statusBox = form.querySelector(".unlock-status");
       const formData = new FormData(form);
 
-      const firstName = (formData.get("firstName") || "").trim();
-      const phone = (formData.get("phone") || "").trim();
-      const offerCode = form.getAttribute("data-offer") || null;
-
-      if (statusBox) {
-        statusBox.textContent = "";
-        statusBox.classList.remove("status-error", "status-success");
-      }
-
-      if (!phone) {
-        if (statusBox) {
-          statusBox.textContent =
-            "Add a cell number so I can text you this lane.";
-          statusBox.classList.add("status-error");
-        }
-        return;
-      }
-
       const payload = {
-        firstName: firstName || null,
-        phone,
-        offerCode,
-        source: "locked_deals_page",
-        contactMethod: "Text",
+        goal: null,
+        timeline: null,
+        newOrUsed: null,
+        vehicleType: null,
+        modelPreferences: `Unlock request for ${dealNameDefault || "locked deal"}`,
+        paymentRange: null,
+        downPayment: null,
+        credit: null,
+
+        firstName: formData.get("firstName") || null,
+        lastName: null,
+        phone: (formData.get("phone") || "").trim(),
+        email: null,
+        contactMethod: formData.get("contactMethod") || null,
+
+        leadType: formData.get("leadType") || "deal_unlock",
+        dealName:
+          formData.get("dealName") || dealNameDefault || "Locked deal request",
         adSource: getAdSource(),
       };
 
-      if (statusBox) {
-        statusBox.textContent = "Unlocking this lane...";
-        statusBox.classList.remove("status-error", "status-success");
+      if (!payload.phone || payload.phone.length < 7) {
+        setStatus("Please add a valid phone number so I can follow up.", "error");
+        return;
       }
+
+      if (!payload.contactMethod) {
+        setStatus("How do you prefer I reach out — text, call, or WhatsApp?", "error");
+        return;
+      }
+
+      lockSubmit(true);
 
       try {
         const response = await fetch(SAVE_LEAD_ENDPOINT, {
@@ -293,45 +357,26 @@ function setupUnlockForms() {
         });
 
         if (!response.ok) {
-          console.error("save-lead unlock response not OK:", response.status);
+          console.error("save-lead (deal unlock) not OK:", response.status);
           const text = await response.text().catch(() => "");
           console.error("Response body:", text);
           throw new Error("Server error while saving your info.");
         }
 
+        setStatus(
+          "Got it. I’ll personally go over this lane and reach out with what makes sense.",
+          "success"
+        );
         form.reset();
-        if (statusBox) {
-          statusBox.textContent =
-            "Got it. I’ll text you shortly with how this lane looks for you.";
-          statusBox.classList.add("status-success");
-        }
       } catch (err) {
-        console.error("Error submitting unlock lead:", err);
-        if (statusBox) {
-          statusBox.textContent =
-            "Something went wrong unlocking this lane. You can also text me directly.";
-          statusBox.classList.add("status-error");
-        }
+        console.error("Error submitting deal unlock:", err);
+        setStatus(
+          "Something went wrong sending this unlock request. Please try again or text me directly.",
+          "error"
+        );
+      } finally {
+        lockSubmit(false);
       }
     });
-  });
-}
-
-// -----------------------------
-// Referral form (simple front-end only)
-// -----------------------------
-function setupReferralForm() {
-  const referralForm = document.querySelector("#referral-form");
-  const statusBox = document.querySelector("#referralStatus");
-
-  if (!referralForm) return;
-
-  referralForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (statusBox) {
-      statusBox.textContent =
-        "Got it. I’ll note this referral. When their deal closes, I’ll reach out to send your $100.";
-    }
-    referralForm.reset();
   });
 }
