@@ -27,9 +27,22 @@ function getAdSource() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  setupScrollReveal();
-  setupWizard();
-  setupDealUnlock();
+  console.log("DAB script loaded");
+  try {
+    setupScrollReveal();
+  } catch (e) {
+    console.error("Error in setupScrollReveal:", e);
+  }
+  try {
+    setupWizard();
+  } catch (e) {
+    console.error("Error in setupWizard:", e);
+  }
+  try {
+    setupDealUnlock();
+  } catch (e) {
+    console.error("Error in setupDealUnlock:", e);
+  }
 });
 
 // -----------------------------
@@ -75,7 +88,7 @@ function setupWizard() {
   const submitButton = document.querySelector("#wizardSubmitButton");
 
   if (!form || !stepPanels.length) {
-    // Not on this page
+    console.log("Wizard not found on this page. Skipping wizard setup.");
     return;
   }
 
@@ -246,8 +259,13 @@ function setupDealUnlock() {
   const forms = Array.from(document.querySelectorAll(".deal-unlock-form"));
 
   if (!toggleButtons.length && !forms.length) {
+    console.log("No locked-deal elements found. Skipping deal unlock setup.");
     return; // not on deals page
   }
+
+  console.log(
+    `Deal unlock setup: ${toggleButtons.length} buttons, ${unlockPanels.length} panels, ${forms.length} forms`
+  );
 
   // Toggle open/close of unlock panels
   toggleButtons.forEach((btn) => {
@@ -256,9 +274,12 @@ function setupDealUnlock() {
       ? document.querySelector(targetSelector)
       : null;
 
-    btn.addEventListener("click", () => {
-      if (!panel) return;
+    if (!panel) {
+      console.warn("No panel found for deal-unlock-toggle:", targetSelector);
+      return;
+    }
 
+    btn.addEventListener("click", () => {
       const shouldOpen = panel.hasAttribute("hidden");
 
       // Close all panels first
@@ -318,7 +339,9 @@ function setupDealUnlock() {
         timeline: null,
         newOrUsed: null,
         vehicleType: null,
-        modelPreferences: `Unlock request for ${dealNameDefault || "locked deal"}`,
+        modelPreferences: `Unlock request for ${
+          dealNameDefault || "locked deal"
+        }`,
         paymentRange: null,
         downPayment: null,
         credit: null,
@@ -336,12 +359,18 @@ function setupDealUnlock() {
       };
 
       if (!payload.phone || payload.phone.length < 7) {
-        setStatus("Please add a valid phone number so I can follow up.", "error");
+        setStatus(
+          "Please add a valid phone number so I can follow up.",
+          "error"
+        );
         return;
       }
 
       if (!payload.contactMethod) {
-        setStatus("How do you prefer I reach out — text, call, or WhatsApp?", "error");
+        setStatus(
+          "How do you prefer I reach out — text, call, or WhatsApp?",
+          "error"
+        );
         return;
       }
 
