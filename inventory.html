@@ -2,38 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Explore Brands & Lanes | Direct Auto Brokerage</title>
+  <title>Explore New Cars by Brand | Direct Auto Brokerage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Explore Toyota, Mercedes, BMW and Audi lanes for 2025–2026. Not a build-and-price tool — just a clean way to see what fits your life, then let a broker structure the deal."
+    content="Browse 2025–2026 example lanes for Toyota, Mercedes, BMW and Audi — then I structure the real deal around your budget."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="inventory-body">
   <!-- MOBILE STICKY BAR -->
   <div id="mobile-sticky-bar">
-    <a href="index.html">Home</a>
-    <a href="deals.html">Locked deals</a>
-    <a href="start.html">Start brief</a>
+    <a href="index.html#start-search">Start search</a>
     <a href="sms:+1-949-444-3388">Text Dan</a>
+    <a href="tel:+1-949-444-3388">Call</a>
   </div>
 
-  <!-- SLIM STICKY NAV -->
+  <!-- TOP NAV -->
   <header id="site-header">
     <div class="container header-inner">
       <div class="brand">
         <span class="brand-mark">DAB</span>
         <div class="brand-text">
           <span class="brand-name">Direct Auto Brokerage</span>
-          <span class="brand-tagline">Former dealer insider, now on your side.</span>
+          <span class="brand-tagline">Toyota • Mercedes • BMW • Audi</span>
         </div>
       </div>
       <nav class="main-nav">
-        <a href="index.html#why-broker">Why a broker</a>
+        <a href="index.html">Home</a>
         <a href="deals.html">Locked deals</a>
-        <a href="inventory.html" class="nav-cta">Explore brands</a>
-        <a href="start.html">Start search</a>
+        <a href="#brands">Explore brands</a>
+        <a href="index.html#start-search" class="nav-cta">Start search</a>
       </nav>
     </div>
   </header>
@@ -43,305 +42,233 @@
     <section class="hero-section inventory-hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <h1>Pick your lane. I’ll worry about the exact car.</h1>
+          <h1>Browse 2025–2026 lanes by brand.</h1>
           <p class="hero-subtitle">
-            This page isn’t a build-and-price tool. It’s a clean way to feel out
-            <strong>Toyota, Mercedes, BMW and Audi</strong> lanes for 2025–2026 — then I go hunt the actual cars and
-            structure around your life and budget.
-          </p>
-          <p class="hero-microcopy">
-            You don’t need the perfect trim picked out. You just need the right direction. I’ll do the nerd work behind the scenes.
+            This isn’t a “build &amp; price” tool. It’s a simple way to point at a lane you like — then I go build a real structure
+            around your budget.
           </p>
           <div class="hero-cta">
-            <a href="deals.html" class="btn-primary">See locked-style deal examples</a>
-            <a href="start.html" class="btn-secondary">Start my 60-second brief</a>
+            <a href="index.html#start-search" class="btn-primary">Tell me what you’re eyeing</a>
+            <a href="deals.html" class="btn-secondary">See locked example deals</a>
+          </div>
+          <div class="hero-microcopy">
+            Pick a direction here. The real work happens when I structure the numbers for you.
           </div>
         </div>
 
         <div class="hero-panel reveal delay-1">
           <div class="hero-panel-inner">
-            <p style="margin-top:0; text-transform:uppercase; letter-spacing:0.08em; font-size:0.7rem; color:var(--text-muted);">
-              HOW TO USE THIS PAGE
-            </p>
-            <h2 style="margin-top:0.25rem; margin-bottom:0.6rem;">Think “vibes” and lifestyle, not exact VINs.</h2>
+            <h2 style="margin-top:0;">How to use this page</h2>
             <ul class="hero-facts small">
-              <li><span>1</span><strong>Scroll the brand that feels like you.</strong></li>
-              <li><span>2</span><strong>Find the lane that matches your life & payment comfort.</strong></li>
-              <li><span>3</span><strong>Text me the brand + lane. I’ll build the real options.</strong></li>
+              <li><span>1.</span><strong>Find a brand + model that fits your life.</strong></li>
+              <li><span>2.</span><strong>Ignore “perfect spec” for now — focus on vibe + payment lane.</strong></li>
+              <li><span>3.</span><strong>Send me the car and your comfort payment.</strong></li>
             </ul>
             <p class="hero-note">
-              Everything here is example-based. Real numbers depend on programs, inventory and your profile — that’s where I come in.
+              These are examples, not offers. Once I know your timing, miles, and budget, I hunt the right unit and structure.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BRANDS NAV -->
-    <section class="section" data-reveal>
+    <!-- BRANDS / CAR EXPLORER -->
+    <section id="brands" class="section">
       <div class="container">
-        <h2>Explore by brand</h2>
-        <p class="section-intro">
-          Tap a brand, skim the lanes that feel closest to your world, then send me a quick text with what you’re leaning toward.
+        <h2 class="reveal">2025–2026 examples by brand</h2>
+        <p class="section-intro reveal">
+          Pick what feels like “your lane” — practical daily, entry luxury, or something nicer. From there I check real inventory
+          and programs behind the scenes.
         </p>
 
-        <div class="brand-pills">
+        <!-- BRAND TABS -->
+        <div class="brand-pills reveal">
           <a href="#brand-toyota" class="brand-pill">Toyota</a>
           <a href="#brand-mercedes" class="brand-pill">Mercedes-Benz</a>
           <a href="#brand-bmw" class="brand-pill">BMW</a>
           <a href="#brand-audi" class="brand-pill">Audi</a>
         </div>
-      </div>
-    </section>
 
-    <!-- TOYOTA -->
-    <section id="brand-toyota" class="section" data-reveal>
-      <div class="container">
-        <h2 class="brand-heading">Toyota – practical, durable, payment-sane.</h2>
-        <p class="section-intro">
-          If you want solid, low-drama transportation with strong resale and normal payments, Toyota is usually home base.
-        </p>
+        <!-- TOYOTA -->
+        <section id="brand-toyota" class="brand-section">
+          <h3 class="brand-heading reveal">Toyota – practical, strong resale, easy to live with.</h3>
+          <div class="car-grid">
+            <!-- Card 1 -->
+            <article class="car-card reveal">
+              <div class="car-image" data-slot="toyota-rav4-image">
+                <!-- You can set background-image in CSS or inline later -->
+              </div>
+              <div class="car-body">
+                <span class="car-tag">2025 Toyota RAV4 XLE</span>
+                <h4>Everyday small SUV that just works.</h4>
+                <p class="car-copy">
+                  Space for normal life, easy to park, great for SoCal commuting and weekends. This is a “do everything without drama”
+                  type car.
+                </p>
+                <p class="car-meta">
+                  Best for: <strong>Families, active people, commuters</strong><br />
+                  What I focus on: <strong>Programs, miles, and trims that keep the payment sane.</strong>
+                </p>
+                <a href="index.html#start-search" class="link-cta">Use RAV4 as my starting point →</a>
+              </div>
+            </article>
 
-        <div class="car-grid">
-          <!-- Camry lane -->
-          <article class="car-card reveal">
-            <div class="car-image" style="
-              background-image:url('https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            "></div>
-            <div class="car-body">
-              <span class="car-tag">Toyota lane &mdash; 2025 Camry SE</span>
-              <h4>Calm, reliable sedan that doesn’t scream for attention.</h4>
-              <p class="car-copy">
-                Great if you just want something modern, comfortable and not ridiculous on gas or payment. I focus on
-                trims that feel a step up from “basic” without paying for every gadget.
-              </p>
-              <p class="car-meta">
-                Typical shopper: commuters, small families, anyone getting out of an older sedan who wants “normal but nice.”
-                <br />
-                My angle: avoid junk add-ons and quietly structure the payment so it fits your real comfort zone.
-              </p>
-              <a
-                href="sms:+1-949-444-3388?&body=Hi%20Dan%2C%20I%27m%20leaning%20toward%20your%20Toyota%20Camry%20lane.%20Can%20we%20see%20what%20a%20smart%20structure%20would%20look%20like%20for%20me%3F"
-                class="link-cta"
-              >
-                Use Camry lane as my starting point →
-              </a>
-            </div>
-          </article>
+            <!-- Card 2 -->
+            <article class="car-card reveal delay-1">
+              <div class="car-image" data-slot="toyota-camry-image">
+              </div>
+              <div class="car-body">
+                <span class="car-tag">2025 Toyota Camry SE</span>
+                <h4>Comfortable sedan that doesn’t feel cheap.</h4>
+                <p class="car-copy">
+                  Solid daily driver with good gas mileage and strong value. Great lane if you want something normal, clean and
+                  predictable.
+                </p>
+                <p class="car-meta">
+                  Best for: <strong>Daily commuters, small families</strong><br />
+                  What I focus on: <strong>Finding trims and structures that avoid junk add-ons.</strong>
+                </p>
+                <a href="index.html#start-search" class="link-cta">Ask about a smart Camry structure →</a>
+              </div>
+            </article>
+          </div>
+        </section>
 
-          <!-- RAV4 lane -->
-          <article class="car-card reveal delay-1">
-            <div class="car-image" style="
-              background-image:url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            "></div>
-            <div class="car-body">
-              <span class="car-tag">Toyota lane &mdash; 2025 RAV4 XLE</span>
-              <h4>Do-it-all small SUV for real life, not just ads.</h4>
-              <p class="car-copy">
-                Good mix of space, reliability and everyday usefulness. RAV4s get hit with markups a lot — my job is to
-                cut the noise and find the smart windows.
-              </p>
-              <p class="car-meta">
-                Typical shopper: active people, young families, “one-car household” types.<br />
-                My angle: target programs and trims that keep the payment sane without stripping everything fun out of the car.
-              </p>
-              <a
-                href="sms:+1-949-444-3388?&body=Hi%20Dan%2C%20I%20like%20your%20Toyota%20RAV4%20lane.%20Can%20you%20show%20me%20what%20my%20numbers%20might%20look%20like%3F"
-                class="link-cta"
-              >
-                Use RAV4 lane as my starting point →
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+        <!-- MERCEDES -->
+        <section id="brand-mercedes" class="brand-section">
+          <h3 class="brand-heading reveal">Mercedes-Benz – when you want a real step up.</h3>
+          <div class="car-grid">
+            <!-- Card 1 -->
+            <article class="car-card reveal">
+              <div class="car-image" data-slot="mercedes-c300-image">
+              </div>
+              <div class="car-body">
+                <span class="car-tag">2025–2026 Mercedes-Benz C300</span>
+                <h4>Modern luxury sedan without going full S-Class money.</h4>
+                <p class="car-copy">
+                  Clean cabin, tech, and that Mercedes feel. The way it’s structured matters more than the badge — that’s where I come in.
+                </p>
+                <p class="car-meta">
+                  Best for: <strong>People upgrading into luxury</strong><br />
+                  What I focus on: <strong>Solid structure instead of “loaded payment shock.”</strong>
+                </p>
+                <a href="index.html#start-search" class="link-cta">Show me smart C-Class options →</a>
+              </div>
+            </article>
 
-    <!-- MERCEDES -->
-    <section id="brand-mercedes" class="section section-alt" data-reveal>
-      <div class="container">
-        <h2 class="brand-heading">Mercedes-Benz – my old home turf.</h2>
-        <p class="section-intro">
-          This is where my dealership background really kicks in. The structure and build matter a lot more than most
-          people realize — I’ve seen how these deals are written from the inside.
-        </p>
+            <!-- Card 2 -->
+            <article class="car-card reveal delay-1">
+              <div class="car-image" data-slot="mercedes-glc-image">
+              </div>
+              <div class="car-body">
+                <span class="car-tag">2025 Mercedes-Benz GLC 300</span>
+                <h4>Luxury small SUV for real life.</h4>
+                <p class="car-copy">
+                  Comfortable, upscale, and not huge. Great lane if you want something that feels like an upgrade without going to a giant
+                  payment.
+                </p>
+                <p class="car-meta">
+                  Best for: <strong>Couples, small families, city life</strong><br />
+                  What I focus on: <strong>Finding builds that feel special but still make sense on paper.</strong>
+                </p>
+                <a href="index.html#start-search" class="link-cta">Ask about a GLC structure →</a>
+              </div>
+            </article>
+          </div>
+        </section>
 
-        <div class="car-grid">
-          <!-- C-Class lane -->
-          <article class="car-card reveal">
-            <div class="car-image" style="
-              background-image:url('https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            "></div>
-            <div class="car-body">
-              <span class="car-tag">Mercedes lane &mdash; 2026 C-Class (C300)</span>
-              <h4>Modern luxury sedan when you’re ready for a real step up.</h4>
-              <p class="car-copy">
-                Sweet spot for people moving out of Camry/Accord/3-Series type cars. The wrong build can wreck the payment.
-                I try to keep it feeling special without putting you in “why is this so high?” territory.
-              </p>
-              <p class="car-meta">
-                Typical shopper: professionals, people upgrading into luxury for the first time.<br />
-                My angle: use my tower experience to keep the backend honest while still making it feel like an upgrade.
-              </p>
-              <a
-                href="sms:+1-949-444-3388?&body=Hi%20Dan%2C%20I%27m%20interested%20in%20your%20Mercedes%20C-Class%20lane.%20Can%20you%20walk%20me%20through%20smart%20options%20for%20me%3F"
-                class="link-cta"
-              >
-                Use C-Class lane as my starting point →
-              </a>
-            </div>
-          </article>
+        <!-- BMW -->
+        <section id="brand-bmw" class="brand-section">
+          <h3 class="brand-heading reveal">BMW – for people who care how it feels to drive.</h3>
+          <div class="car-grid">
+            <!-- Card 1 -->
+            <article class="car-card reveal">
+              <div class="car-image" data-slot="bmw-330-image">
+              </div>
+              <div class="car-body">
+                <span class="car-tag">2025 BMW 330i</span>
+                <h4>Sporty sedan that still works as a daily.</h4>
+                <p class="car-copy">
+                  Good mix of feel and practicality. The right package and structure can change the whole payment story.
+                </p>
+                <p class="car-meta">
+                  Best for: <strong>Enthusiasts, people bored of basic sedans</strong><br />
+                  What I focus on: <strong>Spec + program sweet spots that don’t punish you monthly.</strong>
+                </p>
+                <a href="index.html#start-search" class="link-cta">Use 3-Series as my target →</a>
+              </div>
+            </article>
 
-          <!-- GLC lane -->
-          <article class="car-card reveal delay-1">
-            <div class="car-image" style="
-              background-image:url('https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            "></div>
-            <div class="car-body">
-              <span class="car-tag">Mercedes lane &mdash; 2025–2026 GLC</span>
-              <h4>Luxury SUV without the “how is it that much?” payment shock.</h4>
-              <p class="car-copy">
-                GLC is a go-to luxury SUV when it’s structured right. When it’s not, people get blindsided at the desk.
-                I’d rather fix that before you’re sitting there with a pen in your hand.
-              </p>
-              <p class="car-meta">
-                Typical shopper: families, professionals, Benz loyalists.<br />
-                My angle: time programs and builds so the feel and payment actually line up.
-              </p>
-              <a
-                href="sms:+1-949-444-3388?&body=Hi%20Dan%2C%20I%27m%20looking%20at%20your%20Mercedes%20GLC%20lane.%20Can%20you%20tell%20me%20when%20the%20timing%20is%20smart%20for%20me%3F"
-                class="link-cta"
-              >
-                Use GLC lane as my starting point →
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+            <!-- Card 2 -->
+            <article class="car-card reveal delay-1">
+              <div class="car-image" data-slot="bmw-x3-image">
+              </div>
+              <div class="car-body">
+                <span class="car-tag">2025 BMW X3 xDrive30i</span>
+                <h4>Small luxury SUV with some real feel.</h4>
+                <p class="car-copy">
+                  Enough space, still sharp to drive. Great lane if you want something nicer than a basic SUV but still useful.
+                </p>
+                <p class="car-meta">
+                  Best for: <strong>Families, people stepping into luxury SUVs</strong><br />
+                  What I focus on: <strong>Programs + miles that keep the X3 from getting silly expensive.</strong>
+                </p>
+                <a href="index.html#start-search" class="link-cta">Talk to me about X3 lanes →</a>
+              </div>
+            </article>
+          </div>
+        </section>
 
-    <!-- BMW -->
-    <section id="brand-bmw" class="section" data-reveal>
-      <div class="container">
-        <h2 class="brand-heading">BMW – when driving feel actually matters.</h2>
-        <p class="section-intro">
-          If you care about how a car feels on the road, BMW is usually on your radar. My job is to line that feeling up
-          with a structure that doesn’t feel dumb.
-        </p>
+        <!-- AUDI -->
+        <section id="brand-audi" class="brand-section">
+          <h3 class="brand-heading reveal">Audi – clean design, chill daily luxury.</h3>
+          <div class="car-grid">
+            <!-- Card 1 -->
+            <article class="car-card reveal">
+              <div class="car-image" data-slot="audi-a4-image">
+              </div>
+              <div class="car-body">
+                <span class="car-tag">2025 Audi A4</span>
+                <h4>Understated sedan that still feels special.</h4>
+                <p class="car-copy">
+                  Good mix of tech, comfort, and look. Perfect if you want something that feels premium without screaming for attention.
+                </p>
+                <p class="car-meta">
+                  Best for: <strong>Professionals, commuters, low-drama luxury</strong><br />
+                  What I focus on: <strong>Trims and structures that age well and don’t feel like a stretch.</strong>
+                </p>
+                <a href="index.html#start-search" class="link-cta">Ask about Audi A4 options →</a>
+              </div>
+            </article>
 
-        <div class="car-grid">
-          <!-- 3-Series lane -->
-          <article class="car-card reveal">
-            <div class="car-image" style="
-              background-image:url('https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            "></div>
-            <div class="car-body">
-              <span class="car-tag">BMW lane &mdash; 3-Series</span>
-              <h4>Classic sport sedan that still makes sense daily.</h4>
-              <p class="car-copy">
-                A lot of people chase the “perfect” build and end up paying for toys they never use. I’d rather you get the
-                right mix of feel, tech and structure so it fits right now and a few years down the line.
-              </p>
-              <p class="car-meta">
-                Typical shopper: enthusiasts, people upgrading out of mainstream sedans.<br />
-                My angle: focus on builds that keep the BMW personality without unnecessary payment bloat.
-              </p>
-              <a
-                href="sms:+1-949-444-3388?&body=Hi%20Dan%2C%20I%27m%20interested%20in%20your%20BMW%203-Series%20lane.%20Can%20we%20see%20what%20a%20smart%20setup%20for%20me%20would%20look%20like%3F"
-                class="link-cta"
-              >
-                Use 3-Series lane as my starting point →
-              </a>
-            </div>
-          </article>
+            <!-- Card 2 -->
+            <article class="car-card reveal delay-1">
+              <div class="car-image" data-slot="audi-q5-image">
+              </div>
+              <div class="car-body">
+                <span class="car-tag">2025 Audi Q5</span>
+                <h4>Clean, comfortable SUV lane.</h4>
+                <p class="car-copy">
+                  Solid everyday luxury SUV. Good if you want something nicer than mainstream but still usable for real life.
+                </p>
+                <p class="car-meta">
+                  Best for: <strong>Families, long-term owners</strong><br />
+                  What I focus on: <strong>Keeping the deal clean so the payment matches the car, not the games.</strong>
+                </p>
+                <a href="index.html#start-search" class="link-cta">Use Q5 as my baseline →</a>
+              </div>
+            </article>
+          </div>
+        </section>
 
-          <!-- X3 lane -->
-          <article class="car-card reveal delay-1">
-            <div class="car-image" style="
-              background-image:url('https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            "></div>
-            <div class="car-body">
-              <span class="car-tag">BMW lane &mdash; X3</span>
-              <h4>“Grown-up” SUV with real driving feel.</h4>
-              <p class="car-copy">
-                X3 works well for people who want practicality but still care what it feels like to drive. Structure and
-                timing matter here — programs move and can make a big difference.
-              </p>
-              <p class="car-meta">
-                Typical shopper: professionals, small families, ex-3-Series drivers.<br />
-                My angle: time the deal and structure to catch value instead of getting stuck in a bad month.
-              </p>
-              <a
-                href="sms:+1-949-444-3388?&body=Hi%20Dan%2C%20I%20like%20your%20BMW%20X3%20lane.%20Can%20you%20show%20me%20what%27s%20smart%20for%20my%20situation%3F"
-                class="link-cta"
-              >
-                Use X3 lane as my starting point →
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- AUDI -->
-    <section id="brand-audi" class="section section-alt" data-reveal>
-      <div class="container">
-        <h2 class="brand-heading">Audi – clean, calm, grown-up feeling.</h2>
-        <p class="section-intro">
-          Audi tends to attract people who want something modern and dialed-in, but not loud. The trick is matching that
-          feeling with a payment that doesn’t feel like a surprise.
-        </p>
-
-        <div class="car-grid">
-          <!-- A4 lane -->
-          <article class="car-card reveal">
-            <div class="car-image" style="
-              background-image:url('https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            "></div>
-            <div class="car-body">
-              <span class="car-tag">Audi lane &mdash; A4</span>
-              <h4>Clean sedan for people who like subtle, not flashy.</h4>
-              <p class="car-copy">
-                A4 is great if you want something that feels premium but not loud. I focus on trims and structures that
-                keep it feeling like a smart move instead of a “why is this so much?” moment.
-              </p>
-              <p class="car-meta">
-                Typical shopper: professionals, people upgrading from mainstream sedans.<br />
-                My angle: get you the vibe you want, without burying you in payment.
-              </p>
-              <a
-                href="sms:+1-949-444-3388?&body=Hi%20Dan%2C%20I%27m%20eyeing%20your%20Audi%20A4%20lane.%20Can%20you%20build%20a%20few%20options%20for%20me%3F"
-                class="link-cta"
-              >
-                Use A4 lane as my starting point →
-              </a>
-            </div>
-          </article>
-
-          <!-- Q5 lane -->
-          <article class="car-card reveal delay-1">
-            <div class="car-image" style="
-              background-image:url('https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            "></div>
-            <div class="car-body">
-              <span class="car-tag">Audi lane &mdash; Q5</span>
-              <h4>Calm, modern SUV that doesn’t feel like chaos.</h4>
-              <p class="car-copy">
-                Q5 is for people who want a quiet, grown-up SUV. My focus is getting you into something that still feels
-                like an upgrade a few years from now, not just “nice for the first month.”
-              </p>
-              <p class="car-meta">
-                Typical shopper: families, professionals, anyone wanting a calm, upscale daily driver.<br />
-                My angle: build around how long you actually plan to keep it and what a sane payment looks like for you.
-              </p>
-              <a
-                href="sms:+1-949-444-3388?&body=Hi%20Dan%2C%20your%20Audi%20Q5%20lane%20sounds%20like%20me.%20Can%20you%20show%20me%20what%20my%20options%20could%20look%20like%3F"
-                class="link-cta"
-              >
-                Use Q5 lane as my starting point →
-              </a>
-            </div>
-          </article>
+        <!-- CTA -->
+        <div class="section-cta center reveal">
+          <p class="section-intro" style="margin-bottom: 0.9rem;">
+            If you see yourself in any of these lanes, that’s enough to start. I’ll handle the inventory, programs and structure.
+          </p>
+          <a href="index.html#start-search" class="btn-primary">
+            I picked a lane — help me structure it
+          </a>
         </div>
       </div>
     </section>
@@ -351,9 +278,7 @@
     <div class="container footer-inner">
       <p>Direct Auto Brokerage &mdash; Serving car buyers across Southern California.</p>
       <p>
-        Go back to:&nbsp; <a href="index.html">Homepage</a> &nbsp;|&nbsp;
-        <a href="deals.html">Locked deals</a> &nbsp;|&nbsp;
-        <a href="start.html">Start 60-second brief</a>
+        Go back to:&nbsp; <a href="index.html">Main site</a>
       </p>
     </div>
   </footer>
